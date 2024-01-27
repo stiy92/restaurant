@@ -42,9 +42,19 @@ class ModeloVentas{
 
 	static public function mdlIngresarVenta($tabla, $datos){
 
+		try {
+			// Obtener el último código
+			$stmtCodigo = Conexion::conectar()->prepare("SELECT MAX(codigo) as max_codigo FROM $tabla");
+			$stmtCodigo->execute();
+			$resultadoCodigo = $stmtCodigo->fetch(PDO::FETCH_ASSOC);
+			$ultimoCodigo = $resultadoCodigo['max_codigo'] + 1;
+	
+        //preparar la insercion
 		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(codigo, id_cliente, id_vendedor, productos, impuesto, neto, total, metodo_pago) VALUES (:codigo, :id_cliente, :id_vendedor, :productos, :impuesto, :neto, :total, :metodo_pago)");
 
-		$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
+		//agregar los valores
+		$stmt->bindParam(":codigo", $ultimoCodigo, PDO::PARAM_INT);
+		//$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
 		$stmt->bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_INT);
 		$stmt->bindParam(":id_vendedor", $datos["id_vendedor"], PDO::PARAM_INT);
 		$stmt->bindParam(":productos", $datos["productos"], PDO::PARAM_STR);
@@ -63,8 +73,13 @@ class ModeloVentas{
 		
 		}
 
+	} catch (PDOException $e) {
+        return false;
+    }
+
 		$stmt->close();
 		$stmt = null;
+
 
 	}
 
@@ -134,7 +149,7 @@ class ModeloVentas{
 
 		if($fechaInicial == null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id ASC");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE DATE(fecha) = CURRENT_DATE() ORDER BY id DESC");
 
 			$stmt -> execute();
 
@@ -187,6 +202,60 @@ class ModeloVentas{
 	static public function mdlSumaTotalVentas($tabla){	
 
 		$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla");
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	/*=============================================
+	SUMAR EL TOTAL DE VENTAS CREDITOS
+	=============================================*/
+
+	static public function mdlSumaTotalCreditos($tabla){	
+
+		$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla where metodo_pago= 'crédito-0'");
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+	
+	/*=============================================
+	SUMAR EL TOTAL DE VENTAS POR DIA EFECTIVO
+	=============================================*/
+
+	static public function mdlSumaTotalVentasdia($tabla){	
+
+		$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla where DATE(fecha) >= DATE( NOW()) and metodo_pago= 'Efectivo'" );
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	/*=============================================
+	SUMAR EL TOTAL DE VENTAS POR DIA CREDITO
+	=============================================*/
+
+	static public function mdlSumaTotalVentascreditodia($tabla){	
+
+		$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla where DATE(fecha) >= DATE( NOW())and metodo_pago= 'crédito-0'" );
 
 		$stmt -> execute();
 

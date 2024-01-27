@@ -1,4 +1,6 @@
 <?php
+set_time_limit(1320);
+ini_set('max_exection_time', '1600');
 
 require_once "conexion.php";
 

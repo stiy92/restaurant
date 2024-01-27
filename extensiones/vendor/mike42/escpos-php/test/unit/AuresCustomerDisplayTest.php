@@ -4,7 +4,7 @@ use Mike42\Escpos\Devices\AuresCustomerDisplay;
 use Mike42\Escpos\PrintConnectors\DummyPrintConnector;
 use Mike42\Escpos\CapabilityProfile;
 
-class AuresCustomerDisplayTest extends PHPUnit\Framework\TestCase
+class AuresCustomerDisplayTest extends PHPUnit_Framework_TestCase
 {
     protected $printer;
     protected $outputConnector;

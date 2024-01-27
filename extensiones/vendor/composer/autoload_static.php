@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit492ffddb03b4dd7a43c9c0f1166f3dc5
+class ComposerStaticInit2b73d58cde6e023519ff196235bbbb53
 {
     public static $prefixLengthsPsr4 = array (
         'M' => 
@@ -17,15 +17,14 @@ class ComposerStaticInit492ffddb03b4dd7a43c9c0f1166f3dc5
         'Mike42\\' => 
         array (
             0 => __DIR__ . '/..' . '/mike42/escpos-php/src/Mike42',
-            1 => __DIR__ . '/..' . '/mike42/gfx-php/src/Mike42',
         ),
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit492ffddb03b4dd7a43c9c0f1166f3dc5::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit492ffddb03b4dd7a43c9c0f1166f3dc5::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit2b73d58cde6e023519ff196235bbbb53::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit2b73d58cde6e023519ff196235bbbb53::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }

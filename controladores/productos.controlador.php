@@ -17,6 +17,20 @@ class ControladorProductos{
 	}
 
 	/*=============================================
+	MOSTRAR PRODUCTOS ROJOS
+	=============================================*/
+
+	static public function ctrMostrarProductosRED($item, $valor, $orden){
+
+		$tabla = "productos";
+
+		$respuesta = ModeloProductos::mdlMostrarProductosRED($tabla, $item, $valor, $orden);
+
+		return $respuesta;
+
+	}
+
+	/*=============================================
 	CREAR PRODUCTO 
 	=============================================*/
 

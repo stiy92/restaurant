@@ -4,7 +4,24 @@ $item = null;
 $valor = null;
 $orden = "id";
 
+// VER SUMA TOTAL POR DIA//////////////////////
+$ventass = ControladorVentas::ctrSumaTotalVentasdia();
+///////////////////////////////////////////////////
+
+// VER SUMA TOTAL DE VENTAS ////////////////////////////
 $ventas = ControladorVentas::ctrSumaTotalVentas();
+
+//////////////////////////////////////////////////////////
+
+// VER SUMA TOTAL DE VENTAS CREDITOS ////////////////////////////
+$creditot = ControladorVentas::ctrSumaTotalCreditos();
+
+//////////////////////////////////////////////////////////
+
+// VER SUMA TOTAL POR DIA CREDITO//////////////////////
+
+$ventascre = ControladorVentas::ctrSumaTotalVentasdiacredito();
+///////////////////////////////////////////////////
 
 $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
 $totalCategorias = count($categorias);
@@ -18,16 +35,16 @@ $totalProductos = count($productos);
 ?>
 
 
-
+<!-- VENTAS EFECTIVOS -->
 <div class="col-lg-3 col-xs-6">
 
   <div class="small-box bg-aqua">
     
     <div class="inner">
       
-      <h3>$<?php echo number_format($ventas["total"],2); ?></h3>
+      <h3>$<?php echo number_format($ventass["total"],2); ?></h3>
 
-      <p>Ventas</p>
+      <p>Ventas efectivo hoy</p>
     
     </div>
     
@@ -47,7 +64,37 @@ $totalProductos = count($productos);
 
 </div>
 
+<!-- VENTAS CREDITOS -->
 <div class="col-lg-3 col-xs-6">
+
+  <div class="small-box bg-green">
+    
+    <div class="inner">
+      
+      <h3>$<?php echo number_format($ventascre["total"],2); ?></h3>
+
+      <p>Ventas credito hoy</p>
+    
+    </div>
+    
+    <div class="icon">
+      
+      <i class="ion ion-social-usd"></i>
+    
+    </div>
+    
+    <a href="ventas" class="small-box-footer">
+      
+      Más info <i class="fa fa-arrow-circle-right"></i>
+    
+    </a>
+
+  </div>
+
+</div>
+
+<!-- CATEGORIAS -->
+<!-- <div class="col-lg-3 col-xs-6">
 
   <div class="small-box bg-green">
     
@@ -73,9 +120,10 @@ $totalProductos = count($productos);
 
   </div>
 
-</div>
+</div> -->
 
-<div class="col-lg-3 col-xs-6">
+<!-- CLIENTES -->
+<!-- <div class="col-lg-3 col-xs-6">
 
   <div class="small-box bg-yellow">
     
@@ -97,6 +145,35 @@ $totalProductos = count($productos);
 
       Más info <i class="fa fa-arrow-circle-right"></i>
 
+    </a>
+
+  </div>
+
+</div> -->
+
+<!-- VENTAS CREDITOS TOTAL -->
+<div class="col-lg-3 col-xs-6">
+
+  <div class="small-box bg-yellow">
+    
+    <div class="inner">
+      
+      <h3>$<?php echo number_format($creditot["total"],2); ?></h3>
+
+      <p>creditos total</p>
+    
+    </div>
+    
+    <div class="icon">
+      
+      <i class="ion ion-social-usd"></i>
+    
+    </div>
+    
+    <a href="ventas" class="small-box-footer">
+      
+      Más info <i class="fa fa-arrow-circle-right"></i>
+    
     </a>
 
   </div>

@@ -126,88 +126,151 @@ class ControladorVentas{
 
 			if($respuesta == "ok"){
 
-				// $impresora = "POS-80C";
+                //primear copia
 
-				// $conector = new WindowsPrintConnector($impresora);
+				$impresora = "POS-80C";
 
-				// $imprimir = new Printer($conector);
+				$conector = new WindowsPrintConnector($impresora);
 
-				// $imprimir -> text("Hola Mundo"."\n");
+				$printer = new Printer($conector);
 
-				// $imprimir -> cut();
+				$printer -> setJustification(Printer::JUSTIFY_CENTER);
 
-				// $imprimir -> close();
+				$printer -> text(date("Y-m-d H:i:s")."\n");//Fecha de la factura
 
-				// $impresora = "epson20";
+				$printer -> feed(1); //Alimentamos el papel 1 vez
 
-				// $conector = new WindowsPrintConnector($impresora);
+				$printer -> text("FERRETERIA LOS SOCIOS"."\n");//Nombre de la empresa
 
-				// $printer = new Printer($conector);
+				$printer -> text("NIT: 1.006.197.159-0"."\n");//Nit de la empresa
 
-				// $printer -> setJustification(Printer::JUSTIFY_CENTER);
+				$printer -> text("Dirección: Calle 3 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
 
-				// $printer -> text(date("Y-m-d H:i:s")."\n");//Fecha de la factura
+				$printer -> text("Teléfono: 311 656 5195"."\n");//Teléfono de la empresa
 
-				// $printer -> feed(1); //Alimentamos el papel 1 vez
+				$printer -> text("FACTURA N.".$_POST["nuevaVenta"]."\n");//Número de factura
 
-				// $printer -> text("Inventory System"."\n");//Nombre de la empresa
+				$printer -> feed(1); //Alimentamos el papel 1 vez
 
-				// $printer -> text("NIT: 71.759.963-9"."\n");//Nit de la empresa
+				$printer -> text("Cliente: ".$traerCliente["nombre"]."\n");//Nombre del cliente
 
-				// $printer -> text("Dirección: Calle 44B 92-11"."\n");//Dirección de la empresa
+				$tablaVendedor = "usuarios";
+				$item = "id";
+				$valor = $_POST["idVendedor"];
 
-				// $printer -> text("Teléfono: 300 786 52 49"."\n");//Teléfono de la empresa
+				$traerVendedor = ModeloUsuarios::mdlMostrarUsuarios($tablaVendedor, $item, $valor);
 
-				// $printer -> text("FACTURA N.".$_POST["nuevaVenta"]."\n");//Número de factura
+				$printer -> text("Vendedor: ".$traerVendedor["nombre"]."\n");//Nombre del vendedor
 
-				// $printer -> feed(1); //Alimentamos el papel 1 vez
+				$printer -> feed(1); //Alimentamos el papel 1 vez*/
 
-				// $printer -> text("Cliente: ".$traerCliente["nombre"]."\n");//Nombre del cliente
+				foreach ($listaProductos as $key => $value) {
 
-				// $tablaVendedor = "usuarios";
-				// $item = "id";
-				// $valor = $_POST["idVendedor"];
+					$printer->setJustification(Printer::JUSTIFY_LEFT);
 
-				// $traerVendedor = ModeloUsuarios::mdlMostrarUsuarios($tablaVendedor, $item, $valor);
+					$printer->text($value["descripcion"]."\n");//Nombre del producto
 
-				// $printer -> text("Vendedor: ".$traerVendedor["nombre"]."\n");//Nombre del vendedor
+					$printer->setJustification(Printer::JUSTIFY_RIGHT);
 
-				// $printer -> feed(1); //Alimentamos el papel 1 vez*/
+					$printer->text("$ ".number_format($value["precio"],2)." Und x ".$value["cantidad"]." = $ ".number_format($value["total"],2)."\n");
 
-				// foreach ($listaProductos as $key => $value) {
+				}
 
-				// 	$printer->setJustification(Printer::JUSTIFY_LEFT);
-
-				// 	$printer->text($value["descripcion"]."\n");//Nombre del producto
-
-				// 	$printer->setJustification(Printer::JUSTIFY_RIGHT);
-
-				// 	$printer->text("$ ".number_format($value["precio"],2)." Und x ".$value["cantidad"]." = $ ".number_format($value["total"],2)."\n");
-
-				// }
-
-				// $printer -> feed(1); //Alimentamos el papel 1 vez*/			
+				$printer -> feed(1); //Alimentamos el papel 1 vez*/			
 				
-				// $printer->text("NETO: $ ".number_format($_POST["nuevoPrecioNeto"],2)."\n"); //ahora va el neto
+				$printer->text("NETO: $ ".number_format($_POST["nuevoPrecioNeto"],2)."\n"); //ahora va el neto
 
-				// $printer->text("IMPUESTO: $ ".number_format($_POST["nuevoPrecioImpuesto"],2)."\n"); //ahora va el impuesto
+				$printer->text("IMPUESTO: $ ".number_format($_POST["nuevoPrecioImpuesto"],2)."\n"); //ahora va el impuesto
 
-				// $printer->text("--------\n");
+				$printer->text("--------\n");
 
-				// $printer->text("TOTAL: $ ".number_format($_POST["totalVenta"],2)."\n"); //ahora va el total
+				$printer->text("TOTAL: $ ".number_format($_POST["totalVenta"],2)."\n"); //ahora va el total
 
-				// $printer -> feed(1); //Alimentamos el papel 1 vez*/	
+				$printer -> feed(1); //Alimentamos el papel 1 vez*/	
 
-				// $printer->text("Muchas gracias por su compra"); //Podemos poner también un pie de página
+				$printer->text("Muchas gracias por su compra"); //Podemos poner también un pie de página
 
-				// $printer -> feed(3); //Alimentamos el papel 3 veces*/
+				$printer -> feed(3); //Alimentamos el papel 3 veces*/
 
-				// $printer -> cut(); //Cortamos el papel, si la impresora tiene la opción
+				$printer -> cut(); //Cortamos el papel, si la impresora tiene la opción
 
-				// $printer -> pulse(); //Por medio de la impresora mandamos un pulso, es útil cuando hay cajón moneder
+				$printer -> pulse(); //Por medio de la impresora mandamos un pulso, es útil cuando hay cajón moneder
 
-				// $printer -> close();
+				$printer -> close();
 
+				// segunda copia 
+
+				//primear copia
+				
+				$impresora = "POS-80C";
+
+				$conector = new WindowsPrintConnector($impresora);
+
+				$printer = new Printer($conector);
+
+				$printer -> setJustification(Printer::JUSTIFY_CENTER);
+
+				$printer -> text(date("Y-m-d H:i:s")."\n");//Fecha de la factura
+
+				$printer -> feed(1); //Alimentamos el papel 1 vez
+
+				$printer -> text("FERRETERIA LOS SOCIOS"."\n");//Nombre de la empresa
+
+				$printer -> text("NIT: 1.006.197.159-0"."\n");//Nit de la empresa
+
+				$printer -> text("Dirección: Calle 3 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
+
+				$printer -> text("Teléfono: 311 656 5195"."\n");//Teléfono de la empresa
+
+				$printer -> text("FACTURA N.".$_POST["nuevaVenta"]."\n");//Número de factura
+
+				$printer -> feed(1); //Alimentamos el papel 1 vez
+
+				$printer -> text("Cliente: ".$traerCliente["nombre"]."\n");//Nombre del cliente
+
+				$tablaVendedor = "usuarios";
+				$item = "id";
+				$valor = $_POST["idVendedor"];
+
+				$traerVendedor = ModeloUsuarios::mdlMostrarUsuarios($tablaVendedor, $item, $valor);
+
+				$printer -> text("Vendedor: ".$traerVendedor["nombre"]."\n");//Nombre del vendedor
+
+				$printer -> feed(1); //Alimentamos el papel 1 vez*/
+
+				foreach ($listaProductos as $key => $value) {
+
+					$printer->setJustification(Printer::JUSTIFY_LEFT);
+
+					$printer->text($value["descripcion"]."\n");//Nombre del producto
+
+					$printer->setJustification(Printer::JUSTIFY_RIGHT);
+
+					$printer->text("$ ".number_format($value["precio"],2)." Und x ".$value["cantidad"]." = $ ".number_format($value["total"],2)."\n");
+
+				}
+
+				$printer -> feed(1); //Alimentamos el papel 1 vez*/			
+				
+				$printer->text("NETO: $ ".number_format($_POST["nuevoPrecioNeto"],2)."\n"); //ahora va el neto
+
+				$printer->text("IMPUESTO: $ ".number_format($_POST["nuevoPrecioImpuesto"],2)."\n"); //ahora va el impuesto
+
+				$printer->text("--------\n");
+
+				$printer->text("TOTAL: $ ".number_format($_POST["totalVenta"],2)."\n"); //ahora va el total
+
+				$printer -> feed(1); //Alimentamos el papel 1 vez*/	
+
+				$printer->text("Muchas gracias por su compra"); //Podemos poner también un pie de página
+
+				$printer -> feed(3); //Alimentamos el papel 3 veces*/
+
+				$printer -> cut(); //Cortamos el papel, si la impresora tiene la opción
+
+				$printer -> pulse(); //Por medio de la impresora mandamos un pulso, es útil cuando hay cajón moneder
+
+				$printer -> close();
 	
 				echo'<script>
 
@@ -682,6 +745,47 @@ class ControladorVentas{
 
 	}
 
+	/*=============================================
+	SUMA TOTAL CREDITOS
+	=============================================*/
+
+	static public function ctrSumaTotalCreditos(){
+
+		$tabla = "ventas";
+
+		$respuesta = ModeloVentas::mdlSumaTotalCreditos($tabla);
+
+		return $respuesta;
+
+	}
+
+	/*=============================================
+	SUMA TOTAL VENTAS EL DIA ACTUAL
+	=============================================*/
+
+	static public function ctrSumaTotalVentasdia(){
+
+		$tabla = "ventas";
+
+		$respuesta = ModeloVentas::mdlSumaTotalVentasdia($tabla);
+
+		return $respuesta;
+
+	}
+
+	/*=============================================
+	SUMA TOTAL VENTAS EL DIA ACTUAL credito
+	=============================================*/
+
+	static public function ctrSumaTotalVentasdiacredito(){
+
+		$tabla = "ventas";
+
+		$respuesta = ModeloVentas::mdlSumaTotalVentascreditodia($tabla);
+
+		return $respuesta;
+
+	}
 	/*=============================================
 	DESCARGAR XML
 	=============================================*/

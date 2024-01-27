@@ -170,8 +170,13 @@ h6,
 }
 /* General Links */
 a {
-  color: #337ab7;
+  color: #4a84bd;
 }
+
+a.pred {
+  color: #ffffff;
+}
+
 a:hover,
 a:active,
 a:focus {

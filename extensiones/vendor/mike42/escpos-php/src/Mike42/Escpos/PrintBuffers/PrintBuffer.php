@@ -43,7 +43,7 @@ interface PrintBuffer
     /**
      * Used by Escpos to hook up one-to-one link between buffers and printers.
      *
-     * @param Printer|null $printer New printer
+     * @param Escpos $printer New printer
      */
     public function setPrinter(Printer $printer = null);
 
@@ -52,12 +52,12 @@ interface PrintBuffer
      *
      * @param string $text Text to print
      */
-    public function writeText(string $text);
+    public function writeText($text);
 
     /**
      * Accept 8-bit text in the current encoding and add it to the buffer.
      *
      * @param string $text Text to print, already the target encoding.
      */
-    public function writeTextRaw(string $text);
+    public function writeTextRaw($text);
 }
