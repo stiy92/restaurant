@@ -26,11 +26,182 @@ class ControladorVentas{
 	=============================================*/
 
 	static public function ctrCrearVenta(){
-
+		
 		if(isset($_POST["nuevaVenta"])){
 
+			$valor = $_POST["seleccionarCliente"];
+		//	echo $valor;
+			if($valor=="42"){
+
+				if($_POST["listaProductos"] == ""){
+
+					echo'<script>
+
+				swal({
+					  type: "error",
+					  title: "La venta no se ha ejecuta si no hay productos",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar"
+					  }).then(function(result){
+								if (result.value) {
+
+								window.location = "ventas";
+
+								}
+							})
+
+				</script>';
+
+				return;
+			}
+
+			$listaProductos = json_decode($_POST["listaProductos"], true);
+
+			$totalProductosComprados = array();
+
+			foreach ($listaProductos as $key => $value) {
+
+			   array_push($totalProductosComprados, $value["cantidad"]);
+				
+			   $tablaProductos = "productos";
+
+			    $item = "id";
+			    $valor = $value["id"];
+			    $orden = "id";
+
+			    $traerProducto = ModeloProductos::mdlMostrarProductos($tablaProductos, $item, $valor, $orden);
+
+				$item1a = "ventas";
+				$valor1a = $value["cantidad"] + $traerProducto["ventas"];
+
+			   // $nuevasVentas = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1a, $valor1a, $valor);
+
+				$item1b = "stock";
+				$valor1b = $value["stock"];
+
+		//		$nuevoStock = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1b, $valor1b, $valor);
+
+			}
+
+			$tablaClientes = "clientes";
+
+			$item = "id";
+			$valor = $_POST["seleccionarCliente"];
+
+			$traerCliente = ModeloClientes::mdlMostrarClientes($tablaClientes, $item, $valor);
+
+			$item1a = "compras";
+				
+			$valor1a = array_sum($totalProductosComprados) + $traerCliente["compras"];
+
+		//	$comprasCliente = ModeloClientes::mdlActualizarCliente($tablaClientes, $item1a, $valor1a, $valor);
+
+			$item1b = "ultima_compra";
+
+			date_default_timezone_set('America/Bogota');
+
+			$fecha = date('Y-m-d');
+			$hora = date('H:i:s');
+			$valor1b = $fecha.' '.$hora;
+
+		//	$fechaCliente = ModeloClientes::mdlActualizarCliente($tablaClientes, $item1b, $valor1b, $valor);
+
+                //primear copia
+				
+				$impresora = "POS-80C";
+
+				$conector = new WindowsPrintConnector($impresora);
+
+				$printer = new Printer($conector);
+
+				$printer -> setJustification(Printer::JUSTIFY_CENTER);
+
+				$printer -> text(date("Y-m-d H:i:s")."\n");//Fecha de la factura
+
+				$printer -> feed(1); //Alimentamos el papel 1 vez
+
+				$printer -> text("FERRETERIA LOS SOCIOS"."\n");//Nombre de la empresa
+
+				$printer -> text("NIT: 1.006.197.159-0"."\n");//Nit de la empresa
+
+				$printer -> text("Dirección: Calle 3 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
+
+				$printer -> text("Teléfono: 311 656 5195"."\n");//Teléfono de la empresa
+
+				$printer -> text("FACTURA N.".$_POST["nuevaVenta"]."\n");//Número de factura
+
+				$printer -> feed(1); //Alimentamos el papel 1 vez
+
+				$printer -> text("Cliente: ".$traerCliente["nombre"]."\n");//Nombre del cliente
+
+				$tablaVendedor = "usuarios";
+				$item = "id";
+				$valor = $_POST["idVendedor"];
+
+				$traerVendedor = ModeloUsuarios::mdlMostrarUsuarios($tablaVendedor, $item, $valor);
+
+				$printer -> text("Vendedor: ".$traerVendedor["nombre"]."\n");//Nombre del vendedor
+
+				$printer -> feed(1); //Alimentamos el papel 1 vez*/
+
+				foreach ($listaProductos as $key => $value) {
+
+					$printer->setJustification(Printer::JUSTIFY_LEFT);
+
+					$printer->text($value["descripcion"]."\n");//Nombre del producto
+
+					$printer->setJustification(Printer::JUSTIFY_RIGHT);
+
+					$printer->text("$ ".number_format($value["precio"],2)." Und x ".$value["cantidad"]." = $ ".number_format($value["total"],2)."\n");
+
+				}
+
+				$printer -> feed(1); //Alimentamos el papel 1 vez*/			
+				
+				$printer->text("NETO: $ ".number_format($_POST["nuevoPrecioNeto"],2)."\n"); //ahora va el neto
+
+				$printer->text("IMPUESTO: $ ".number_format($_POST["nuevoPrecioImpuesto"],2)."\n"); //ahora va el impuesto
+
+				$printer->text("--------\n");
+
+				$printer->text("TOTAL: $ ".number_format($_POST["totalVenta"],2)."\n"); //ahora va el total
+
+				$printer -> feed(1); //Alimentamos el papel 1 vez*/	
+
+				$printer->text("Muchas gracias por su compra"); //Podemos poner también un pie de página
+
+				$printer -> feed(3); //Alimentamos el papel 3 veces*/
+
+				$printer -> cut(); //Cortamos el papel, si la impresora tiene la opción
+
+				$printer -> pulse(); //Por medio de la impresora mandamos un pulso, es útil cuando hay cajón moneder
+
+				$printer -> close();
+	
+				echo'<script>
+
+				localStorage.removeItem("rango");
+
+				swal({
+					  type: "success",
+					  title: "La venta ha sido guardada correctamente",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar"
+					  }).then(function(result){
+								if (result.value) {
+
+								window.location = "ventas";
+
+								}
+							})
+
+				</script>';
+			}
+
+			elseif($valor!="42"){
+
 			/*=============================================
-			ACTUALIZAR LAS COMPRAS DEL CLIENTE Y REDUCIR EL STOCK Y AUMENTAR LAS VENTAS DE LOS PRODUCTOS
+			TRAER DATOS PARA MOSTRARLOS EN LA COTIZACIÓN
 			=============================================*/
 
 			if($_POST["listaProductos"] == ""){
@@ -55,7 +226,7 @@ class ControladorVentas{
 				return;
 			}
 
-
+			
 			$listaProductos = json_decode($_POST["listaProductos"], true);
 
 			$totalProductosComprados = array();
@@ -294,6 +465,7 @@ class ControladorVentas{
 			}
 
 		}
+	 }
 
 	}
 
