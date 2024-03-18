@@ -783,7 +783,7 @@ $(".tablas").on("click", ".btnpagarventa", function(){
   
 	swal({
 		  title: '¡Se procederá a pagar la totalidad de la venta.!',
-		  text: "¡Si no lo está puede cancelar la accíón!",
+		  text: "¡Si no está deacuerdo, puede cancelar la accíón!",
 		  type: 'warning',
 		  showCancelButton: true,
 		  confirmButtonColor: '#008000',

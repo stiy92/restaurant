@@ -53,44 +53,44 @@ if($_SESSION["perfil"] == "Vendedor"){
          <div></div>
         <!-- ENTRADA PARA SELECCIONAR CATEGORÍA -->
 
-        <div class="form-group">
+        <!-- <div class="form-group"> -->
               
-              <div class="input-group">
+              <!-- <div class="input-group">
               
                 
 
                 <select class="form-control1 input-lg" id="nuevaCategoria1" name="nuevaCategoria1" required>
-                  
+                   -->
                   <!-- <option value="" selected>Selecionar categoría</option> -->
 
                   <?php
 
-                  $item = null;
-                  $valor = null;
+                  // $item = null;
+                  // $valor = null;
 
-                  $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+                  // $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
 
-                  foreach ($categorias as $key => $value) {
-                    if ($key === 0) {
-                      // La primera opción no tiene el atributo selected
-                      echo '<option value="'.$value["id"].'">'.$value["categoria"].'</option>';
-                    } else {
-                      // Las siguientes opciones sí tienen el atributo selected
-                      echo '<option value="'.$value["id"].'">'.$value["categoria"].'</option>';
-                    } }
+                  // foreach ($categorias as $key => $value) {
+                  //   if ($key === 0) {
+                  //     // La primera opción no tiene el atributo selected
+                  //     echo '<option value="'.$value["id"].'">'.$value["categoria"].'</option>';
+                  //   } else {
+                  //     // Las siguientes opciones sí tienen el atributo selected
+                  //     echo '<option value="'.$value["id"].'">'.$value["categoria"].'</option>';
+                  //   } }
 
                   ?>
   
-                </select>
+                <!-- </select> -->
 
                 <!-- Importa el archivo script.js -->
-                <script src="script.js"></script>
+                <!-- <script src="script.js"></script> -->
 
-              </div>
+              <!-- </div>
 
             </div>
 
-      </div>
+      </div> -->
       
       <div class="box-body">
         
@@ -104,7 +104,7 @@ if($_SESSION["perfil"] == "Vendedor"){
            <th>Imagen</th>
            <th>Código</th>
            <th>Descripción</th>
-           <th>Categoría</th>
+           <!-- <th>Categoría</th> -->
            <th>Stock</th>
            <th>Precio de compra</th>
            <th>Precio de venta</th>

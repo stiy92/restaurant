@@ -88,34 +88,34 @@ CAPTURANDO LA CATEGORIA PARA ASIGNAR CÓDIGO
 
 // })
 
-// funcion para capturar y enviar categoria
-document.getElementById("nuevaCategoria1").addEventListener("change", function() {
-	enviarCategoriaSeleccionada(this.value);
-  });
+// // funcion para capturar y enviar categoria
+// document.getElementById("nuevaCategoria1").addEventListener("change", function() {
+// 	enviarCategoriaSeleccionada(this.value);
+//   });
   
-  // Función para enviar la categoría seleccionada
-  function enviarCategoriaSeleccionada(categoriaSeleccionada) {
-	// Imprimir el valor en la consola
-	console.log("Categoría seleccionada:", categoriaSeleccionada);
+//   // Función para enviar la categoría seleccionada
+//   function enviarCategoriaSeleccionada(categoriaSeleccionada) {
+// 	// Imprimir el valor en la consola
+// 	console.log("Categoría seleccionada:", categoriaSeleccionada);
   
-	// Continuar con tu lógica de envío de datos al controlador PHP
-	var formData = new FormData();
-	formData.append('categoriaSeleccionada', categoriaSeleccionada);
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-	  if (xhr.readyState == 4 && xhr.status == 200) {
-		console.log(xhr.responseText);
-	  }
-	};
-	xhr.open("POST", "tu_controlador.php", true);
-	xhr.send(formData);
-  }
+// 	// Continuar con tu lógica de envío de datos al controlador PHP
+// 	var formData = new FormData();
+// 	formData.append('categoriaSeleccionada', categoriaSeleccionada);
+// 	var xhr = new XMLHttpRequest();
+// 	xhr.onreadystatechange = function() {
+// 	  if (xhr.readyState == 4 && xhr.status == 200) {
+// 		console.log(xhr.responseText);
+// 	  }
+// 	};
+// 	xhr.open("POST", "tu_controlador.php", true);
+// 	xhr.send(formData);
+//   }
   
-  // Capturar el valor del select al cargar la página y enviarlo
-  window.onload = function() {
-	var categoriaSeleccionada = document.getElementById("nuevaCategoria1").value;
-	enviarCategoriaSeleccionada(categoriaSeleccionada);
-  };
+//   // Capturar el valor del select al cargar la página y enviarlo
+//   window.onload = function() {
+// 	var categoriaSeleccionada = document.getElementById("nuevaCategoria1").value;
+// 	enviarCategoriaSeleccionada(categoriaSeleccionada);
+//   };
   
 
 /*=============================================

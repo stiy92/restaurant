@@ -60,7 +60,7 @@ if($_SESSION["perfil"] == "Vendedor"){
            <th>Imagen</th>
            <th>Código</th>
            <th>Descripción</th>
-           <th>Categoría</th>
+           <!-- <th>Categoría</th> -->
            <th>Stock</th>
            <th>Precio de compra</th>
            <th>Precio de venta</th>

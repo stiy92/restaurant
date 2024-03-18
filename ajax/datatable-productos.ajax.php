@@ -39,14 +39,14 @@ class TablaProductos{
 
 		  	$imagen = "<img src='".$productos[$i]["imagen"]."' width='40px'>";
 
-		  	/*=============================================
- 	 		TRAEMOS LA CATEGORÍA
-  			=============================================*/ 
+		  	// /*=============================================
+ 	 		// TRAEMOS LA CATEGORÍA
+  			// =============================================*/ 
 
-		  	$item = "id";
-		  	$valor = $productos[$i]["id_categoria"];
+		  	// $item = "id";
+		  	// $valor = $productos[$i]["id_categoria"];
 
-		  	$categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+		  	// $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
 
 		  	/*=============================================
  	 		STOCK
@@ -82,13 +82,12 @@ class TablaProductos{
 
   			}
 
-		 
+		//  modifique categorias
 		  	$datosJson .='[
 			      "'.($i+1).'",
 			      "'.$imagen.'",
 			      "'.$productos[$i]["codigo"].'",
 			      "'.$productos[$i]["descripcion"].'",
-			      "'.$categorias["categoria"].'",
 			      "'.$stock.'",
 			      "'.$productos[$i]["precio_compra"].'",
 			      "'.$productos[$i]["precio_venta"].'",
