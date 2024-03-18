@@ -129,7 +129,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function(){
 
 	              '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
 	                 
-	              '<input type="text" class="form-control nuevoPrecioProducto" onchange="cambios()" precioReal="'+precio+'" name="nuevoPrecioProducto" value="'+precio+'" readonly required>'+
+	              '<input type="text" class="form-control nuevoPrecioProducto" onchange="cambios()" precioReal="'+precio+'" name="nuevoPrecioProducto" value="'+precio+'" required>'+
 	 
 	            '</div>'+
 	             
@@ -561,7 +561,7 @@ $("#nuevoMetodoPago").change(function(){
 
 			 		'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+ 
 
-			 		'<input type="text" class="form-control" id="nuevoValorEfectivo" placeholder="000000" required>'+
+			 		'<input type="text" class="form-control" id="nuevoValorEfectivo" value="0" required>'+
 
 			 	'</div>'+
 
@@ -602,7 +602,7 @@ $("#nuevoMetodoPago").change(function(){
                         
                 '<div class="input-group">'+
                      
-                  '<input type="number" min="0" class="form-control" id="nuevoCodigoTransaccion" placeholder="Código transacción"  required>'+
+                  '<input type="number" min="0" class="form-control" id="nuevoCodigoTransaccion" placeholder="Código transacción" required>'+
                        
                   '<span class="input-group-addon"><i class="fa fa-lock"></i></span>'+
                   
@@ -773,6 +773,32 @@ $(".tablas").on("click", ".btnEliminarVenta", function(){
   })
 
 })
+
+/*=============================================
+PAGAR VENTA
+=============================================*/
+$(".tablas").on("click", ".btnpagarventa", function(){
+
+	var idVenta = $(this).attr("idVenta");
+  
+	swal({
+		  title: '¡Se procederá a pagar la totalidad de la venta.!',
+		  text: "¡Si no lo está puede cancelar la accíón!",
+		  type: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#008000',
+		  cancelButtonColor: '#d33',
+		  cancelButtonText: 'Cancelar',
+		  confirmButtonText: 'Si, pagar venta!'
+		}).then(function(result){
+		  if (result.value) {
+			
+			  window.location = "index.php?ruta=ventas&idVenta="+idVenta;
+		  }
+  
+	})
+  
+  })
 
 /*=============================================
 IMPRIMIR FACTURA

@@ -14,6 +14,17 @@
 // }
 
 ?>
+<!-- plugin para agregar buscadro en el select de clietes -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!--  plugin para agregar buscadro en el select de clietes-->
+
+<style>
+  /* Ajustar el tamaño del cuadro de búsqueda */
+  .select2-container .select2-selection--single {
+    height: 100%; /* Puedes ajustar este valor según tus necesidades */
+  }
+</style>
 
 <div class="content-wrapper">
 
@@ -155,7 +166,12 @@
                   </div>
                 
                 </div>
+                
+                <script>
+                  $('#seleccionarCliente').select2();
+                  </script>
 
+                
                 <!--=====================================
                 ENTRADA PARA AGREGAR PRODUCTO
                 ======================================--> 
@@ -203,7 +219,7 @@
                             
                             <div class="input-group">
                            
-                              <input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" placeholder="0" required>
+                              <input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" value="0" required>
 
                                <input type="hidden" name="nuevoPrecioImpuesto" id="nuevoPrecioImpuesto" required>
 

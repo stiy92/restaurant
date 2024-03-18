@@ -12,6 +12,8 @@ if($_SESSION["perfil"] == "Vendedor"){
 
 }
 
+
+
 ?>
 <div class="content-wrapper">
 
@@ -48,6 +50,45 @@ if($_SESSION["perfil"] == "Vendedor"){
           
         <a href="productos-red" class="pred"></i>Ver Productos rojos</a>
         </button>
+         <div></div>
+        <!-- ENTRADA PARA SELECCIONAR CATEGORÍA -->
+
+        <div class="form-group">
+              
+              <div class="input-group">
+              
+                
+
+                <select class="form-control1 input-lg" id="nuevaCategoria1" name="nuevaCategoria1" required>
+                  
+                  <!-- <option value="" selected>Selecionar categoría</option> -->
+
+                  <?php
+
+                  $item = null;
+                  $valor = null;
+
+                  $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+
+                  foreach ($categorias as $key => $value) {
+                    if ($key === 0) {
+                      // La primera opción no tiene el atributo selected
+                      echo '<option value="'.$value["id"].'">'.$value["categoria"].'</option>';
+                    } else {
+                      // Las siguientes opciones sí tienen el atributo selected
+                      echo '<option value="'.$value["id"].'">'.$value["categoria"].'</option>';
+                    } }
+
+                  ?>
+  
+                </select>
+
+                <!-- Importa el archivo script.js -->
+                <script src="script.js"></script>
+
+              </div>
+
+            </div>
 
       </div>
       
@@ -159,7 +200,7 @@ MODAL AGREGAR PRODUCTO
               
                 <span class="input-group-addon"><i class="fa fa-code"></i></span> 
 
-                <input type="text" class="form-control input-lg" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingresar código" required>
+                <input type="text" class="form-control input-lg" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingresar código" required oninput="validarEntrada(this)">
 
               </div>
 
@@ -173,7 +214,7 @@ MODAL AGREGAR PRODUCTO
               
                 <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar descripción" required>
+                <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar descripción" required oninput="validarEntrada(this)">
 
               </div>
 
@@ -375,11 +416,11 @@ MODAL EDITAR PRODUCTO
               
                 <span class="input-group-addon"><i class="fa fa-code"></i></span> 
 
-                <input type="text" class="form-control input-lg" id="editarCodigo" name="editarCodigo" required>
+                <input type="text" class="form-control input-lg" id="editarCodigo" name="editarCodigo" required oninput="validarEntrada(this)">
                 
                 <input type="hidden" id="editarid" name="editarid" readonly required >
                              
-
+                </div>
             </div>
 
 
@@ -391,7 +432,7 @@ MODAL EDITAR PRODUCTO
               
                 <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span> 
 
-                <input type="text" class="form-control input-lg" id="editarDescripcion" name="editarDescripcion" required>
+                <input type="text" class="form-control input-lg" id="editarDescripcion" name="editarDescripcion" required oninput="validarEntrada(this)">
 
               </div>
 
@@ -544,4 +585,16 @@ MODAL EDITAR PRODUCTO
 ?>      
 
 
+<!-- //Validacion de caracteres paa el ingreso de datos de un producto  -->
 
+<script>
+    function validarEntrada(input) {
+      // Expresión regular que acepta solo números y letras
+      var regex = /^[a-zA-Z0-9]*$/;
+      // Verifica si el valor ingresado coincide con la expresión regular
+      if (!regex.test(input.value)) {
+        // Si no coincide, elimina el último carácter ingresado
+        input.value = input.value.slice(0, -1);
+      }
+    }
+  </script>

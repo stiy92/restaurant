@@ -23,6 +23,7 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
 }
+
 /* Layout */
 .wrapper {
   height: 100%;
@@ -1281,6 +1282,7 @@ a:focus {
     background: #fff;
   }
 }
+
 /*
  * Component: Form
  * ---------------
@@ -1289,6 +1291,14 @@ a:focus {
   border-radius: 0;
   box-shadow: none;
   border-color: #d2d6de;
+}
+/* select producto categorias */
+.form-control1 {
+  border-radius: 0;
+  box-shadow: none;
+  border-color: #d2d6de;
+  margin-top: 5px;
+  width: 120.5%;
 }
 .form-control:focus {
   border-color: #3c8dbc;

@@ -7,7 +7,7 @@ $.ajax({
 	url: "ajax/datatable-productos-red.ajax.php",
 	success:function(respuesta){
 		
-		console.log("respuesta", respuesta);
+		//console.log("respuesta", respuesta);
 
 	}
 

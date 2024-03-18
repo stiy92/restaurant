@@ -146,7 +146,7 @@ class ModeloVentas{
 	=============================================*/	
 
 	static public function mdlRangoFechasVentas($tabla, $fechaInicial, $fechaFinal){
-
+        
 		if($fechaInicial == null){
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE DATE(fecha) = CURRENT_DATE() ORDER BY id DESC");
@@ -157,16 +157,20 @@ class ModeloVentas{
 
 
 		}else if($fechaInicial == $fechaFinal){
+			$fechaInicial .= ' 00:00:01';
+            $fechaFinal .= ' 23:59:59';
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN :fechaInicial AND :fechaFinal");
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '%$fechaFinal%'");
-
-			$stmt -> bindParam(":fecha", $fechaFinal, PDO::PARAM_STR);
+			$stmt->bindParam(":fechaInicial", $fechaInicial, PDO::PARAM_STR);
+            
+			$stmt->bindParam(":fechaFinal", $fechaFinal, PDO::PARAM_STR);
 
 			$stmt -> execute();
 
 			return $stmt -> fetchAll();
 
 		}else{
+            $fechaFinal .= ' 23:59:59';
 
 			$fechaActual = new DateTime();
 			$fechaActual ->add(new DateInterval("P1D"));
@@ -178,10 +182,13 @@ class ModeloVentas{
 
 			if($fechaFinalMasUno == $fechaActualMasUno){
 
+				$fechaInicial .= ' 00:00:01';
+                $fechaFinalMasUno .= ' 23:59:59';
 				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinalMasUno'");
 
 			}else{
-
+				$fechaInicial .= ' 00:00:01';
+                $fechaFinal .= ' 23:59:59';
 
 				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinal'");
 
