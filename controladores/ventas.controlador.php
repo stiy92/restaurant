@@ -114,9 +114,9 @@ class ControladorVentas{
 
 				$printer = new Printer($conector);
 
-				$printer -> setJustification(Printer::JUSTIFY_CENTER);
+				$printer -> text(date("Y-m-d H:i:s")."\n" ."Cotización");//Fecha de la factura
 
-				$printer -> text(date("Y-m-d H:i:s")."\n");//Fecha de la factura
+				//$printer -> setJustification(Printer::JUSTIFY_CENTER);
 
 				$printer -> feed(1); //Alimentamos el papel 1 vez
 
@@ -168,7 +168,7 @@ class ControladorVentas{
 
 				$printer -> feed(1); //Alimentamos el papel 1 vez*/	
 
-				$printer->text("Muchas gracias por su compra"); //Podemos poner también un pie de página
+				$printer->text("Muchas gracias por preferirnos"); //Podemos poner también un pie de página
 
 				$printer -> feed(3); //Alimentamos el papel 3 veces*/
 
@@ -305,9 +305,9 @@ class ControladorVentas{
 
 				$printer = new Printer($conector);
 
-				$printer -> setJustification(Printer::JUSTIFY_CENTER);
-
 				$printer -> text(date("Y-m-d H:i:s")."\n");//Fecha de la factura
+
+				//$printer -> setJustification(Printer::JUSTIFY_CENTER);
 
 				$printer -> feed(1); //Alimentamos el papel 1 vez
 
@@ -379,9 +379,9 @@ class ControladorVentas{
 
 				$printer = new Printer($conector);
 
-				$printer -> setJustification(Printer::JUSTIFY_CENTER);
-
 				$printer -> text(date("Y-m-d H:i:s")."\n");//Fecha de la factura
+
+				//$printer -> setJustification(Printer::JUSTIFY_CENTER);
 
 				$printer -> feed(1); //Alimentamos el papel 1 vez
 

@@ -200,7 +200,7 @@ MODAL AGREGAR PRODUCTO
               
                 <span class="input-group-addon"><i class="fa fa-code"></i></span> 
 
-                <input type="text" class="form-control input-lg" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingresar código" required oninput="validarEntrada(this)">
+                <input type="text" class="form-control input-lg" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingresar código" required>
 
               </div>
 
@@ -214,7 +214,7 @@ MODAL AGREGAR PRODUCTO
               
                 <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar descripción" required oninput="validarEntrada(this)">
+                <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar descripción" required >
 
               </div>
 
@@ -286,7 +286,7 @@ MODAL AGREGAR PRODUCTO
                       
                       <label>
                         
-                        <input type="checkbox" class="minimal porcentaje" checked>
+                        <input type="checkbox" class="minimal porcentaje">
                         Utilizar procentaje
                       </label>
 
