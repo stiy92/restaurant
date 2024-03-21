@@ -416,7 +416,7 @@ MODAL EDITAR PRODUCTO
               
                 <span class="input-group-addon"><i class="fa fa-code"></i></span> 
 
-                <input type="text" class="form-control input-lg" id="editarCodigo" name="editarCodigo" required oninput="validarEntrada(this)">
+                <input type="text" class="form-control input-lg" id="editarCodigo" name="editarCodigo" required>
                 
                 <input type="hidden" id="editarid" name="editarid" readonly required >
                              
@@ -432,7 +432,7 @@ MODAL EDITAR PRODUCTO
               
                 <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span> 
 
-                <input type="text" class="form-control input-lg" id="editarDescripcion" name="editarDescripcion" required oninput="validarEntrada(this)">
+                <input type="text" class="form-control input-lg" id="editarDescripcion" name="editarDescripcion" required >
 
               </div>
 

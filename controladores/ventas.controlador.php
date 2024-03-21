@@ -134,6 +134,8 @@ class ControladorVentas{
 
 				$printer -> text("Cliente: ".$traerCliente["nombre"]."\n");//Nombre del cliente
 
+				$printer -> text("Nit Cliente: ".$traerCliente["documento"]."\n");//Nit del cliente
+
 				$tablaVendedor = "usuarios";
 				$item = "id";
 				$valor = $_POST["idVendedor"];
@@ -325,6 +327,8 @@ class ControladorVentas{
 
 				$printer -> text("Cliente: ".$traerCliente["nombre"]."\n");//Nombre del cliente
 
+				$printer -> text("Nit Cliente: ".$traerCliente["documento"]."\n");//Nit del cliente
+
 				$tablaVendedor = "usuarios";
 				$item = "id";
 				$valor = $_POST["idVendedor"];
@@ -398,6 +402,8 @@ class ControladorVentas{
 				$printer -> feed(1); //Alimentamos el papel 1 vez
 
 				$printer -> text("Cliente: ".$traerCliente["nombre"]."\n");//Nombre del cliente
+
+				$printer -> text("Nit Cliente: ".$traerCliente["documento"]."\n");//Nit del cliente
 
 				$tablaVendedor = "usuarios";
 				$item = "id";
