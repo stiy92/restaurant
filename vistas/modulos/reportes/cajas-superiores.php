@@ -4,6 +4,19 @@ $item = null;
 $valor = null;
 $orden = "id";
 
+
+if(isset($_GET["fechaInicial"])){
+
+  $fechaInicial = $_GET["fechaInicial"];
+  $fechaFinal = $_GET["fechaFinal"];
+
+}else{
+
+$fechaInicial = null;
+$fechaFinal = null;
+
+}
+
 // VER SUMA TOTAL POR DIA//////////////////////
 $ventass = ControladorVentas::ctrSumaTotalVentasdia();
 ///////////////////////////////////////////////////
@@ -126,63 +139,6 @@ $totalProductos = count($productos);
 
 </div>
 
-<!-- CATEGORIAS -->
-<!-- <div class="col-lg-3 col-xs-6">
-
-  <div class="small-box bg-green">
-    
-    <div class="inner">
-    
-      <h3><?php echo number_format($totalCategorias); ?></h3>
-
-      <p>Categorías</p>
-    
-    </div>
-    
-    <div class="icon">
-    
-      <i class="ion ion-clipboard"></i>
-    
-    </div>
-    
-    <a href="categorias" class="small-box-footer">
-      
-      Más info <i class="fa fa-arrow-circle-right"></i>
-    
-    </a>
-
-  </div>
-
-</div> -->
-
-<!-- CLIENTES -->
-<!-- <div class="col-lg-3 col-xs-6">
-
-  <div class="small-box bg-yellow">
-    
-    <div class="inner">
-    
-      <h3><?php echo number_format($totalClientes); ?></h3>
-
-      <p>Clientes</p>
-  
-    </div>
-    
-    <div class="icon">
-    
-      <i class="ion ion-person-add"></i>
-    
-    </div>
-    
-    <a href="clientes" class="small-box-footer">
-
-      Más info <i class="fa fa-arrow-circle-right"></i>
-
-    </a>
-
-  </div>
-
-</div> -->
 
 <!-- VENTAS CREDITOS TOTAL
 <div class="col-lg-3 col-xs-6">

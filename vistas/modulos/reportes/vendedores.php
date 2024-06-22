@@ -3,7 +3,20 @@
 $item = null;
 $valor = null;
 
-$ventas = ControladorVentas::ctrMostrarVentas($item, $valor);
+
+if(isset($_GET["fechaInicial"])){
+
+  $fechaInicial = $_GET["fechaInicial"];
+  $fechaFinal = $_GET["fechaFinal"];
+
+}else{
+
+$fechaInicial = null;
+$fechaFinal = null;
+
+}
+
+$ventas = ControladorVentas::ctrRangoFechasVentas($fechaInicial, $fechaFinal);
 $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
 
 $arrayVendedores = array();

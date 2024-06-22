@@ -5,7 +5,7 @@
 		<ul class="sidebar-menu">
 
 		<?php
-
+        // VISUALIZAR EN EL MINIBAR USUARIOS
 		if($_SESSION["perfil"] == "Administrador"){
 
 			echo '<li class="active">
@@ -25,6 +25,17 @@
 
 					<i class="fa fa-user"></i>
 					<span>Usuarios</span>
+
+				</a>
+
+			</li>
+			
+			<li>
+
+				<a href="gastos">
+
+					<i class="fa fa-usd"></i>
+					<span>Gastos</span>
 
 				</a>
 

@@ -273,8 +273,8 @@
                         <option value="Efectivo">Efectivo</option>
                         <option value="Crédito">Crédito</option>
                         <option value="Cotizacion">Cotizacion</option>
-                        <option value="TC">Tarjeta Crédito</option>
-                        <option value="TD">Tarjeta Débito</option>                  
+                        <!-- <option value="TC">Tarjeta Crédito</option>
+                        <option value="TD">Tarjeta Débito</option>                   -->
                       </select>    
 
                     </div>

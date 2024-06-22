@@ -951,6 +951,20 @@ class ControladorVentas{
 
 	}
 
+		/*=============================================
+	SUMA TOTAL GASTOS EL DIA ACTUAL
+	=============================================*/
+
+	static public function ctrSumaTotalGastosdia(){
+
+		$tabla = "gastos";
+
+		$respuesta = ModeloVentas::mdlSumaTotalgastosdia($tabla);
+
+		return $respuesta;
+
+	}
+
 	/*=============================================
 	SUMA TOTAL VENTAS EL DIA ACTUAL credito
 	=============================================*/

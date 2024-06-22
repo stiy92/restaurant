@@ -82,7 +82,7 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
         }         
 
         ?>
-           
+         
            <button class="btn btn-success" style="margin-top:5px">Descargar reporte en Excel</button>
 
           </a>
@@ -94,6 +94,17 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
       <div class="box-body">
         
         <div class="row">
+
+        
+        <div class="col-xs-12">
+            
+            <?php
+
+                include "reportes/cajas-superiores.php";
+
+            ?>
+
+          </div>
 
           <div class="col-xs-12">
             
