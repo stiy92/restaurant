@@ -256,24 +256,6 @@ class ModeloVentas{
 
 	}
 
-		/*=============================================
-	SUMAR EL TOTAL DE GASTOS POR DIA
-	=============================================*/
-
-	static public function mdlSumaTotalgastosdia($tabla){	
-
-		$stmt = Conexion::conectar()->prepare("SELECT SUM(valor) as total FROM $tabla where DATE(fecha) >= DATE( NOW())" );
-
-		$stmt -> execute();
-
-		return $stmt -> fetch();
-
-		$stmt -> close();
-
-		$stmt = null;
-
-	}
-
 	/*=============================================
 	SUMAR EL TOTAL DE VENTAS POR DIA CREDITO
 	=============================================*/

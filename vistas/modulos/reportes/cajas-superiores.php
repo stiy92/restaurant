@@ -25,8 +25,7 @@ $ventass = ControladorVentas::ctrSumaTotalVentasdia();
 $ventas = ControladorVentas::ctrSumaTotalVentas();
 
 // VER SUMA TOTAL DE GASTOS POR DIA ////////////////////////////
-$gastos = ControladorVentas::ctrSumaTotalVentasdia();
-
+$gastos = ControladorGastos::ctrSumaTotalGastosdia();
 //////////////////////////////////////////////////////////
 
 // VER SUMA TOTAL DE VENTAS CREDITOS ////////////////////////////

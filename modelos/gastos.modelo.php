@@ -151,12 +151,12 @@ class ModeloGastos{
 	}
 
 	/*=============================================
-	MOSTRAR SUMA VENTAS
+	MOSTRAR SUMA TOTAL DE LOS GASTOS
 	=============================================*/	
 
-	static public function mdlMostrarSumaVentas($tabla){
+	static public function mdlMostrarSumaGastos($tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT SUM(ventas) as total FROM $tabla");
+		$stmt = Conexion::conectar()->prepare("SELECT SUM(valor) as total FROM $tabla");
 
 		$stmt -> execute();
 
@@ -167,5 +167,22 @@ class ModeloGastos{
 		$stmt = null;
 	}
 
+		/*=============================================
+	SUMAR EL TOTAL DE GASTOS POR DIA
+	=============================================*/
+
+	static public function mdlSumaTotalgastosdia($tabla){	
+
+		$stmt = Conexion::conectar()->prepare("SELECT SUM(valor) as total FROM $tabla where DATE(fecha) >= DATE( NOW())" );
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
 
 }

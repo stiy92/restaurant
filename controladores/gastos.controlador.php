@@ -18,7 +18,7 @@ class ControladorGastos{
 
 
 	/*=============================================
-	CREAR GASTOS
+	CREAR GASTO
 	=============================================*/
 
 	static public function ctrCrearGasto(){
@@ -103,10 +103,10 @@ class ControladorGastos{
 		}
 
 	/*=============================================
-	EDITAR PRODUCTO
+	EDITAR GASTO
 	=============================================*/
 
-	static public function ctrEditarProducto(){
+	static public function ctrEditargastos(){
 
 		if(isset($_POST["editarDescripcion"])){
 
@@ -256,7 +256,7 @@ class ControladorGastos{
 	}
 
 	/*=============================================
-	BORRAR PRODUCTO
+	BORRAR GASTO
 	=============================================*/
 	static public function ctrEliminarProducto(){
 
@@ -300,18 +300,31 @@ class ControladorGastos{
 	}
 
 	/*=============================================
-	MOSTRAR SUMA VENTAS
+	MOSTRAR SUMA GASTOS
 	=============================================*/
 
-	static public function ctrMostrarSumaVentas(){
+	static public function ctrMostrarSumaGastos(){
 
-		$tabla = "productos";
+		$tabla = "gastos";
 
-		$respuesta = ModeloProductos::mdlMostrarSumaVentas($tabla);
+		$respuesta = ModeloGastos::mdlMostrarSumaGastos($tabla);
 
 		return $respuesta;
 
 	}
 
+		/*=============================================
+	SUMA TOTAL GASTOS EL DIA ACTUAL
+	=============================================*/
+
+	static public function ctrSumaTotalGastosdia(){
+
+		$tabla = "gastos";
+
+		$respuesta = ModeloGastos::mdlSumaTotalgastosdia($tabla);
+
+		return $respuesta;
+
+	}
 
 }
