@@ -142,7 +142,7 @@ class ModeloVentas{
 	}
 
 	/*=============================================
-	RANGO FECHAS
+	RANGO FECHAS REPORTE FINAL
 	=============================================*/	
 
 	static public function mdlRangoFechasVentas($tabla, $fechaInicial, $fechaFinal){
@@ -203,12 +203,41 @@ class ModeloVentas{
 	}
 
 	/*=============================================
-	SUMAR EL TOTAL DE VENTAS
+	REPORTE PRINCIPAL PARA EL GRAFICO SUMA EFECTIVO, CREDITO, NEQUI
+	=============================================*/	
+
+	static public function mdlRangoF($tabla){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE DATE(fecha) >= DATE( NOW()) ORDER BY id DESC");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();	 
+
+
+	}
+
+	/*=============================================
+	REPORTE FINAL PARA EL GRAFICO SUMA EFECTIVO, CREDITO, NEQUI
+	=============================================*/	
+
+	static public function mdlRangoFF($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id DESC");
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();	 
+
+
+}
+	/*=============================================
+	SUMAR EL TOTAL DE VENTAS EFECTIVO REPORTE FINAL
 	=============================================*/
 
 	static public function mdlSumaTotalVentas($tabla){	
 
-		$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla");
+		$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla where metodo_pago= 'Efectivo'");
 
 		$stmt -> execute();
 
@@ -221,7 +250,7 @@ class ModeloVentas{
 	}
 
 	/*=============================================
-	SUMAR EL TOTAL DE VENTAS CREDITOS
+	SUMAR EL TOTAL DE VENTAS CREDITOS REPORTE FINAL
 	=============================================*/
 
 	static public function mdlSumaTotalCreditos($tabla){	
@@ -238,8 +267,27 @@ class ModeloVentas{
 
 	}
 	
+		/*=============================================
+	SUMAR EL TOTAL DE VENTAS NEQUI REPORTE FINAL
+	=============================================*/
+
+	static public function mdlSumaTotalNequi($tabla){	
+
+		$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla where metodo_pago= 'NEQUI-0'");
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	////////////////////////////////////////////////////REPORTE INICIAL//////////////////////////////////////////////////
 	/*=============================================
-	SUMAR EL TOTAL DE VENTAS POR DIA EFECTIVO
+	SUMAR EL TOTAL DE VENTAS POR DIA EFECTIVO REPORTE INICIAL
 	=============================================*/
 
 	static public function mdlSumaTotalVentasdia($tabla){	
@@ -257,7 +305,7 @@ class ModeloVentas{
 	}
 
 	/*=============================================
-	SUMAR EL TOTAL DE VENTAS POR DIA CREDITO
+	SUMAR EL TOTAL DE VENTAS POR DIA CREDITO REPORTE INICIAL
 	=============================================*/
 
 	static public function mdlSumaTotalVentascreditodia($tabla){	
@@ -274,5 +322,24 @@ class ModeloVentas{
 
 	}
 
+	
+	/*=============================================
+	SUMAR EL TOTAL DE VENTAS POR DIA NEQUI REPORTE INICIAL
+	=============================================*/
+
+	static public function mdlSumaTotalVentasdianequi($tabla){	
+
+		$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla where DATE(fecha) >= DATE( NOW())and metodo_pago= 'NEQUI-0'" );
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+	
 	
 }

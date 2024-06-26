@@ -8,21 +8,25 @@ $orden = "id";
 $ventass = ControladorVentas::ctrSumaTotalVentasdia();
 ///////////////////////////////////////////////////
 
-// VER SUMA TOTAL DE VENTAS ////////////////////////////
-$ventas = ControladorVentas::ctrSumaTotalVentas();
-//////////////////////////////////////////////////////////
-
 // VER SUMA TOTAL DE GASTOS POR DIA ////////////////////////////
 $gastos = ControladorGastos::ctrSumaTotalGastosdia();
+//////////////////////////////////////////////////////////
+
+// VER SUMA TOTAL CREDITO POR DIA//////////////////////
+$ventascre = ControladorVentas::ctrSumaTotalVentasdiacredito();
+///////////////////////////////////////////////////
+
+// VER SUMA TOTAL NEQUI POR DIA//////////////////////
+$ventasneq = ControladorVentas::ctrSumaTotalVentasdianequi();
+///////////////////////////////////////////////////
+
+// VER SUMA TOTAL DE VENTAS ////////////////////////////
+$ventas = ControladorVentas::ctrSumaTotalVentas();
 //////////////////////////////////////////////////////////
 
 // VER SUMA TOTAL DE VENTAS CREDITOS ////////////////////////////
 $creditot = ControladorVentas::ctrSumaTotalCreditos();
 //////////////////////////////////////////////////////////
-
-// VER SUMA TOTAL POR DIA CREDITO//////////////////////
-$ventascre = ControladorVentas::ctrSumaTotalVentasdiacredito();
-///////////////////////////////////////////////////
 
 $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
 $totalCategorias = count($categorias);
@@ -105,6 +109,35 @@ $totalProductos = count($productos);
       <h3>$<?php echo number_format($ventascre["total"],2); ?></h3>
 
       <p>Ventas credito hoy</p>
+    
+    </div>
+    
+    <div class="icon">
+      
+      <i class="ion ion-social-usd"></i>
+    
+    </div>
+    
+    <a href="ventas" class="small-box-footer">
+      
+      Más info <i class="fa fa-arrow-circle-right"></i>
+    
+    </a>
+
+  </div>
+
+</div>
+
+<!-- VENTAS NEQUI -->
+<div class="col-lg-3 col-xs-6">
+
+  <div class="small-box bg-purple">
+    
+    <div class="inner">
+      
+      <h3>$<?php echo number_format($ventasneq["total"],2); ?></h3>
+
+      <p>Ventas Nequi hoy</p>
     
     </div>
     
@@ -212,7 +245,7 @@ $totalProductos = count($productos);
 </div> -->
 
 <!-- PRODUCTOS TOTAL -->
-<div class="col-lg-3 col-xs-6">
+<!-- <div class="col-lg-3 col-xs-6">
 
   <div class="small-box bg-red">
   
@@ -238,4 +271,4 @@ $totalProductos = count($productos);
 
   </div>
 
-</div>
+</div> -->

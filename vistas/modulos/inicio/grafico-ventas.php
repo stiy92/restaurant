@@ -2,18 +2,7 @@
 
 error_reporting(0);
 
-if(isset($_GET["fechaInicial"])){
-
-  $fechaInicial = $_GET["fechaInicial"];
-  $fechaFinal = $_GET["fechaFinal"];
-  $respuesta = ControladorVentas::ctrRangoFechasVentas($fechaInicial, $fechaFinal);
-}else{
-
-$fechaInicial = null;
-$fechaFinal = null;
-$respuesta = ControladorVentas::ctrRangoFF();
-}
-
+$respuesta = ControladorVentas::ctrRangoF();
 
 $arrayFechas = array();
 $arrayVentas = array();
