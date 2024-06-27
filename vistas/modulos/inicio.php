@@ -58,7 +58,7 @@
 
           if($_SESSION["perfil"] =="Administrador"){
           
-           include "reportes/productos-mas-vendidos.php";
+           include "inicio/productos-mas-vendidos.php";
 
          }
 

@@ -10,29 +10,25 @@ if(isset($_GET["fechaInicial"])){
   $fechaInicial = $_GET["fechaInicial"];
   $fechaFinal = $_GET["fechaFinal"];
 
+  // VER SUMA TOTAL DE VENTAS POR DIA//////////////////////
+  $ventas = ControladorVentas::ctrRangoventasf($fechaInicial, $fechaFinal);
+///////////////////////////////////////////////////
+
+// VER SUMA TOTAL DE GASTOS POR DIA ////////////////////////////
+$gastos = ControladorGastos::ctrRangogastosf($fechaInicial, $fechaFinal);
+//////////////////////////////////////////////////////////
+
+// VER SUMA TOTAL CREDITO POR DIA//////////////////////
+$creditot = ControladorVentas::ctrRangocreditof($fechaInicial, $fechaFinal);
+///////////////////////////////////////////////////
+
+// VER SUMA TOTAL NEQUI POR DIA//////////////////////
+$nequit = ControladorVentas::ctrRangoventasf($fechaInicial, $fechaFinal);
+///////////////////////////////////////////////////
 }else{
 
 $fechaInicial = null;
 $fechaFinal = null;
-
-}
-
-// VER SUMA TOTAL DE VENTAS POR DIA//////////////////////
-$ventass = ControladorVentas::ctrSumaTotalVentasdia($fechaInicial, $fechaFinal);
-///////////////////////////////////////////////////
-
-// VER SUMA TOTAL DE GASTOS POR DIA ////////////////////////////
-$gastoss = ControladorGastos::ctrSumaTotalGastosdia($fechaInicial, $fechaFinal);
-//////////////////////////////////////////////////////////
-
-// VER SUMA TOTAL CREDITO POR DIA//////////////////////
-$ventascre = ControladorVentas::ctrSumaTotalVentasdiacredito($fechaInicial, $fechaFinal);
-///////////////////////////////////////////////////
-
-// VER SUMA TOTAL NEQUI POR DIA//////////////////////
-$ventasneq = ControladorVentas::ctrSumaTotalVentasdianequi($fechaInicial, $fechaFinal);
-///////////////////////////////////////////////////
-
 /////////////////////////////////////////////////////////TOTALES///////////////////////////////////////////////////////////
 
 // VER SUMA TOTAL DE VENTAS ////////////////////////////
@@ -52,15 +48,16 @@ $nequit = ControladorVentas::ctrSumaTotalNequi();
 //////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////TOTALES END////////////////////////////////////////////
+}
 
-$categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
-$totalCategorias = count($categorias);
+// $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+// $totalCategorias = count($categorias);
 
-$clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
-$totalClientes = count($clientes);
+// $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
+// $totalClientes = count($clientes);
 
-$productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
-$totalProductos = count($productos);
+// $productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
+// $totalProductos = count($productos);
 
 ?>
 
@@ -121,7 +118,6 @@ $totalProductos = count($productos);
   </div>
 
 </div>
-
 
 <!-- VENTAS CREDITOS -->
 <div class="col-lg-3 col-xs-6">

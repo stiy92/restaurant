@@ -2,6 +2,10 @@
 
 error_reporting(0);
 
+// VER SUMA TOTAL DE GASTOS POR DIA ////////////////////////////
+$gastos = ControladorGastos::ctrSumaTotalGastosdia();
+//////////////////////////////////////////////////////////
+
 $respuesta = ControladorVentas::ctrRangoF();
 
 $arrayFechas = array();
@@ -24,10 +28,10 @@ foreach ($respuesta as $key => $value) {
 		
 		$sumaPagosMes[$key] += $value;
 	}
-
+  
 }
-
-
+// Aqui le resto los gastos al total en el grafico
+$sumaPagosMes[$key] -= $gastos["total"];
 $noRepetirFechas = array_unique($arrayFechas);
 
 

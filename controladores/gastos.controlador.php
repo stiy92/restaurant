@@ -327,4 +327,18 @@ class ControladorGastos{
 
 	}
 
+		/*=============================================
+	SUMA TOTAL GASTOS POR FECHA CAJA S FINAL
+	=============================================*/
+
+	static public function ctrRangogastosf($fechaInicial, $fechaFinal){
+
+		$tabla = "gastos";
+
+		$respuesta = ModeloGastos::mdlRangogastosf($tabla, $fechaInicial, $fechaFinal);
+
+		return $respuesta;
+
+	}
+
 }

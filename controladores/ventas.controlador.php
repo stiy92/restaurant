@@ -809,7 +809,7 @@ class ControladorVentas{
 		
 	}
 
-		/*=============================================
+	/*=============================================
 	REPORTE PRINCIPAL PARA EL GRAFICO SUMA EFECTIVO, CREDITO, NEQUI
 	=============================================*/	
 
@@ -824,7 +824,7 @@ class ControladorVentas{
 	}
 
 	
-		/*=============================================
+	/*=============================================
 	REPORTE FINAL PARA EL GRAFICO SUMA EFECTIVO, CREDITO, NEQUI
 	=============================================*/	
 
@@ -838,7 +838,33 @@ class ControladorVentas{
 		
 	}
 	
+    /*=============================================
+	REPORTE FINAL CAJA SUPERIOR VENTAS EFECTIVOS POR FECHA
+	=============================================*/	
 
+	static public function ctrRangoventasf($fechaInicial, $fechaFinal){
+
+		$tabla = "ventas";
+
+		$respuesta = ModeloVentas::mdlRangoventasf($tabla, $fechaInicial, $fechaFinal);
+
+		return $respuesta;
+		
+	}
+
+	 /*=============================================
+	REPORTE FINAL CAJA SUPERIOR VENTAS EFECTIVOS POR FECHA
+	=============================================*/	
+
+	static public function ctrRangocreditof($fechaInicial, $fechaFinal){
+
+		$tabla = "ventas";
+
+		$respuesta = ModeloVentas::mdlRangocreditof($tabla, $fechaInicial, $fechaFinal);
+
+		return $respuesta;
+		
+	}
 
 	/*=============================================
 	DESCARGAR EXCEL
