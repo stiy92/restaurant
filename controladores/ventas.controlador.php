@@ -852,8 +852,8 @@ class ControladorVentas{
 		
 	}
 
-	 /*=============================================
-	REPORTE FINAL CAJA SUPERIOR VENTAS EFECTIVOS POR FECHA
+	/*=============================================
+	REPORTE FINAL CAJA SUPERIOR VENTAS CREDITOS POR FECHA
 	=============================================*/	
 
 	static public function ctrRangocreditof($fechaInicial, $fechaFinal){
@@ -866,6 +866,19 @@ class ControladorVentas{
 		
 	}
 
+	/*=============================================
+	REPORTE FINAL CAJA SUPERIOR VENTAS NEQUI POR FECHA
+	=============================================*/	
+
+	static public function ctrRangonequif($fechaInicial, $fechaFinal){
+
+		$tabla = "ventas";
+
+		$respuesta = ModeloVentas::mdlRangonequif($tabla, $fechaInicial, $fechaFinal);
+
+		return $respuesta;
+		
+	}
 	/*=============================================
 	DESCARGAR EXCEL
 	=============================================*/

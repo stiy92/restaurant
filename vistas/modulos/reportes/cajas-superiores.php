@@ -10,8 +10,8 @@ if(isset($_GET["fechaInicial"])){
   $fechaInicial = $_GET["fechaInicial"];
   $fechaFinal = $_GET["fechaFinal"];
 
-  // VER SUMA TOTAL DE VENTAS POR DIA//////////////////////
-  $ventas = ControladorVentas::ctrRangoventasf($fechaInicial, $fechaFinal);
+// VER SUMA TOTAL DE VENTAS POR DIA//////////////////////
+$ventas = ControladorVentas::ctrRangoventasf($fechaInicial, $fechaFinal);
 ///////////////////////////////////////////////////
 
 // VER SUMA TOTAL DE GASTOS POR DIA ////////////////////////////
@@ -23,7 +23,7 @@ $creditot = ControladorVentas::ctrRangocreditof($fechaInicial, $fechaFinal);
 ///////////////////////////////////////////////////
 
 // VER SUMA TOTAL NEQUI POR DIA//////////////////////
-$nequit = ControladorVentas::ctrRangoventasf($fechaInicial, $fechaFinal);
+$nequit = ControladorVentas::ctrRangonequif($fechaInicial, $fechaFinal);
 ///////////////////////////////////////////////////
 }else{
 

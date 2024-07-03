@@ -270,6 +270,40 @@ class ModeloVentas{
 		}
 	}
 
+	/*===============================================================================
+	SUMAR EL TOTAL DE VENTAS CREDITO CAJA SUPERIOR REPORTE FINAL POR RANGO DE FECHAS
+	=================================================================================*/
+
+	static public function mdlRangonequif($tabla, $fechaInicial, $fechaFinal){	
+		try {
+			// Agregar las horas para abarcar el día completo
+			$fechaInicial .= ' 00:00:01';
+			$fechaFinal .= ' 23:59:59';
+	
+			// Preparar la consulta con parámetros de fechas
+			$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla WHERE metodo_pago = 'NEQUI-0' AND fecha BETWEEN :fechaInicial AND :fechaFinal");
+	
+			// Vincular parámetros
+			$stmt->bindParam(":fechaInicial", $fechaInicial, PDO::PARAM_STR);
+			$stmt->bindParam(":fechaFinal", $fechaFinal, PDO::PARAM_STR);
+	
+			// Ejecutar la consulta
+			$stmt->execute();
+	
+			// Devolver el resultado
+			return $stmt->fetch();
+		} catch (Exception $e) {
+			// Manejar excepciones
+			echo "Error: " . $e->getMessage();
+		} finally {
+			// Cerrar la conexión
+			if ($stmt) {
+				$stmt->closeCursor();
+				$stmt = null;
+			}
+		}
+	}
+
 
 	/*=============================================
 	REPORTE PRINCIPAL PARA EL GRAFICO SUMA EFECTIVO, CREDITO, NEQUI
