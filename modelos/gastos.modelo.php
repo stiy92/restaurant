@@ -101,7 +101,7 @@ class ModeloGastos{
 	BORRAR PRODUCTO
 	=============================================*/
 
-	static public function mdlEliminarProducto($tabla, $datos){
+	static public function mdlEliminarGasto($tabla, $datos){
 
 		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
 

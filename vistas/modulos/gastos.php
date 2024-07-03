@@ -104,8 +104,8 @@ if($_SESSION["perfil"] == "Vendedor"){
                       if($_SESSION["perfil"] == "Administrador"){
 
                       echo '
-                      <button class="btn btn-warning btnEditarVenta" idVenta="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger btnEliminarVenta" idVenta="'.$value["id"].'"><i class="fa fa-times"></i></button>';
+                      <button class="btn btn-warning btnEditarGasto" idGasto="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
+                      <button class="btn btn-danger btnEliminarGasto" idGasto="'.$value["id"].'"><i class="fa fa-times"></i></button>';
 
                     }
 
@@ -245,7 +245,7 @@ MODAL AGREGAR GASTO
 MODAL EDITAR PRODUCTO
 ======================================-->
 
-<div id="modalEditarProducto" class="modal fade" role="dialog">
+<div id="modalEditarGasto" class="modal fade" role="dialog">
   
   <div class="modal-dialog">
 
@@ -261,7 +261,7 @@ MODAL EDITAR PRODUCTO
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar producto</h4>
+          <h4 class="modal-title">Editar gasto</h4>
 
         </div>
 
@@ -463,8 +463,8 @@ MODAL EDITAR PRODUCTO
 
 <?php
 
-  $eliminarProducto = new ControladorProductos();
-  $eliminarProducto -> ctrEliminarProducto();
+  $eliminarGasto = new ControladorGastos();
+  $eliminarGasto -> ctrEliminarGasto();
 
 ?>      
 

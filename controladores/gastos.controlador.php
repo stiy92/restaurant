@@ -258,21 +258,14 @@ class ControladorGastos{
 	/*=============================================
 	BORRAR GASTO
 	=============================================*/
-	static public function ctrEliminarProducto(){
+	static public function ctrEliminarGasto(){
 
-		if(isset($_GET["idProducto"])){
+		if(isset($_GET["idGasto"])){
 
-			$tabla ="productos";
-			$datos = $_GET["idProducto"];
+			$tabla ="gastos";
+			$datos = $_GET["idGasto"];
 
-			if($_GET["imagen"] != "" && $_GET["imagen"] != "vistas/img/productos/default/anonymous.png"){
-
-				unlink($_GET["imagen"]);
-				rmdir('vistas/img/productos/'.$_GET["codigo"]);
-
-			}
-
-			$respuesta = ModeloProductos::mdlEliminarProducto($tabla, $datos);
+			$respuesta = ModeloGastos::mdlEliminarGasto($tabla, $datos);
 
 			if($respuesta == "ok"){
 
@@ -280,13 +273,13 @@ class ControladorGastos{
 
 				swal({
 					  type: "success",
-					  title: "El producto ha sido borrado correctamente",
+					  title: "El gasto ha sido borrado correctamente",
 					  showConfirmButton: true,
 					  confirmButtonText: "Cerrar"
 					  }).then(function(result){
 								if (result.value) {
 
-								window.location = "productos";
+								window.location = "gastos";
 
 								}
 							})
