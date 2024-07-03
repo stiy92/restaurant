@@ -54,17 +54,17 @@ $('.tablaGastos').DataTable( {
 // EDITAR PRODUCTO
 // =============================================*/
 
-// $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
+// $(".tabla").on("click", "button.btnEditarGasto", function(){
 
-// 	var idProducto = $(this).attr("idProducto");
-// 	console.log("listo parcero", idProducto);
+// 	var idProducto = $(this).attr("idGasto");
+// 	console.log("listo parcero", idGasto);
 	
 // 	var datos = new FormData();
-//     datos.append("idProducto", idProducto);
+//     datos.append("idGasto", idGasto);
 
 //      $.ajax({
 
-//       url:"ajax/productos.ajax.php",
+//       url:"ajax/gastos.ajax.php",
 //       method: "POST",
 //       data: datos,
 //       cache: false,
@@ -123,34 +123,32 @@ $('.tablaGastos').DataTable( {
 // })
 
 // /*=============================================
-// ELIMINAR PRODUCTO
+// ELIMINAR GASTO
 // =============================================*/
 
-// $(".tablaProductos tbody").on("click", "button.btnEliminarProducto", function(){
+$(".tabla").on("click", "button.btnEliminarGasto", function(){
 
-// 	var idProducto = $(this).attr("idProducto");
-// 	var codigo = $(this).attr("codigo");
-// 	var imagen = $(this).attr("imagen");
+	var idGasto = $(this).attr("idGasto");
 	
-// 	swal({
+	swal({
 
-// 		title: '¿Está seguro de borrar el producto?',
-// 		text: "¡Si no lo está puede cancelar la accíón!",
-// 		type: 'warning',
-//         showCancelButton: true,
-//         confirmButtonColor: '#3085d6',
-//         cancelButtonColor: '#d33',
-//         cancelButtonText: 'Cancelar',
-//         confirmButtonText: 'Si, borrar producto!'
-//         }).then(function(result) {
-//         if (result.value) {
+		title: '¿Está seguro de borrar el gasto?',
+		text: "¡Si no lo está puede cancelar la accíón!",
+		type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, borrar gasto!'
+        }).then(function(result) {
+        if (result.value) {
 
-//         	window.location = "index.php?ruta=productos&idProducto="+idProducto+"&imagen="+imagen+"&codigo="+codigo;
+        	window.location = "index.php?ruta=gastos&idGasto="+idGasto;
 
-//         }
+        }
 
 
-// 	})
+	})
 
-// })
+});
 	

@@ -39,7 +39,7 @@ class TablaGastos{
 				//  $botones ="";
   			}else{
 
-  			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarGasto' idGasto='".$gastos[$i]["id"]."' data-toggle='modal' data-target='#modalEditarGasto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarGasto' idgasto='".$gastos[$i]["id"]."' vendedor='".$gastos[$i]["vendedor"]."' valor='".$gastos[$i]["valor"]."' descripcion='".$gastos[$i]["descripcion"]."'><i class='fa fa-times'></i></button></div>"; 
+  			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarGasto' idGasto='".$gastos[$i]["id"]."' data-toggle='modal' data-target='#modalEditarGasto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarGasto' idGasto='".$gastos[$i]["id"]."' vendedor='".$gastos[$i]["vendedor"]."' valor='".$gastos[$i]["valor"]."' descripcion='".$gastos[$i]["descripcion"]."'><i class='fa fa-times'></i></button></div>"; 
 // 
   			}
 

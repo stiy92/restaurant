@@ -2,24 +2,11 @@
 
 error_reporting(0);
 
-if(isset($_GET["fechaInicial"])){
-
-  $fechaInicial = $_GET["fechaInicial"];
-  $fechaFinal = $_GET["fechaFinal"];
-  $respuesta = ControladorVentas::ctrRangoFechasVentas($fechaInicial, $fechaFinal);
-  // VER SUMA TOTAL DE GASTOS POR DIA ////////////////////////////
-  $gastos = ControladorGastos::ctrRangogastosf($fechaInicial, $fechaFinal);
-  //////////////////////////////////////////////////////////
-}else{
-
-$fechaInicial = null;
-$fechaFinal = null;
-$respuesta = ControladorVentas::ctrRangoFF();
-// VER SUMA TOTAL DE GASTOS ////////////////////////////
-$gastos = ControladorGastos::ctrMostrarSumaGastos();
+// VER SUMA TOTAL DE GASTOS POR DIA ////////////////////////////
+$gastos = ControladorGastos::ctrSumaTotalGastosdia();
 //////////////////////////////////////////////////////////
-}
 
+$respuesta = ControladorVentas::ctrRangoF();
 
 $arrayFechas = array();
 $arrayVentas = array();
@@ -41,9 +28,8 @@ foreach ($respuesta as $key => $value) {
 		
 		$sumaPagosMes[$key] += $value;
 	}
-
+  
 }
-
 // Aqui le resto los gastos al total en el grafico
 $sumaPagosMes[$key] -= $gastos["total"];
 $noRepetirFechas = array_unique($arrayFechas);

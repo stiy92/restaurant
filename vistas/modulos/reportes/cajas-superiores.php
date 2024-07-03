@@ -10,56 +10,67 @@ if(isset($_GET["fechaInicial"])){
   $fechaInicial = $_GET["fechaInicial"];
   $fechaFinal = $_GET["fechaFinal"];
 
+// VER SUMA TOTAL DE VENTAS POR DIA//////////////////////
+$ventas = ControladorVentas::ctrRangoventasf($fechaInicial, $fechaFinal);
+///////////////////////////////////////////////////
+
+// VER SUMA TOTAL DE GASTOS POR DIA ////////////////////////////
+$gastos = ControladorGastos::ctrRangogastosf($fechaInicial, $fechaFinal);
+//////////////////////////////////////////////////////////
+
+// VER SUMA TOTAL CREDITO POR DIA//////////////////////
+$creditot = ControladorVentas::ctrRangocreditof($fechaInicial, $fechaFinal);
+///////////////////////////////////////////////////
+
+// VER SUMA TOTAL NEQUI POR DIA//////////////////////
+$nequit = ControladorVentas::ctrRangonequif($fechaInicial, $fechaFinal);
+///////////////////////////////////////////////////
 }else{
 
 $fechaInicial = null;
 $fechaFinal = null;
-
-}
-
-// VER SUMA TOTAL POR DIA//////////////////////
-$ventass = ControladorVentas::ctrSumaTotalVentasdia();
-///////////////////////////////////////////////////
+/////////////////////////////////////////////////////////TOTALES///////////////////////////////////////////////////////////
 
 // VER SUMA TOTAL DE VENTAS ////////////////////////////
 $ventas = ControladorVentas::ctrSumaTotalVentas();
+//////////////////////////////////////////////////////////
 
-// VER SUMA TOTAL DE GASTOS POR DIA ////////////////////////////
-$gastos = ControladorGastos::ctrSumaTotalGastosdia();
+// VER SUMA TOTAL DE GASTOS ////////////////////////////
+$gastos = ControladorGastos::ctrMostrarSumaGastos();
 //////////////////////////////////////////////////////////
 
 // VER SUMA TOTAL DE VENTAS CREDITOS ////////////////////////////
 $creditot = ControladorVentas::ctrSumaTotalCreditos();
-
 //////////////////////////////////////////////////////////
 
-// VER SUMA TOTAL POR DIA CREDITO//////////////////////
+// VER SUMA TOTAL DE VENTAS NEQUI ////////////////////////////
+$nequit = ControladorVentas::ctrSumaTotalNequi();
+//////////////////////////////////////////////////////////
 
-$ventascre = ControladorVentas::ctrSumaTotalVentasdiacredito();
-///////////////////////////////////////////////////
+///////////////////////////////////////////////////////TOTALES END////////////////////////////////////////////
+}
 
-$categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
-$totalCategorias = count($categorias);
+// $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+// $totalCategorias = count($categorias);
 
-$clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
-$totalClientes = count($clientes);
+// $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
+// $totalClientes = count($clientes);
 
-$productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
-$totalProductos = count($productos);
+// $productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
+// $totalProductos = count($productos);
 
 ?>
 
-
-<!-- VENTAS EFECTIVOS POR DIA-->
+<!-- VENTAS EFECTIVOS-->
 <div class="col-lg-3 col-xs-6">
 
   <div class="small-box bg-aqua">
     
     <div class="inner">
       
-      <h3>$<?php echo number_format($ventass["total"],2); ?></h3>
+      <h3>$<?php echo number_format($ventas["total"],); ?></h3>
 
-      <p>Ventas efectivo hoy</p>
+      <p>Ventas efectivo</p>
     
     </div>
     
@@ -79,16 +90,16 @@ $totalProductos = count($productos);
 
 </div>
 
-<!-- GASTOS POR DIA -->
+<!-- GASTOS -->
 <div class="col-lg-3 col-xs-6">
 
   <div class="small-box bg-red">
     
     <div class="inner">
       
-      <h3>$<?php echo number_format($gastos["total"],2); ?></h3>
+      <h3>$<?php echo number_format($gastos["total"],); ?></h3>
 
-      <p>Gastos efectivo hoy</p>
+      <p>Gastos</p>
     
     </div>
     
@@ -107,7 +118,6 @@ $totalProductos = count($productos);
   </div>
 
 </div>
-
 
 <!-- VENTAS CREDITOS -->
 <div class="col-lg-3 col-xs-6">
@@ -116,9 +126,9 @@ $totalProductos = count($productos);
     
     <div class="inner">
       
-      <h3>$<?php echo number_format($ventascre["total"],2); ?></h3>
+      <h3>$<?php echo number_format($creditot["total"],); ?></h3>
 
-      <p>Ventas credito hoy</p>
+      <p>Ventas credito</p>
     
     </div>
     
@@ -138,17 +148,16 @@ $totalProductos = count($productos);
 
 </div>
 
-
-<!-- VENTAS CREDITOS TOTAL
+<!-- VENTAS NEQUI -->
 <div class="col-lg-3 col-xs-6">
 
-  <div class="small-box bg-yellow">
+  <div class="small-box bg-purple">
     
     <div class="inner">
       
-      <h3>$<?php echo number_format($creditot["total"],2); ?></h3>
+      <h3>$<?php echo number_format($nequit["total"],); ?></h3>
 
-      <p>creditos total</p>
+      <p>Ventas Nequi</p>
     
     </div>
     
@@ -166,10 +175,10 @@ $totalProductos = count($productos);
 
   </div>
 
-</div> -->
+</div>
 
 <!-- PRODUCTOS TOTAL -->
-<div class="col-lg-3 col-xs-6">
+<!-- <div class="col-lg-3 col-xs-6">
 
   <div class="small-box bg-red">
   
@@ -195,4 +204,4 @@ $totalProductos = count($productos);
 
   </div>
 
-</div>
+</div> -->

@@ -810,6 +810,76 @@ class ControladorVentas{
 	}
 
 	/*=============================================
+	REPORTE PRINCIPAL PARA EL GRAFICO SUMA EFECTIVO, CREDITO, NEQUI
+	=============================================*/	
+
+	static public function ctrRangoF(){
+
+		$tabla = "ventas";
+
+		$respuesta = ModeloVentas::mdlRangoF($tabla);
+
+		return $respuesta;
+		
+	}
+
+	
+	/*=============================================
+	REPORTE FINAL PARA EL GRAFICO SUMA EFECTIVO, CREDITO, NEQUI
+	=============================================*/	
+
+	static public function ctrRangoFF(){
+
+		$tabla = "ventas";
+
+		$respuesta = ModeloVentas::mdlRangoFF($tabla);
+
+		return $respuesta;
+		
+	}
+	
+    /*=============================================
+	REPORTE FINAL CAJA SUPERIOR VENTAS EFECTIVOS POR FECHA
+	=============================================*/	
+
+	static public function ctrRangoventasf($fechaInicial, $fechaFinal){
+
+		$tabla = "ventas";
+
+		$respuesta = ModeloVentas::mdlRangoventasf($tabla, $fechaInicial, $fechaFinal);
+
+		return $respuesta;
+		
+	}
+
+	/*=============================================
+	REPORTE FINAL CAJA SUPERIOR VENTAS CREDITOS POR FECHA
+	=============================================*/	
+
+	static public function ctrRangocreditof($fechaInicial, $fechaFinal){
+
+		$tabla = "ventas";
+
+		$respuesta = ModeloVentas::mdlRangocreditof($tabla, $fechaInicial, $fechaFinal);
+
+		return $respuesta;
+		
+	}
+
+	/*=============================================
+	REPORTE FINAL CAJA SUPERIOR VENTAS NEQUI POR FECHA
+	=============================================*/	
+
+	static public function ctrRangonequif($fechaInicial, $fechaFinal){
+
+		$tabla = "ventas";
+
+		$respuesta = ModeloVentas::mdlRangonequif($tabla, $fechaInicial, $fechaFinal);
+
+		return $respuesta;
+		
+	}
+	/*=============================================
 	DESCARGAR EXCEL
 	=============================================*/
 
@@ -938,6 +1008,20 @@ class ControladorVentas{
 	}
 
 	/*=============================================
+	SUMA TOTAL NEQUI
+	=============================================*/
+
+	static public function ctrSumaTotalNequi(){
+
+		$tabla = "ventas";
+
+		$respuesta = ModeloVentas::mdlSumaTotalNequi($tabla);
+
+		return $respuesta;
+
+	}
+
+	/*=============================================
 	SUMA TOTAL VENTAS EL DIA ACTUAL
 	=============================================*/
 
@@ -960,6 +1044,20 @@ class ControladorVentas{
 		$tabla = "ventas";
 
 		$respuesta = ModeloVentas::mdlSumaTotalVentascreditodia($tabla);
+
+		return $respuesta;
+
+	}
+
+		/*=============================================
+	SUMA TOTAL VENTAS NEQUI EL DIA
+	=============================================*/
+
+	static public function ctrSumaTotalVentasdianequi(){
+
+		$tabla = "ventas";
+
+		$respuesta = ModeloVentas::mdlSumaTotalVentasdianequi($tabla);
 
 		return $respuesta;
 

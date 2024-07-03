@@ -7,15 +7,15 @@ if(isset($_GET["fechaInicial"])){
 
   $fechaInicial = $_GET["fechaInicial"];
   $fechaFinal = $_GET["fechaFinal"];
-
+  $ventas = ControladorVentas::ctrRangoFechasVentas($fechaInicial, $fechaFinal);
 }else{
 
 $fechaInicial = null;
 $fechaFinal = null;
-
+$ventas = ControladorVentas::ctrRangoFF();
 }
 
-$ventas = ControladorVentas::ctrRangoFechasVentas($fechaInicial, $fechaFinal);
+
 $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
 
 $arrayClientes = array();
