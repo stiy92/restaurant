@@ -36,6 +36,25 @@ class ModeloVentas{
 
 	}
 
+		/*=============================================
+	MOSTRAR ULTIMO CODIGO DE VENTA
+	=============================================*/
+
+	static public function mdlMostrarCodigo($tabla){
+
+			$stmt = Conexion::conectar()->prepare("SELECT MAX(codigo) as max_codigo FROM $tabla");
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+			$stmt -> close();
+
+		$stmt = null;
+
+		}
+		
+		
 	/*=============================================
 	REGISTRO DE VENTA
 	=============================================*/
