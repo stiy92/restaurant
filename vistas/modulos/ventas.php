@@ -95,13 +95,15 @@
          <tr>
            
            <th style="width:10px">#</th>
-           <th>Código factura</th>
+           <th>Factura</th>
            <th>Cliente</th>
            <th>Vendedor</th>
-           <th>Forma de pago</th>
-           <th>Neto</th>
+           <th>Forma</th>
+           <th>Neto</th> 
            <th>Total</th> 
            <th>Fecha</th>
+           <th>Debe</th>
+           <th>Abono</th>
            <th>Acciones</th>
 
          </tr> 
@@ -150,11 +152,13 @@
 
                   <td>'.$value["metodo_pago"].'</td>
 
-                  <td>$ '.number_format($value["neto"],2).'</td>
+                  <td>$ '.number_format($value["neto"]).'</td> 
 
-                  <td>$ '.number_format($value["total"],2).'</td>
+                  <td>$ '.number_format($value["total"]).'</td>
 
                   <td>'.$value["fecha"].'</td>
+                  <td>'.$value["saldo_pendiente"].'</td>
+                  <td>'.$value["monto_abonado"].'</td>
 
                   <td>
 
@@ -178,8 +182,9 @@
 
                       echo '
                       <button class="btn btn-warning btnEditarVenta" idVenta="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger btnEliminarVenta" idVenta="'.$value["id"].'"><i class="fa fa-times"></i></button>';
-
+                      <button class="btn btn-danger btnEliminarVenta" idVenta="'.$value["id"].'"><i class="fa fa-times"></i></button>
+                      <button class="btn btn-info btnabonarcredito" idVenta="'.$value["id"].'"><i class="fa fa-credit-card"></i></button>
+                      <button class="btn btn-primary btnpagarcredito" idVenta="'.$value["id"].'"><i class="fa fa-usd"></i></button>';
                     }
 
                     echo '</div>  
