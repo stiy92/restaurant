@@ -6,11 +6,11 @@ class ControladorGastos{
 	MOSTRAR GASTOS
 	=============================================*/
 
-	static public function ctrMostrarGastos($item, $valor, $orden){
+	static public function ctrMostrarGastos($item, $valor){
 
 		$tabla = "gastos";
 
-		$respuesta = ModeloGastos::mdlMostrarGastos($tabla, $item, $valor, $orden);
+		$respuesta = ModeloGastos::mdlMostrarGastos($tabla, $item, $valor);
 
 		return $respuesta;
 
@@ -106,7 +106,7 @@ class ControladorGastos{
 	EDITAR GASTO
 	=============================================*/
 
-	static public function ctrEditargastos(){
+	static public function ctrEditarGasto(){
 
 		if(isset($_POST["editarDescripcion"])){
 

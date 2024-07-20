@@ -10,7 +10,7 @@ class ModeloGastos{
 	MOSTRAR GASTOS
 	=============================================*/
 
-	static public function mdlMostrarGastos($tabla, $item, $valor, $orden){
+	static public function mdlMostrarGastos($tabla, $item, $valor){
 
 		if($item != null){
 
@@ -24,7 +24,7 @@ class ModeloGastos{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY $orden DESC");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
 			$stmt -> execute();
 

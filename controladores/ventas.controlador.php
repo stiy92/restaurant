@@ -124,6 +124,7 @@ class ControladorVentas{
 			$tabla = "ventas";
 
 		    $traercodigo = ModeloVentas::mdlMostrarCodigo($tabla);
+			
  
 		//	$fechaCliente = ModeloClientes::mdlActualizarCliente($tablaClientes, $item1b, $valor1b, $valor);
 
@@ -318,6 +319,14 @@ class ControladorVentas{
 
 			$respuesta = ModeloVentas::mdlIngresarVenta($tabla, $datos);
 
+			// codigo de la venta real para asignarla a la factura
+
+			$tabla = "ventas";
+
+		    $traercodigo = ModeloVentas::mdlMostrarCodigo($tabla);
+
+			$traercodigo = +1;
+
 			if($respuesta == "ok"){
 
                 //primear copia
@@ -342,7 +351,7 @@ class ControladorVentas{
 
 				$printer -> text("Teléfono: 311 656 5195"."\n");//Teléfono de la empresa
 
-				$printer -> text("FACTURA N.".$_POST["nuevaVenta"]."\n");//Número de factura
+				$printer -> text("FACTURA N.".$traercodigo."\n");//Número de factura
 
 				$printer -> feed(1); //Alimentamos el papel 1 vez
 
