@@ -66,21 +66,15 @@ class ModeloGastos{
 	}
 
 	/*=============================================
-	EDITAR PRODUCTO
+	EDITAR GASTO
 	=============================================*/
-	static public function mdlEditarProducto($tabla, $datos){
+	static public function mdlEditarGasto($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_categoria = :id_categoria, descripcion = :descripcion, codigo = :codigo, imagen = :imagen, stock = :stock, precio_compra = :precio_compra, precio_venta = :precio_venta, stock_t = :stock_t WHERE id = :id");
-        
-		$stmt->bindParam(":id_categoria", $datos["id_categoria"], PDO::PARAM_INT);
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET valor = :valor, descripcion = :descripcion WHERE id = :id");
+
 		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
-		$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_STR);
+		$stmt->bindParam(":valor", $datos["valor"], PDO::PARAM_STR);
 		$stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
-		$stmt->bindParam(":imagen", $datos["imagen"], PDO::PARAM_STR);
-		$stmt->bindParam(":stock", $datos["stock"], PDO::PARAM_STR);
-		$stmt->bindParam(":precio_compra", $datos["precio_compra"], PDO::PARAM_STR);
-		$stmt->bindParam(":precio_venta", $datos["precio_venta"], PDO::PARAM_STR);
-		$stmt->bindParam(":stock_t", $datos["stock_t"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -106,33 +100,6 @@ class ModeloGastos{
 		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
 
 		$stmt -> bindParam(":id", $datos, PDO::PARAM_INT);
-
-		if($stmt -> execute()){
-
-			return "ok";
-		
-		}else{
-
-			return "error";	
-
-		}
-
-		$stmt -> close();
-
-		$stmt = null;
-
-	}
-
-	/*=============================================
-	ACTUALIZAR PRODUCTO
-	=============================================*/
-
-	static public function mdlActualizarProducto($tabla, $item1, $valor1, $valor){
-
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1 WHERE id = :id");
-
-		$stmt -> bindParam(":".$item1, $valor1, PDO::PARAM_STR);
-		$stmt -> bindParam(":id", $valor, PDO::PARAM_STR);
 
 		if($stmt -> execute()){
 

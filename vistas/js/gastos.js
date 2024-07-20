@@ -34,7 +34,7 @@ $(".tablas").on("click", ".btnEditarGasto", function(){
 // ELIMINAR GASTO
 // =============================================*/
 
-$(".tabla").on("click", "button.btnEliminarGasto", function(){
+$(".tablas").on("click", "button.btnEliminarGasto", function(){
 
 	var idGasto = $(this).attr("idGasto");
 	
