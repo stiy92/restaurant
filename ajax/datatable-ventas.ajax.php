@@ -84,8 +84,9 @@ class TablaProductosVentas{
 
 	}
 
-
 }
+
+
 
 /*=============================================
 ACTIVAR TABLA DE PRODUCTOS

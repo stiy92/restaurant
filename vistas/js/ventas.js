@@ -933,4 +933,32 @@ $(".abrirXML").click(function(){
 
 })
 
+/*=============================================
+ABONAR VENTA
+=============================================*/
+$(".tablas").on("click", ".btnabonarcredito", function(){
+	
+	var idVenta = $(this).attr("idVenta");
+
+	var datos = new FormData();
+    datos.append("idVenta", idVenta);
+	
+    $.ajax({
+
+      url:"ajax/ventas.ajax.php",
+      method: "POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType:"json",
+      success:function(respuesta){
+		   $("#idVenta").val(respuesta["id"]);
+	       $("#saldop").val(respuesta["saldo_pendiente"]-respuesta["monto_abonado"]);
+		//    console.log("respuesta", respuesta);
+	  }
+
+  	})
+
+});
 

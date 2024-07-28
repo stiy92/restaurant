@@ -67,20 +67,36 @@ class ModeloVentas{
 			$stmtCodigo->execute();
 			$resultadoCodigo = $stmtCodigo->fetch(PDO::FETCH_ASSOC);
 			$ultimoCodigo = $resultadoCodigo['max_codigo'] + 1;
-	
-        //preparar la insercion
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(codigo, id_cliente, id_vendedor, productos, impuesto, neto, total, metodo_pago) VALUES (:codigo, :id_cliente, :id_vendedor, :productos, :impuesto, :neto, :total, :metodo_pago)");
-
+        
 		//agregar los valores
-		$stmt->bindParam(":codigo", $ultimoCodigo, PDO::PARAM_INT);
-		//$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
-		$stmt->bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_INT);
-		$stmt->bindParam(":id_vendedor", $datos["id_vendedor"], PDO::PARAM_INT);
-		$stmt->bindParam(":productos", $datos["productos"], PDO::PARAM_STR);
-		$stmt->bindParam(":impuesto", $datos["impuesto"], PDO::PARAM_STR);
-		$stmt->bindParam(":neto", $datos["neto"], PDO::PARAM_STR);
-		$stmt->bindParam(":total", $datos["total"], PDO::PARAM_STR);
-		$stmt->bindParam(":metodo_pago", $datos["metodo_pago"], PDO::PARAM_STR);
+		if($datos["metodo_pago"]=="Crédito-0"){
+     //preparar la insercion
+            $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(codigo, id_cliente, id_vendedor, productos, impuesto, neto, total, metodo_pago, saldo_pendiente) VALUES (:codigo, :id_cliente, :id_vendedor, :productos, :impuesto, :neto, :total, :metodo_pago, :total)");
+
+			$stmt->bindParam(":codigo", $ultimoCodigo, PDO::PARAM_INT);
+			//$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
+			$stmt->bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_INT);
+			$stmt->bindParam(":id_vendedor", $datos["id_vendedor"], PDO::PARAM_INT);
+			$stmt->bindParam(":productos", $datos["productos"], PDO::PARAM_STR);
+			$stmt->bindParam(":impuesto", $datos["impuesto"], PDO::PARAM_STR);
+			$stmt->bindParam(":neto", $datos["neto"], PDO::PARAM_STR);
+			$stmt->bindParam(":total", $datos["total"], PDO::PARAM_STR);
+			$stmt->bindParam(":metodo_pago", $datos["metodo_pago"], PDO::PARAM_STR);
+			$stmt->bindParam(":saldo_pendiente", $datos["total"], PDO::PARAM_STR);
+		}else{
+			
+        //preparar la insercion
+		    $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(codigo, id_cliente, id_vendedor, productos, impuesto, neto, total, metodo_pago) VALUES (:codigo, :id_cliente, :id_vendedor, :productos, :impuesto, :neto, :total, :metodo_pago)");
+			$stmt->bindParam(":codigo", $ultimoCodigo, PDO::PARAM_INT);
+			//$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
+			$stmt->bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_INT);
+			$stmt->bindParam(":id_vendedor", $datos["id_vendedor"], PDO::PARAM_INT);
+			$stmt->bindParam(":productos", $datos["productos"], PDO::PARAM_STR);
+			$stmt->bindParam(":impuesto", $datos["impuesto"], PDO::PARAM_STR);
+			$stmt->bindParam(":neto", $datos["neto"], PDO::PARAM_STR);
+			$stmt->bindParam(":total", $datos["total"], PDO::PARAM_STR);
+			$stmt->bindParam(":metodo_pago", $datos["metodo_pago"], PDO::PARAM_STR);
+		}
 
 		if($stmt->execute()){
 
@@ -108,7 +124,11 @@ class ModeloVentas{
 
 	static public function mdlEditarVenta($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET  id_cliente = :id_cliente, id_vendedor = :id_vendedor, productos = :productos, impuesto = :impuesto, neto = :neto, total= :total, metodo_pago = :metodo_pago WHERE codigo = :codigo");
+		//agregar los valores
+		if($datos["metodo_pago"]=="Crédito-0"){
+			//preparar la insercion
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET  id_cliente = :id_cliente, id_vendedor = :id_vendedor, productos = :productos, impuesto = :impuesto, neto = :neto, total= :total, metodo_pago = :metodo_pago, saldo_pendiente = :saldo_pendiente WHERE codigo = :codigo");
 
 		$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
 		$stmt->bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_INT);
@@ -118,6 +138,20 @@ class ModeloVentas{
 		$stmt->bindParam(":neto", $datos["neto"], PDO::PARAM_STR);
 		$stmt->bindParam(":total", $datos["total"], PDO::PARAM_STR);
 		$stmt->bindParam(":metodo_pago", $datos["metodo_pago"], PDO::PARAM_STR);
+		$stmt->bindParam(":saldo_pendiente", $datos["total"], PDO::PARAM_STR);
+
+		}else {
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET  id_cliente = :id_cliente, id_vendedor = :id_vendedor, productos = :productos, impuesto = :impuesto, neto = :neto, total= :total, metodo_pago = :metodo_pago WHERE codigo = :codigo");
+
+		$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
+		$stmt->bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_INT);
+		$stmt->bindParam(":id_vendedor", $datos["id_vendedor"], PDO::PARAM_INT);
+		$stmt->bindParam(":productos", $datos["productos"], PDO::PARAM_STR);
+		$stmt->bindParam(":impuesto", $datos["impuesto"], PDO::PARAM_STR);
+		$stmt->bindParam(":neto", $datos["neto"], PDO::PARAM_STR);
+		$stmt->bindParam(":total", $datos["total"], PDO::PARAM_STR);
+		$stmt->bindParam(":metodo_pago", $datos["metodo_pago"], PDO::PARAM_STR);
+		}
 
 		if($stmt->execute()){
 
@@ -134,6 +168,57 @@ class ModeloVentas{
 
 	}
 
+		/*=============================================
+	ABONAR CREDITO
+	=============================================*/
+
+	static public function mdlAbonarVenta($tabla, $datos){
+
+		// Obtener el último abono
+		$stmtAbonado1 = Conexion::conectar()->prepare("SELECT monto_abonado as abonado FROM $tabla WHERE id = :id");
+		$stmtAbonado1->bindParam(":id", $datos['id'], PDO::PARAM_INT);
+        $stmtAbonado1->execute();
+		$resultadoAbonado = $stmtAbonado1->fetch(PDO::FETCH_ASSOC);
+		$ultimoAbono = $resultadoAbonado['abonado'] + $datos["valor"];
+
+		// obtener el total
+		$stmtTotal = Conexion::conectar()->prepare("SELECT total as total FROM $tabla WHERE id = :id");
+		$stmtTotal->bindParam(":id", $datos['id'], PDO::PARAM_INT);
+        $stmtTotal->execute();
+		$resultadoTotal = $stmtTotal->fetch(PDO::FETCH_ASSOC);
+		$totall = $resultadoTotal['total'];
+        
+		// verificar si el abono no supera la deuda
+		if($ultimoAbono <= $totall )
+		{
+			// actualiza el estado del crédito a efectivo se el abono alcanza el valor total
+
+			if($ultimoAbono == $totall) {
+				$metodo_pago = "Efectivo";
+				$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET monto_abonado = :monto_abonado, metodo_pago = :metodo_pago WHERE id = :id");
+				$stmt->bindParam(":metodo_pago", $metodo_pago, PDO::PARAM_STR);
+			} else {
+				$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET monto_abonado = :monto_abonado WHERE id = :id");
+			}
+	
+			$stmt->bindParam(":monto_abonado", $ultimoAbono, PDO::PARAM_STR);
+			$stmt->bindParam(":id", $datos['id'], PDO::PARAM_INT);
+				
+	
+			if($stmt->execute()) {
+				$stmt->closeCursor(); // Cerrar el cursor después de la ejecución
+				return "ok";
+			} else {
+				$stmt->closeCursor(); // Cerrar el cursor en caso de error también
+				return "error";
+			}
+		}else{
+			return "super";
+		}
+
+		$stmt = null;
+
+	}
 	/*=============================================
 	ELIMINAR VENTA
 	=============================================*/

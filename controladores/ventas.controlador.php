@@ -1177,4 +1177,94 @@ class ControladorVentas{
 
 	}
 
+		/*=============================================
+	ABONAR VENTA
+	=============================================*/
+
+	static public function ctrAbonarVenta(){
+		
+           // if para validar menor o igual a deuda
+
+		if(isset($_POST["nuevoValor"])){
+
+			
+			if(preg_match('/^[#\.\0-9 ]+$/', $_POST["nuevoValor"])){
+			
+				$tabla = "ventas";
+				$datos = array("id"=>$_POST["idVenta"],
+			   				   "valor"=>$_POST["nuevoValor"]);
+							   
+
+							   $respuesta = ModeloVentas::mdlAbonarVenta($tabla, $datos);
+							   
+							   if($respuesta == "ok"){
+
+								echo'<script>
+			
+								swal({
+									  type: "success",
+									  title: "El abono se ha realizado correctamente",
+									  showConfirmButton: true,
+									  confirmButtonText: "Cerrar"
+									  }).then(function(result){
+												if (result.value) {
+			
+												window.location = "ventas";
+			
+												}
+											})
+			
+								</script>';
+			
+							}
+			
+						}else{
+			
+							echo'<script>
+			
+								swal({
+									  type: "error",
+									  title: "¡El abono no se realizo Intentalo de nuevo!",
+									  showConfirmButton: true,
+									  confirmButtonText: "Cerrar"
+									  }).then(function(result){
+										if (result.value) {
+			
+										window.location = "ventas";
+			
+										}
+									})
+			
+							  </script>';
+			
+			
+			
+						}
+						if($respuesta == "super"){
+			
+							echo'<script>
+			
+								swal({
+									  type: "error",
+									  title: "¡El abono no se realizo por que sobrepasa el valor del credito!",
+									  showConfirmButton: true,
+									  confirmButtonText: "Cerrar"
+									  }).then(function(result){
+										if (result.value) {
+			
+										window.location = "ventas";
+			
+										}
+									})
+			
+							  </script>';
+			
+			
+			
+						}
+			
+					}
+  }
+
+
 }
