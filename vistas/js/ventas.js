@@ -767,7 +767,7 @@ $(".tablas").on("click", ".btnEliminarVenta", function(){
       }).then(function(result){
         if (result.value) {
           
-            window.location = "index.php?ruta=ventas&idVenta="+idVenta;
+            window.location = "index.php?ruta=ventas&idEliminarVenta="+idVenta;
         }
 
   })
@@ -777,7 +777,7 @@ $(".tablas").on("click", ".btnEliminarVenta", function(){
 /*=============================================
 PAGAR VENTA
 =============================================*/
-$(".tablas").on("click", ".btnpagarventa", function(){
+$(".tablas").on("click", ".btnpagarcredito", function(){
 
 	var idVenta = $(this).attr("idVenta");
   
@@ -793,7 +793,7 @@ $(".tablas").on("click", ".btnpagarventa", function(){
 		}).then(function(result){
 		  if (result.value) {
 			
-			  window.location = "index.php?ruta=ventas&idVenta="+idVenta;
+			  window.location = "index.php?ruta=ventas&idPagarVenta="+idVenta;
 		  }
   
 	})

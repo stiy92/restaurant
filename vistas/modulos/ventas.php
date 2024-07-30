@@ -202,9 +202,16 @@
 
        <?php
 
-      $eliminarVenta = new ControladorVentas();
-      $eliminarVenta -> ctrEliminarVenta();
+               if (isset($_GET["idEliminarVenta"])) {
+                 $eliminarVenta = new ControladorVentas();
+                 $eliminarVenta->ctrEliminarVenta();
+               }
 
+     
+                if (isset($_GET["idPagarVenta"])) {
+                 $pagarVenta = new ControladorVentas();
+                 $pagarVenta->ctrPagarVenta();
+                }
       ?>
        
 

@@ -688,12 +688,12 @@ class ControladorVentas{
 
 	static public function ctrEliminarVenta(){
 
-		if(isset($_GET["idVenta"])){
+		if(isset($_GET["idEliminarVenta"])){
 
 			$tabla = "ventas";
 
 			$item = "id";
-			$valor = $_GET["idVenta"];
+			$valor = $_GET["idEliminarVenta"];
 
 			$traerVenta = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
 
@@ -799,7 +799,7 @@ class ControladorVentas{
 			ELIMINAR VENTA
 			=============================================*/
 
-			$respuesta = ModeloVentas::mdlEliminarVenta($tabla, $_GET["idVenta"]);
+			$respuesta = ModeloVentas::mdlEliminarVenta($tabla, $_GET["idEliminarVenta"]);
 
 			if($respuesta == "ok"){
 
@@ -1265,6 +1265,65 @@ class ControladorVentas{
 			
 					}
   }
+
+  		/*=============================================
+	PAGAR VENTA CREDITO
+	=============================================*/
+
+	static public function ctrPagarVenta(){
+
+	 if(isset($_GET["idPagarVenta"])){
+
+			 $tabla = "ventas";
+			 $valor = $_GET["idPagarVenta"];
+							
+							$respuesta = ModeloVentas::mdlPagarVenta($tabla, $valor);
+							
+							if($respuesta == "ok"){
+
+							 echo'<script>
+		 
+							 swal({
+								   type: "success",
+								   title: "El pago se ha realizado correctamente",
+								   showConfirmButton: true,
+								   confirmButtonText: "Cerrar"
+								   }).then(function(result){
+											 if (result.value) {
+		 
+											 window.location = "ventas";
+		 
+											 }
+										 })
+		 
+							 </script>';
+		 
+						 }else{
+		 
+						 echo'<script>
+		 
+							 swal({
+								   type: "error",
+								   title: "¡El pago no se realizo Intentalo de nuevo!",
+								   showConfirmButton: true,
+								   confirmButtonText: "Cerrar"
+								   }).then(function(result){
+									 if (result.value) {
+		 
+									 window.location = "ventas";
+		 
+									 }
+								 })
+		 
+						   </script>';
+		 
+		 
+		 
+					 }
+		 
+		 
+				 }
+}
 
 
 }

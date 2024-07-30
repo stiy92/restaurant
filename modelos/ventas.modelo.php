@@ -219,8 +219,41 @@ class ModeloVentas{
 		$stmt = null;
 
 	}
+
 	/*=============================================
-	ELIMINAR VENTA
+	PAGAR CREDITO
+	=============================================*/
+
+	static public function mdlPagarVenta($tabla, $valor){
+
+		// obtener el total
+		$stmtTotal = Conexion::conectar()->prepare("SELECT total as total FROM $tabla WHERE id = :id");
+		$stmtTotal->bindParam(":id", $valor, PDO::PARAM_INT);
+        $stmtTotal->execute();
+		$resultadoTotal = $stmtTotal->fetch(PDO::FETCH_ASSOC);
+		$totall = $resultadoTotal['total'];
+        
+		
+			$metodo_pago = "Efectivo";
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET monto_abonado = :monto_abonado, metodo_pago = :metodo_pago WHERE id = :id");
+			$stmt->bindParam(":metodo_pago", $metodo_pago, PDO::PARAM_STR);
+			$stmt->bindParam(":monto_abonado", $totall, PDO::PARAM_STR);
+			$stmt->bindParam(":id", $valor, PDO::PARAM_INT);
+				
+	
+			if($stmt->execute()) {
+				$stmt->closeCursor(); // Cerrar el cursor después de la ejecución
+				return "ok";
+			} else {
+				$stmt->closeCursor(); // Cerrar el cursor en caso de error también
+				return "error";
+			}
+
+		$stmt = null;
+
+	}
+	/*=============================================
+	ELIMINAR VENTA 
 	=============================================*/
 
 	static public function mdlEliminarVenta($tabla, $datos){
