@@ -95,13 +95,15 @@
          <tr>
            
            <th style="width:10px">#</th>
-           <th>Código factura</th>
+           <th>Factura</th>
            <th>Cliente</th>
            <th>Vendedor</th>
-           <th>Forma de pago</th>
-           <th>Neto</th>
+           <th>Forma</th>
+           <th>Neto</th> 
            <th>Total</th> 
            <th>Fecha</th>
+           <th>Debe</th>
+           <th>Abono</th>
            <th>Acciones</th>
 
          </tr> 
@@ -150,11 +152,13 @@
 
                   <td>'.$value["metodo_pago"].'</td>
 
-                  <td>$ '.number_format($value["neto"],2).'</td>
+                  <td>$ '.number_format($value["neto"]).'</td> 
 
-                  <td>$ '.number_format($value["total"],2).'</td>
+                  <td>$ '.number_format($value["total"]).'</td>
 
                   <td>'.$value["fecha"].'</td>
+                  <td>'.$value["saldo_pendiente"].'</td>
+                  <td>'.$value["monto_abonado"].'</td>
 
                   <td>
 
@@ -178,8 +182,9 @@
 
                       echo '
                       <button class="btn btn-warning btnEditarVenta" idVenta="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger btnEliminarVenta" idVenta="'.$value["id"].'"><i class="fa fa-times"></i></button>';
-
+                      <button class="btn btn-danger btnEliminarVenta" idVenta="'.$value["id"].'"><i class="fa fa-times"></i></button>
+                      <button class="btn btn-info btnabonarcredito" data-toggle="modal" data-target="#modalAbonar" idVenta="'.$value["id"].'"><i class="fa fa-credit-card"></i></button>
+                      <button class="btn btn-primary btnpagarcredito" idVenta="'.$value["id"].'"><i class="fa fa-usd"></i></button>';
                     }
 
                     echo '</div>  
@@ -197,9 +202,16 @@
 
        <?php
 
-      $eliminarVenta = new ControladorVentas();
-      $eliminarVenta -> ctrEliminarVenta();
+               if (isset($_GET["idEliminarVenta"])) {
+                 $eliminarVenta = new ControladorVentas();
+                 $eliminarVenta->ctrEliminarVenta();
+               }
 
+     
+                if (isset($_GET["idPagarVenta"])) {
+                 $pagarVenta = new ControladorVentas();
+                 $pagarVenta->ctrPagarVenta();
+                }
       ?>
        
 
@@ -210,6 +222,109 @@
   </section>
 
 </div>
+
+<!--=====================================
+MODAL ABONAR
+======================================-->
+
+<div id="modalAbonar" class="modal fade" role="dialog">
+  
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <form role="form" method="post" enctype="multipart/form-data">
+
+        <!--=====================================
+        CABEZA DEL MODAL
+        ======================================-->
+
+        <div class="modal-header" style="background:#3c8dbc; color:white">
+
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+          <h4 class="modal-title">Abonar</h4>
+
+        </div>
+
+        <!--=====================================
+        CUERPO DEL MODAL
+        ======================================-->
+
+        <div class="modal-body">
+
+          <div class="box-body">
+
+
+                <!--=====================================
+                ENTRADA DEL SALDO PENDIENTE
+                ======================================-->
+                <div class="modal-header">
+                     <h3 class="modal-title">Saldo pendiente</h3>
+                             </div>
+                             
+                <div class="form-group">
+                
+                  <div class="input-group">
+                    
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+                    <input type="number" class="form-control" id="saldop" readonly>
+
+
+                  </div>
+
+                </div> 
+
+                   <!-- ENTRADA PARA VALOR -->
+
+                  <div class="form-group row">
+
+                    <div class="col-xs-6">
+
+                      <div class="input-group">
+  
+                     <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span> 
+
+                      <input type="number" class="form-control input-lg" id="nuevoValor" name="nuevoValor" step="any" min="0" placeholder="Valor a abonar" required>
+                      <input type="hidden" id="idVenta" name="idVenta">
+                    </div>
+
+                  </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--=====================================
+        PIE DEL MODAL
+        ======================================-->
+
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+          <button type="submit" class="btn btn-primary">Guardar ingreso</button>
+
+        </div>
+
+      </form>
+
+        <?php
+
+          $abonarventa = new ControladorVentas();
+          $abonarventa -> ctrAbonarVenta();
+
+        ?>  
+
+    </div>
+
+  </div>
+
+</div>
+
 
 <!--=====================================
 MODAL AGREGAR CLIENTE

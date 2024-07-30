@@ -47,7 +47,7 @@ if($_SESSION["perfil"] == "Vendedor"){
       
       <div class="box-body">
         
-       <table class="table table-bordered table-striped dt-responsive tabla" width="100%">
+       <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
          
         <thead>
          
@@ -64,19 +64,16 @@ if($_SESSION["perfil"] == "Vendedor"){
 
         </thead>  
         
-       
        <tbody>
 
        <?php
        $item = null;
        $valor = null;
-       $orden = "id";
  
-       $respuesta = ControladorGastos::ctrMostrarGastos($item, $valor, $orden);
+       $gastos = ControladorGastos::ctrMostrarGastos($item, $valor);
 
-       foreach ($respuesta as $key => $value) {
+       foreach ($gastos as $key => $value) {
         // obtener el nombre del vendedor 
-        // cambiar esto y utilizar el mismo llamado de ventas
 
         $itemUsuario = "id";
         $valorUsuario = $value["vendedor"];
@@ -104,19 +101,20 @@ if($_SESSION["perfil"] == "Vendedor"){
                       if($_SESSION["perfil"] == "Administrador"){
 
                       echo '
-                      <button class="btn btn-warning btnEditarGasto" idGasto="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
+                      <button class="btn btn-warning btnEditarGasto" data-toggle="modal" data-target="#modalEditarGasto" idGasto="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
                       <button class="btn btn-danger btnEliminarGasto" idGasto="'.$value["id"].'"><i class="fa fa-times"></i></button>';
 
                     }
 
                     echo '</div>
-
+                  </td>
              </tr>';
          }
        ?>
         </tbody>
 
         </table>
+        
        <input type="hidden" value="<?php echo $_SESSION['perfil']; ?>" id="perfilOculto">
 
       </div>
@@ -242,7 +240,7 @@ MODAL AGREGAR GASTO
 </div>
 
 <!--=====================================
-MODAL EDITAR PRODUCTO
+MODAL EDITAR GASTO
 ======================================-->
 
 <div id="modalEditarGasto" class="modal fade" role="dialog">
@@ -274,25 +272,7 @@ MODAL EDITAR PRODUCTO
           <div class="box-body">
 
 
-            <!-- ENTRADA PARA SELECCIONAR CATEGORÍA -->
-
-            <div class="form-group">
-              
-              <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-
-                <select class="form-control input-lg"  name="editarCategoria" readonly required>
-                  
-                  <option id="editarCategoria"></option>
-
-                </select>
-
-              </div>
-
-            </div>
-
-            <!-- ENTRADA PARA EL CÓDIGO -->
+            <!-- ENTRADA PARA EL VALOR -->
             
             <div class="form-group">
               
@@ -300,9 +280,9 @@ MODAL EDITAR PRODUCTO
               
                 <span class="input-group-addon"><i class="fa fa-code"></i></span> 
 
-                <input type="text" class="form-control input-lg" id="editarCodigo" name="editarCodigo" required>
+                <input type="number" class="form-control input-lg" id="editarValor" name="editarValor" required>
                 
-                <input type="hidden" id="editarid" name="editarid" readonly required >
+                <input type="hidden" id="idGasto" name="idGasto" required >
                              
                 </div>
             </div>
@@ -322,115 +302,7 @@ MODAL EDITAR PRODUCTO
 
             </div>
 
-             <!-- ENTRADA PARA STOCK_MAX -->
-
-             <div class="form-group">
-              
-              <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-check"></i></span> 
-
-                <input type="number" class="form-control input-lg" id="editarStockM" name="editarStockM" min="0" required>
-
-              </div>
-
             </div>
-
-             <!-- ENTRADA PARA STOCK -->
-
-             <div class="form-group">
-              
-              <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-check"></i></span> 
-
-                <input type="number" class="form-control input-lg" id="editarStock" name="editarStock" min="0" required>
-
-              </div>
-
-            </div>
-
-             <!-- ENTRADA PARA PRECIO COMPRA -->
-
-             <div class="form-group row">
-
-                <div class="col-xs-6">
-                
-                  <div class="input-group">
-                  
-                    <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span> 
-
-                    <input type="number" class="form-control input-lg" id="editarPrecioCompra" name="editarPrecioCompra" step="any" min="0" required>
-
-                  </div>
-
-                </div>
-
-                <!-- ENTRADA PARA PRECIO VENTA -->
-
-                <div class="col-xs-6">
-                
-                  <div class="input-group">
-                  
-                    <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span> 
-
-                    <input type="number" class="form-control input-lg" id="editarPrecioVenta" name="editarPrecioVenta" step="any" min="0" readonly required>
-
-                  </div>
-                
-                  <br>
-
-                  <!-- CHECKBOX PARA PORCENTAJE -->
-
-                  <div class="col-xs-6">
-                    
-                    <div class="form-group">
-                      
-                      <label>
-                        
-                        <input type="checkbox" class="minimal porcentaje">
-                        Utilizar procentaje
-                      </label>
-
-                    </div>
-
-                  </div>
-
-                  <!-- ENTRADA PARA PORCENTAJE -->
-
-                  <div class="col-xs-6" style="padding:0">
-                    
-                    <div class="input-group">
-                      
-                      <input type="number" class="form-control input-lg nuevoPorcentaje" min="0" value="40" required>
-
-                      <span class="input-group-addon"><i class="fa fa-percent"></i></span>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-            </div>
-
-            <!-- ENTRADA PARA SUBIR FOTO -->
-
-             <div class="form-group">
-              
-              <div class="panel">SUBIR IMAGEN</div>
-
-              <input type="file" class="nuevaImagen" name="editarImagen">
-
-              <p class="help-block">Peso máximo de la imagen 2MB</p>
-
-              <img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
-
-              <input type="hidden" name="imagenActual" id="imagenActual">
-
-            </div>
-
-          </div>
 
         </div>
 
@@ -450,8 +322,8 @@ MODAL EDITAR PRODUCTO
 
         <?php
 
-          $editarProducto = new ControladorProductos();
-          $editarProducto -> ctrEditarProducto();
+          $editarGasto = new ControladorGastos();
+          $editarGasto -> ctrEditarGasto();
 
         ?>      
 
@@ -469,7 +341,7 @@ MODAL EDITAR PRODUCTO
 ?>      
 
 
-<!-- //Validacion de caracteres paa el ingreso de datos de un producto  -->
+<!-- //Validacion de caracteres paa el ingreso de datos de un gasto  -->
 
 <script>
     function validarEntrada(input) {

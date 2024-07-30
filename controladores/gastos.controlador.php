@@ -6,11 +6,11 @@ class ControladorGastos{
 	MOSTRAR GASTOS
 	=============================================*/
 
-	static public function ctrMostrarGastos($item, $valor, $orden){
+	static public function ctrMostrarGastos($item, $valor){
 
 		$tabla = "gastos";
 
-		$respuesta = ModeloGastos::mdlMostrarGastos($tabla, $item, $valor, $orden);
+		$respuesta = ModeloGastos::mdlMostrarGastos($tabla, $item, $valor);
 
 		return $respuesta;
 
@@ -106,131 +106,45 @@ class ControladorGastos{
 	EDITAR GASTO
 	=============================================*/
 
-	static public function ctrEditargastos(){
+	/*=============================================
+	EDITAR CLIENTE
+	=============================================*/
 
-		if(isset($_POST["editarDescripcion"])){
+	static public function ctrEditarGasto(){
 
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarDescripcion"]) &&
-			   preg_match('/^[0-9]+$/', $_POST["editarStockM"]) &&
-			   preg_match('/^[0-9]+$/', $_POST["editarStock"]) &&
-			   preg_match('/^[0-9]+$/', $_POST["editarid"]) &&
-			   preg_match('/^[0-9.]+$/', $_POST["editarPrecioCompra"]) &&
-			   preg_match('/^[0-9.]+$/', $_POST["editarPrecioVenta"])){
+		if(isset($_POST["editarValor"])){
 
-		   		/*=============================================
-				VALIDAR IMAGEN
-				=============================================*/
+			if(preg_match('/^[()\-0-9 ]+$/', $_POST["editarValor"]) && 
+			   preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarDescripcion"])){
 
-			   	$ruta = $_POST["imagenActual"];
+			   	$tabla = "gastos";
 
-			   	if(isset($_FILES["editarImagen"]["tmp_name"]) && !empty($_FILES["editarImagen"]["tmp_name"])){
+			   	$datos = array("id"=>$_POST["idGasto"],
+			   				   "valor"=>$_POST["editarValor"],
+					           "descripcion"=>$_POST["editarDescripcion"]);
 
-					list($ancho, $alto) = getimagesize($_FILES["editarImagen"]["tmp_name"]);
+			   	$respuesta = ModeloGastos::mdlEditarGasto($tabla, $datos);
 
-					$nuevoAncho = 500;
-					$nuevoAlto = 500;
-
-					/*=============================================
-					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
-					=============================================*/
-
-					$directorio = "vistas/img/productos/".$_POST["editarCodigo"];
-
-					/*=============================================
-					PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
-					=============================================*/
-
-					if(!empty($_POST["imagenActual"]) && $_POST["imagenActual"] != "vistas/img/productos/default/anonymous.png"){
-
-						unlink($_POST["imagenActual"]);
-
-					}else{
-
-						mkdir($directorio, 0755);	
-					
-					}
-					
-					/*=============================================
-					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
-					=============================================*/
-
-					if($_FILES["editarImagen"]["type"] == "image/jpeg"){
-
-						/*=============================================
-						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-						=============================================*/
-
-						$aleatorio = mt_rand(100,999);
-
-						$ruta = "vistas/img/productos/".$_POST["editarCodigo"]."/".$aleatorio.".jpg";
-
-						$origen = imagecreatefromjpeg($_FILES["editarImagen"]["tmp_name"]);						
-
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-						imagejpeg($destino, $ruta);
-
-					}
-
-					if($_FILES["editarImagen"]["type"] == "image/png"){
-
-						/*=============================================
-						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-						=============================================*/
-
-						$aleatorio = mt_rand(100,999);
-
-						$ruta = "vistas/img/productos/".$_POST["editarCodigo"]."/".$aleatorio.".png";
-
-						$origen = imagecreatefrompng($_FILES["editarImagen"]["tmp_name"]);						
-
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-						imagepng($destino, $ruta);
-
-					}
-
-				}
-
-				$tabla = "productos";
-
-				$datos = array("id_categoria" => $_POST["editarCategoria"],
-							   "codigo" => $_POST["editarCodigo"],
-							   "id" => $_POST["editarid"],
-							   "descripcion" => $_POST["editarDescripcion"],
-							   "stock_t" => $_POST["editarStockM"],
-							   "stock" => $_POST["editarStock"],
-							   "precio_compra" => $_POST["editarPrecioCompra"],
-							   "precio_venta" => $_POST["editarPrecioVenta"],
-							   "imagen" => $ruta);
-
-				$respuesta = ModeloProductos::mdlEditarProducto($tabla, $datos);
-
-				if($respuesta == "ok"){
+			   	if($respuesta == "ok"){
 
 					echo'<script>
 
-						swal({
-							  type: "success",
-							  title: "El producto ha sido editado correctamente",
-							  showConfirmButton: true,
-							  confirmButtonText: "Cerrar"
-							  }).then(function(result){
-										if (result.value) {
+					swal({
+						  type: "success",
+						  title: "El gasto ha sido cambiado correctamente",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+									if (result.value) {
 
-										window.location = "productos";
+									window.location = "gastos";
 
-										}
-									})
+									}
+								})
 
-						</script>';
+					</script>';
 
 				}
-
 
 			}else{
 
@@ -238,19 +152,23 @@ class ControladorGastos{
 
 					swal({
 						  type: "error",
-						  title: "¡El producto no puede ir con los campos vacíos o llevar caracteres especiales!",
+						  title: "¡El gasto no puede ir vacío o llevar caracteres especiales!",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 							if (result.value) {
 
-							window.location = "productos";
+							window.location = "gastos";
 
 							}
 						})
 
 			  	</script>';
+
+
+
 			}
+
 		}
 
 	}

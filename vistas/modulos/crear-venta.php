@@ -99,7 +99,9 @@
                     $item = null;
                     $valor = null;
 
-                    $ventas = ControladorVentas::ctrMostrarVentas($item, $valor);
+                    $ventas = ControladorVentas::ctrMostrarVentas($item, $valor); 
+
+                    $codigolast = ControladorVentas::ctrMostrarCodigo();
 
                     if(!$ventas){
 
@@ -108,15 +110,7 @@
 
                     }else{
 
-                      foreach ($ventas as $key => $value) {
-                        
-                        
-                      
-                      }
-
-                      $codigo = $value["codigo"] + 1;
-
-
+                      $codigo = $codigolast["max_codigo"] + 1;
 
                       echo '<input type="text" class="form-control" id="nuevaVenta" name="nuevaVenta" value="'.$codigo.'" readonly>';
                   
