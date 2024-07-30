@@ -325,7 +325,7 @@ class ControladorVentas{
 
 		    $traercodigo = ModeloVentas::mdlMostrarCodigo($tabla);
 
-			$traercodigo = +1;
+			$lastcodigo1 = $traercodigo["max_codigo"];
 
 			if($respuesta == "ok"){
 
@@ -351,7 +351,7 @@ class ControladorVentas{
 
 				$printer -> text("Teléfono: 311 656 5195"."\n");//Teléfono de la empresa
 
-				$printer -> text("FACTURA N.".$traercodigo."\n");//Número de factura
+				$printer -> text("FACTURA N.".$lastcodigo1."\n");//Número de factura
 
 				$printer -> feed(1); //Alimentamos el papel 1 vez
 
@@ -404,8 +404,6 @@ class ControladorVentas{
 				$printer -> close();
 
 				// segunda copia 
-
-				//primear copia
 				
 				$impresora = "POS-80C";
 
@@ -427,7 +425,7 @@ class ControladorVentas{
 
 				$printer -> text("Teléfono: 311 656 5195"."\n");//Teléfono de la empresa
 
-				$printer -> text("FACTURA N.".$_POST["nuevaVenta"]."\n");//Número de factura
+				$printer -> text("FACTURA N.".$lastcodigo1."\n");//Número de factura
 
 				$printer -> feed(1); //Alimentamos el papel 1 vez
 

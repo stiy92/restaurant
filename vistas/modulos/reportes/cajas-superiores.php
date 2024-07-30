@@ -68,7 +68,7 @@ $nequit = ControladorVentas::ctrSumaTotalNequi();
     
     <div class="inner">
       
-      <h3>$<?php echo number_format($ventas["total"],); ?></h3>
+      <h3>$<?php echo number_format($ventas["total"]); ?></h3>
 
       <p>Ventas efectivo</p>
     
@@ -97,7 +97,7 @@ $nequit = ControladorVentas::ctrSumaTotalNequi();
     
     <div class="inner">
       
-      <h3>$<?php echo number_format($gastos["total"],); ?></h3>
+      <h3>$<?php echo number_format($gastos["total"]); ?></h3>
 
       <p>Gastos</p>
     
@@ -126,7 +126,7 @@ $nequit = ControladorVentas::ctrSumaTotalNequi();
     
     <div class="inner">
       
-      <h3>$<?php echo number_format($creditot["total"],); ?></h3>
+      <h3>$<?php echo number_format($creditot["total"]); ?></h3>
 
       <p>Ventas credito</p>
     
@@ -155,7 +155,7 @@ $nequit = ControladorVentas::ctrSumaTotalNequi();
     
     <div class="inner">
       
-      <h3>$<?php echo number_format($nequit["total"],); ?></h3>
+      <h3>$<?php echo number_format($nequit["total"]); ?></h3>
 
       <p>Ventas Nequi</p>
     
