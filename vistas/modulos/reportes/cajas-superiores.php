@@ -25,6 +25,10 @@ $creditot = ControladorVentas::ctrRangocreditof($fechaInicial, $fechaFinal);
 // VER SUMA TOTAL NEQUI POR DIA//////////////////////
 $nequit = ControladorVentas::ctrRangonequif($fechaInicial, $fechaFinal);
 ///////////////////////////////////////////////////
+
+//// VALOR FINAL/////////////////////////////////
+$valor =$ventas["total"] + $nequit["total"] - $gastos["total"];
+////////////////////////////////////////////////////////
 }else{
 
 $fechaInicial = null;
@@ -47,6 +51,9 @@ $creditot = ControladorVentas::ctrSumaTotalCreditos();
 $nequit = ControladorVentas::ctrSumaTotalNequi();
 //////////////////////////////////////////////////////////
 
+//// VALOR FINAL/////////////////////////////////
+$valor =$ventas["total"] + $nequit["total"] - $gastos["total"];
+////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////TOTALES END////////////////////////////////////////////
 }
 
@@ -109,7 +116,7 @@ $nequit = ControladorVentas::ctrSumaTotalNequi();
     
     </div>
     
-    <a href="ventas" class="small-box-footer">
+    <a href="gastos" class="small-box-footer">
       
       Más info <i class="fa fa-arrow-circle-right"></i>
     
@@ -158,6 +165,35 @@ $nequit = ControladorVentas::ctrSumaTotalNequi();
       <h3>$<?php echo number_format($nequit["total"]); ?></h3>
 
       <p>Ventas Nequi</p>
+    
+    </div>
+    
+    <div class="icon">
+      
+      <i class="ion ion-social-usd"></i>
+    
+    </div>
+    
+    <a href="ventas" class="small-box-footer">
+      
+      Más info <i class="fa fa-arrow-circle-right"></i>
+    
+    </a>
+
+  </div>
+
+</div>
+
+<!-- VALOR REAL -->
+<div class="col-lg-12 col-xs-6">
+
+  <div class="small-box bg-blue">
+    
+    <div class="inner">
+      
+      <h3>$<?php echo number_format($valor); ?></h3>
+
+      <p>Valor</p>
     
     </div>
     
