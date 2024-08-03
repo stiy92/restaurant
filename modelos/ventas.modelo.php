@@ -279,14 +279,14 @@ class ModeloVentas{
 	}
 
 	/*=============================================
-	RANGO FECHAS REPORTE FINAL
+	RANGO FECHAS PARA MOSTRAR VENTAS
 	=============================================*/	
 
 	static public function mdlRangoFechasVentas($tabla, $fechaInicial, $fechaFinal){
         
 		if($fechaInicial == null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE DATE(fecha) = CURRENT_DATE() AND metodo_pago IN ('Efectivo','Nequi') ORDER BY id DESC");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE DATE(fecha) = CURRENT_DATE() ORDER BY id DESC");
 
 			$stmt -> execute();
 
@@ -296,7 +296,7 @@ class ModeloVentas{
 		}else if($fechaInicial == $fechaFinal){
 			$fechaInicial .= ' 00:00:01';
             $fechaFinal .= ' 23:59:59';
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN :fechaInicial AND :fechaFinal AND metodo_pago IN ('Efectivo','Nequi')");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN :fechaInicial AND :fechaFinal");
 
 			$stmt->bindParam(":fechaInicial", $fechaInicial, PDO::PARAM_STR);
             
@@ -338,6 +338,68 @@ class ModeloVentas{
 		}
 
 	}
+
+	/*=============================================
+	RANGO FECHAS REPORTE DE VENTAS
+	=============================================*/	
+
+	static public function mdlRangoFechasVentas2($tabla, $fechaInicial, $fechaFinal){
+        
+		if($fechaInicial == null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE DATE(fecha) = CURRENT_DATE() AND metodo_pago IN ('Efectivo','Nequi') ORDER BY id DESC");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();	 
+
+
+		}else if($fechaInicial == $fechaFinal){
+			$fechaInicial .= ' 00:00:01';
+            $fechaFinal .= ' 23:59:59';
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN :fechaInicial AND :fechaFinal AND metodo_pago IN ('Efectivo','Nequi')");
+
+			$stmt->bindParam(":fechaInicial", $fechaInicial, PDO::PARAM_STR);
+            
+			$stmt->bindParam(":fechaFinal", $fechaFinal, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}else{
+            $fechaFinal .= ' 23:59:59';
+
+			$fechaActual = new DateTime();
+			$fechaActual ->add(new DateInterval("P1D"));
+			$fechaActualMasUno = $fechaActual->format("Y-m-d");
+
+			$fechaFinal2 = new DateTime($fechaFinal);
+			$fechaFinal2 ->add(new DateInterval("P1D"));
+			$fechaFinalMasUno = $fechaFinal2->format("Y-m-d");
+
+			if($fechaFinalMasUno == $fechaActualMasUno){
+
+				$fechaInicial .= ' 00:00:01';
+                $fechaFinalMasUno .= ' 23:59:59';
+				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinalMasUno' AND metodo_pago IN ('Efectivo','Nequi')");
+
+			}else{
+				$fechaInicial .= ' 00:00:01';
+                $fechaFinal .= ' 23:59:59';
+
+				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinal' AND metodo_pago IN ('Efectivo','Nequi')");
+
+			}
+		
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+	}
+	
 
 	/*===============================================================================
 	SUMAR EL TOTAL DE VENTAS EFECTIVO CAJA SUPERIOR REPORTE FINAL POR RANGO DE FECHAS

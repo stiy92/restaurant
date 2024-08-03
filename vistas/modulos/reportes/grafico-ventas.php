@@ -6,7 +6,7 @@ if(isset($_GET["fechaInicial"])){
 
   $fechaInicial = $_GET["fechaInicial"];
   $fechaFinal = $_GET["fechaFinal"];
-  $respuesta = ControladorVentas::ctrRangoFechasVentas($fechaInicial, $fechaFinal);
+  $respuesta = ControladorVentas::ctrRangoFechasVentas2($fechaInicial, $fechaFinal);
 
   // VER SUMA TOTAL DE GASTOS POR DIA ////////////////////////////
   $gastos = ControladorGastos::ctrRangogastosf($fechaInicial, $fechaFinal);

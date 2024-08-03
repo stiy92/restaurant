@@ -824,7 +824,7 @@ class ControladorVentas{
 	}
 
 	/*=============================================
-	RANGO FECHAS
+	RANGO FECHAS MOSTRAR VENTAS
 	=============================================*/	
 
 	static public function ctrRangoFechasVentas($fechaInicial, $fechaFinal){
@@ -832,6 +832,20 @@ class ControladorVentas{
 		$tabla = "ventas";
 
 		$respuesta = ModeloVentas::mdlRangoFechasVentas($tabla, $fechaInicial, $fechaFinal);
+
+		return $respuesta;
+		
+	}
+
+		/*=============================================
+	RANGO FECHAS REPORTE DE FECHAS
+	=============================================*/	
+
+	static public function ctrRangoFechasVentas2($fechaInicial, $fechaFinal){
+
+		$tabla = "ventas";
+
+		$respuesta = ModeloVentas::mdlRangoFechasVentas2($tabla, $fechaInicial, $fechaFinal);
 
 		return $respuesta;
 		
