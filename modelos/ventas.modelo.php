@@ -286,7 +286,7 @@ class ModeloVentas{
         
 		if($fechaInicial == null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE DATE(fecha) = CURRENT_DATE() ORDER BY id DESC");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE DATE(fecha) = CURRENT_DATE() AND metodo_pago IN ('Efectivo','Nequi') ORDER BY id DESC");
 
 			$stmt -> execute();
 
@@ -296,7 +296,7 @@ class ModeloVentas{
 		}else if($fechaInicial == $fechaFinal){
 			$fechaInicial .= ' 00:00:01';
             $fechaFinal .= ' 23:59:59';
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN :fechaInicial AND :fechaFinal");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN :fechaInicial AND :fechaFinal AND metodo_pago IN ('Efectivo','Nequi')");
 
 			$stmt->bindParam(":fechaInicial", $fechaInicial, PDO::PARAM_STR);
             
@@ -443,12 +443,12 @@ class ModeloVentas{
 
 
 	/*=============================================
-	REPORTE PRINCIPAL PARA EL GRAFICO SUMA EFECTIVO, CREDITO, NEQUI
+	REPORTE PRINCIPAL PARA EL GRAFICO SUMA EFECTIVO, NEQUI
 	=============================================*/	
 
 	static public function mdlRangoF($tabla){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE DATE(fecha) >= DATE( NOW()) ORDER BY id DESC");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE DATE(fecha) >= DATE( NOW()) AND metodo_pago IN ('Efectivo','Nequi') ORDER BY id DESC");
 
 			$stmt -> execute();
 
@@ -463,7 +463,7 @@ class ModeloVentas{
 
 	static public function mdlRangoFF($tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id DESC");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE metodo_pago IN ('Efectivo','Nequi') ORDER BY id DESC");
 
 		$stmt -> execute();
 

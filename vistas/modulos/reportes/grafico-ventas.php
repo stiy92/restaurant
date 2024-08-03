@@ -7,6 +7,7 @@ if(isset($_GET["fechaInicial"])){
   $fechaInicial = $_GET["fechaInicial"];
   $fechaFinal = $_GET["fechaFinal"];
   $respuesta = ControladorVentas::ctrRangoFechasVentas($fechaInicial, $fechaFinal);
+
   // VER SUMA TOTAL DE GASTOS POR DIA ////////////////////////////
   $gastos = ControladorGastos::ctrRangogastosf($fechaInicial, $fechaFinal);
   //////////////////////////////////////////////////////////
@@ -47,7 +48,6 @@ foreach ($respuesta as $key => $value) {
 // Aqui le resto los gastos al total en el grafico
 $sumaPagosMes[$key] -= $gastos["total"];
 $noRepetirFechas = array_unique($arrayFechas);
-
 
 ?>
 
