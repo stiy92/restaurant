@@ -45,14 +45,15 @@ class ControladorVentas{
 		if(isset($_POST["nuevaVenta"])){
 
 			$valor = $_POST["seleccionarCliente"];
+			$metodo =$_POST["nuevoMetodoPago"];
 		//	echo $valor;
-			if($valor=="42"){
+			if($valor=="42" || $metodo=="Cotizacion"){
 
 				if($_POST["listaProductos"] == ""){
 
 					echo'<script>
 
-				swal({
+				 swal({
 					  type: "error",
 					  title: "La venta no se ha ejecuta si no hay productos",
 					  showConfirmButton: true,
@@ -65,10 +66,10 @@ class ControladorVentas{
 								}
 							})
 
-				</script>';
+				 </script>';
 
-				return;
-			}
+				 return;
+			   }
 
 			$listaProductos = json_decode($_POST["listaProductos"], true);
 
@@ -222,7 +223,7 @@ class ControladorVentas{
 				</script>';
 			}
 
-			elseif($valor!="42"){
+			elseif($valor!="42" || $metodo!="Cotizacion"){
 
 			/*=============================================
 			TRAER DATOS PARA MOSTRARLOS EN LA COTIZACIÓN
