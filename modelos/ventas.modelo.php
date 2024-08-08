@@ -412,7 +412,7 @@ class ModeloVentas{
 			$fechaFinal .= ' 23:59:59';
 	
 			// Preparar la consulta con parámetros de fechas
-			$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla WHERE metodo_pago = 'Efectivo' AND fecha BETWEEN :fechaInicial AND :fechaFinal");
+			$stmt = Conexion::conectar()->prepare("SELECT SUM(total) as total FROM $tabla WHERE metodo_pago = 'Efectivo' AND fecha BETWEEN :fechaInicial AND :fechaFinal");
 	
 			// Vincular parámetros
 			$stmt->bindParam(":fechaInicial", $fechaInicial, PDO::PARAM_STR);
@@ -446,7 +446,7 @@ class ModeloVentas{
 			$fechaFinal .= ' 23:59:59';
 	
 			// Preparar la consulta con parámetros de fechas
-			$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla WHERE metodo_pago = 'Crédito' AND fecha BETWEEN :fechaInicial AND :fechaFinal");
+			$stmt = Conexion::conectar()->prepare("SELECT SUM(total) as total FROM $tabla WHERE metodo_pago = 'Crédito' AND fecha BETWEEN :fechaInicial AND :fechaFinal");
 	
 			// Vincular parámetros
 			$stmt->bindParam(":fechaInicial", $fechaInicial, PDO::PARAM_STR);
@@ -480,7 +480,7 @@ class ModeloVentas{
 			$fechaFinal .= ' 23:59:59';
 	
 			// Preparar la consulta con parámetros de fechas
-			$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla WHERE metodo_pago = 'Nequi' AND fecha BETWEEN :fechaInicial AND :fechaFinal");
+			$stmt = Conexion::conectar()->prepare("SELECT SUM(total) as total FROM $tabla WHERE metodo_pago = 'Nequi' AND fecha BETWEEN :fechaInicial AND :fechaFinal");
 	
 			// Vincular parámetros
 			$stmt->bindParam(":fechaInicial", $fechaInicial, PDO::PARAM_STR);
@@ -539,7 +539,7 @@ class ModeloVentas{
 
 	static public function mdlSumaTotalVentas($tabla){	
 
-		$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla where metodo_pago= 'Efectivo'");
+		$stmt = Conexion::conectar()->prepare("SELECT SUM(total) as total FROM $tabla where metodo_pago= 'Efectivo'");
 
 		$stmt -> execute();
 
@@ -557,7 +557,7 @@ class ModeloVentas{
 
 	static public function mdlSumaTotalCreditos($tabla){	
 
-		$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla where metodo_pago= 'Crédito'");
+		$stmt = Conexion::conectar()->prepare("SELECT SUM(total) as total FROM $tabla where metodo_pago= 'Crédito'");
 
 		$stmt -> execute();
 
@@ -575,7 +575,7 @@ class ModeloVentas{
 
 	static public function mdlSumaTotalNequi($tabla){	
 
-		$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla where metodo_pago= 'Nequi'");
+		$stmt = Conexion::conectar()->prepare("SELECT SUM(total) as total FROM $tabla where metodo_pago= 'Nequi'");
 
 		$stmt -> execute();
 
@@ -594,7 +594,7 @@ class ModeloVentas{
 
 	static public function mdlSumaTotalVentasdia($tabla){	
 
-		$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla where DATE(fecha) >= DATE( NOW()) and metodo_pago= 'Efectivo'" );
+		$stmt = Conexion::conectar()->prepare("SELECT SUM(total) as total FROM $tabla where DATE(fecha) >= DATE( NOW()) and metodo_pago= 'Efectivo'" );
 
 		$stmt -> execute();
 
@@ -612,7 +612,7 @@ class ModeloVentas{
 
 	static public function mdlSumaTotalVentascreditodia($tabla){	
 
-		$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla where DATE(fecha) >= DATE( NOW())and metodo_pago= 'Crédito'" );
+		$stmt = Conexion::conectar()->prepare("SELECT SUM(total) as total FROM $tabla where DATE(fecha) >= DATE( NOW())and metodo_pago= 'Crédito'" );
 
 		$stmt -> execute();
 
@@ -631,7 +631,7 @@ class ModeloVentas{
 
 	static public function mdlSumaTotalVentasdianequi($tabla){	
 
-		$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla where DATE(fecha) >= DATE( NOW())and metodo_pago= 'Nequi'" );
+		$stmt = Conexion::conectar()->prepare("SELECT SUM(total) as total FROM $tabla where DATE(fecha) >= DATE( NOW())and metodo_pago= 'Nequi'" );
 
 		$stmt -> execute();
 
