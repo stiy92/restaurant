@@ -104,6 +104,7 @@
            <th>Fecha</th>
            <th>Debe</th>
            <th>Abono</th>
+           <th>-%</th>
            <th>Acciones</th>
 
          </tr> 
@@ -157,8 +158,9 @@
                   <td>$ '.number_format($value["total"]).'</td>
 
                   <td>'.$value["fecha"].'</td>
-                  <td>'.$value["saldo_pendiente"].'</td>
-                  <td>'.$value["monto_abonado"].'</td>
+                  <td>$ '.number_format($value["saldo_pendiente"]).'</td>
+                  <td>$ '.number_format($value["monto_abonado"]).'</td>
+                  <td>$ '.number_format($value["descuento"]).'</td>
 
                   <td>
 
@@ -168,13 +170,13 @@
 
                       <button class="btn btn-success btnImprimirTicket" codigoVenta="'.$value["codigo"].'">
 
-                        <i class="fa fa-print">Ticket</i>
+                        <i class="fa fa-ticket">T</i>
 
                       </button>
                         
                       <button class="btn btn-info btnImprimirFactura" codigoVenta="'.$value["codigo"].'">
 
-                        <i class="fa fa-print"></i>PDF
+                        <i class="fa fa-print"></i>P
 
                       </button>';
 

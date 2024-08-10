@@ -524,6 +524,41 @@ function agregarImpuesto(){
 }
 
 /*=============================================
+FUNCIÓN AGREGAR DESCUENTO
+=============================================*/
+
+function agregarDescuento(){
+
+	 // Obtener el valor del descuento y el total actual
+	 var descuento = Number($("#nuevodescuento").val());
+	 var precioTotal = Number($("#nuevoTotalVenta").attr("total"));
+
+	 // Calcular el nuevo total con el descuento aplicado
+	var totalConDescuento  = Number(precioTotal - descuento);
+
+	// Asegurarse de que el total no sea negativo
+    if(totalConDescuento < 0) {
+        totalConDescuento = 0;
+    } 
+	
+	 // Actualizar los valores en los campos correspondientes
+	 $("#nuevoTotalVenta").val(totalConDescuento.toFixed(2));
+	 $("#totalVenta").val(totalConDescuento.toFixed(2));
+	 $("#nuevoPrecioNeto").val(precioTotal.toFixed(2));
+
+}
+
+/*=============================================
+CUANDO CAMBIA EL DESCUENTO
+=============================================*/
+
+$("#nuevodescuento").change(function(){
+
+	agregarDescuento();
+
+});
+
+/*=============================================
 CUANDO CAMBIA EL IMPUESTO
 =============================================*/
 
@@ -532,6 +567,7 @@ $("#nuevoImpuestoVenta").change(function(){
 	agregarImpuesto();
 
 });
+
 
 /*=============================================
 FORMATO AL PRECIO FINAL

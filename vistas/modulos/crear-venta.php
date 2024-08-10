@@ -192,13 +192,14 @@
                   ENTRADA IMPUESTOS Y TOTAL
                   ======================================-->
                   
-                  <div class="col-xs-8 pull-right">
+                  <div class="col-xs-12 pull-right">
                     
                     <table class="table">
 
                       <thead>
 
                         <tr>
+                        <th>Descuento</th>
                           <th>Impuesto</th>
                           <th>Total</th>      
                         </tr>
@@ -208,12 +209,23 @@
                       <tbody>
                       
                         <tr>
-                          
-                          <td style="width: 50%">
+                        <td style="width: 30%">
                             
                             <div class="input-group">
                            
-                              <input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" value="0" required readonly>
+                              <input type="number" class="form-control input-lg" min="0" id="nuevodescuento" name="nuevodescuento" value="0" required>
+
+                              <span class="input-group-addon"><i class="fa fa-percent"></i></span>
+                        
+                            </div>
+
+                          </td>
+                          
+                          <td style="width: 25%">
+                            
+                            <div class="input-group">
+                           
+                              <input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" value="0" required>
 
                                <input type="hidden" name="nuevoPrecioImpuesto" id="nuevoPrecioImpuesto" required>
 
@@ -225,7 +237,7 @@
 
                           </td>
 
-                           <td style="width: 50%">
+                           <td style="width: 40%">
                             
                             <div class="input-group">
                            
