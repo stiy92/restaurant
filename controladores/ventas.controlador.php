@@ -407,7 +407,7 @@ class ControladorVentas{
 
 								  $printer->text("--------\n");
                   
-				                  $printer->text("TOTAL: $ ".number_format($totalwithoutd)."\n"); //ahora va el total
+				                  $printer->text("TOTAL: $ ".number_format($totalwithoutd,2)."\n"); //ahora va el total
                   
 				                  $printer -> feed(1); //Alimentamos el papel 1 vez*/	
                   
