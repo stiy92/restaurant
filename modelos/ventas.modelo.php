@@ -71,7 +71,7 @@ class ModeloVentas{
 		//agregar los valores
 		if($datos["metodo_pago"]=="Crédito"){
      //preparar la insercion
-            $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(codigo, id_cliente, id_vendedor, productos, impuesto, neto, total, metodo_pago, saldo_pendiente) VALUES (:codigo, :id_cliente, :id_vendedor, :productos, :impuesto, :neto, :total, :metodo_pago, :total)");
+            $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(codigo, id_cliente, id_vendedor, productos, impuesto, neto, total, metodo_pago, saldo_pendiente, descuento) VALUES (:codigo, :id_cliente, :id_vendedor, :productos, :impuesto, :neto, :total, :metodo_pago, :total, :descuento)");
 
 			$stmt->bindParam(":codigo", $ultimoCodigo, PDO::PARAM_INT);
 			//$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
@@ -83,10 +83,11 @@ class ModeloVentas{
 			$stmt->bindParam(":total", $datos["total"], PDO::PARAM_STR);
 			$stmt->bindParam(":metodo_pago", $datos["metodo_pago"], PDO::PARAM_STR);
 			$stmt->bindParam(":saldo_pendiente", $datos["total"], PDO::PARAM_STR);
+			$stmt->bindParam(":descuento", $datos["descuento"], PDO::PARAM_STR);
 		}else{
 			
         //preparar la insercion
-		    $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(codigo, id_cliente, id_vendedor, productos, impuesto, neto, total, metodo_pago) VALUES (:codigo, :id_cliente, :id_vendedor, :productos, :impuesto, :neto, :total, :metodo_pago)");
+		    $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(codigo, id_cliente, id_vendedor, productos, impuesto, neto, total, metodo_pago, descuento) VALUES (:codigo, :id_cliente, :id_vendedor, :productos, :impuesto, :neto, :total, :metodo_pago, :descuento)");
 			$stmt->bindParam(":codigo", $ultimoCodigo, PDO::PARAM_INT);
 			//$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
 			$stmt->bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_INT);
@@ -96,6 +97,7 @@ class ModeloVentas{
 			$stmt->bindParam(":neto", $datos["neto"], PDO::PARAM_STR);
 			$stmt->bindParam(":total", $datos["total"], PDO::PARAM_STR);
 			$stmt->bindParam(":metodo_pago", $datos["metodo_pago"], PDO::PARAM_STR);
+			$stmt->bindParam(":descuento", $datos["descuento"], PDO::PARAM_STR);
 		}
 
 		if($stmt->execute()){

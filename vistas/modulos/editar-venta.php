@@ -207,7 +207,7 @@
                   ENTRADA IMPUESTOS Y TOTAL
                   ======================================-->
                   
-                  <div class="col-xs-8 pull-right">
+                  <div class="col-xs-12 pull-right">
                     
                     <table class="table">
 
@@ -223,8 +223,20 @@
                       <tbody>
                       
                         <tr>
+
+                        <td style="width: 30%">
+                            
+                            <div class="input-group">
+                           
+                              <input type="number" class="form-control input-lg" min="0" id="nuevodescuento" name="nuevodescuento" value="0" required>
+
+                              <span class="input-group-addon"><i class="fa fa-percent"></i></span>
+                        
+                            </div>
+
+                          </td>
                           
-                          <td style="width: 50%">
+                          <td style="width: 25%">
                             
                             <div class="input-group">
                            
@@ -240,7 +252,7 @@
 
                           </td>
 
-                           <td style="width: 50%">
+                           <td style="width: 40%">
                             
                             <div class="input-group">
                            
