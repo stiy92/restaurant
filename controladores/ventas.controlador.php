@@ -403,10 +403,11 @@ class ControladorVentas{
                                   
 								  // Verificar si el descuento es mayor que cero
 								  //if ($_POST["nuevodescuento"] > 0) {$printer->text("DESCUENTO: $ ".number_format($_POST["nuevoPrecioDescuento"],2)."\n");}
-				                  
+				                  $totalwithoutd=$_POST["nuevodescuento"]+$_POST["totalVenta"];
+
 								  $printer->text("--------\n");
                   
-				                  $printer->text("TOTAL: $ ".number_format($_POST["totalVenta"],2)."\n"); //ahora va el total
+				                  $printer->text("TOTAL: $ ".number_format($totalwithoutd)."\n"); //ahora va el total
                   
 				                  $printer -> feed(1); //Alimentamos el papel 1 vez*/	
                   
@@ -495,7 +496,7 @@ class ControladorVentas{
 				                  $printer->text("IMPUESTO: $ ".number_format($_POST["nuevoPrecioImpuesto"],2)."\n"); //ahora va el impuesto
                                  
 								  // Verificar si el descuento es mayor que cero
-				                  if ($_POST["nuevodescuento"] > 0) {$printer->text("DESCUENTO: $ ".number_format($_POST["nuevoPrecioDescuento"],2)."\n");}
+				                  if ($_POST["nuevodescuento"] > 0) {$printer->text("DESCUENTO: $ ".number_format($_POST["nuevodescuento"],2)."\n");}
 				                  
 								  $printer->text("--------\n");
                   
