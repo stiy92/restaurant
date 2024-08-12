@@ -508,10 +508,11 @@ function agregarImpuesto(){
 
 	var impuesto = $("#nuevoImpuestoVenta").val();
 	var precioTotal = $("#nuevoTotalVenta").attr("total");
+	var descuento = Number($("#nuevodescuento").val());
 
 	var precioImpuesto = Number(precioTotal * impuesto/100);
 
-	var totalConImpuesto = Number(precioImpuesto) + Number(precioTotal);
+	var totalConImpuesto = (Number(precioImpuesto) + Number(precioTotal))- descuento;
 	
 	$("#nuevoTotalVenta").val(totalConImpuesto);
 
@@ -529,12 +530,15 @@ FUNCIÓN AGREGAR DESCUENTO
 
 function agregarDescuento(){
 
-	 // Obtener el valor del descuento y el total actual
-	 var descuento = Number($("#nuevodescuento").val());
+	 // Obtener el valor del descuento mas impuesto y el total actual
+	 var impuesto = $("#nuevoImpuestoVenta").val();
 	 var precioTotal = Number($("#nuevoTotalVenta").attr("total"));
+	 var precioImpuesto = Number(precioTotal * impuesto/100);
+	 var descuento = Number($("#nuevodescuento").val());
+
 
 	 // Calcular el nuevo total con el descuento aplicado
-	var totalConDescuento  = Number(precioTotal - descuento);
+	var totalConDescuento  = (Number(precioTotal) + Number(precioImpuesto)) - descuento;
 
 	// Asegurarse de que el total no sea negativo
     if(totalConDescuento < 0) {
