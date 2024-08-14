@@ -50,7 +50,7 @@ class ControladorProductos{
 
 			   	$ruta = "vistas/img/productos/default/anonymous.png";
 
-			   	if(isset($_FILES["nuevaImagen"]["tmp_name"])){
+			   	if(isset($_FILES["nuevaImagen"]["tmp_name"]) && !empty($_FILES["nuevaImagen"]["tmp_name"])){
 
 					list($ancho, $alto) = getimagesize($_FILES["nuevaImagen"]["tmp_name"]);
 
@@ -63,7 +63,9 @@ class ControladorProductos{
 
 					$directorio = "vistas/img/productos/".$_POST["nuevoCodigo"];
 
-					mkdir($directorio, 0755);
+					if (!file_exists($directorio)) {
+						mkdir($directorio, 0755);
+					}
 
 					/*=============================================
 					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
@@ -89,7 +91,7 @@ class ControladorProductos{
 
 					}
 
-					if($_FILES["nuevaImagen"]["type"] == "image/png"){
+					elseif($_FILES["nuevaImagen"]["type"] == "image/png"){
 
 						/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
@@ -109,7 +111,7 @@ class ControladorProductos{
 
 					}
 
-				}
+				} 
 
 				$tabla = "productos";
 
