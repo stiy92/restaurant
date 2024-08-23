@@ -875,6 +875,20 @@ class ControladorVentas{
 		
 	}
 
+   /*=============================================
+	RANGO FECHAS MOSTRAR VENTAS CREDITOS
+	=============================================*/	
+
+	static public function ctrVentasCreditos(){
+
+		$tabla = "ventas";
+
+		$respuesta = ModeloVentas::mdlVentasCreditos($tabla);
+
+		return $respuesta;
+		
+	}
+
 		/*=============================================
 	RANGO FECHAS REPORTE DE FECHAS
 	=============================================*/	

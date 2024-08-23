@@ -344,6 +344,20 @@ class ModeloVentas{
 	}
 
 	/*=============================================
+	RANGO FECHAS PARA MOSTRAR VENTAS CREDITOS
+	=============================================*/	
+
+	static public function mdlVentasCreditos($tabla){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE metodo_pago= 'Crédito' ORDER BY id DESC");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();	 
+
+	}
+
+	/*=============================================
 	RANGO FECHAS REPORTE DE VENTAS
 	=============================================*/	
 

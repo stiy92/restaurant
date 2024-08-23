@@ -30,7 +30,7 @@
     
     <h1>
       
-      Administrar ventas
+      Administrar ventas credito
     
     </h1>
 
@@ -38,7 +38,7 @@
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Administrar ventas</li>
+      <li class="active">Administrar ventas credito</li>
     
     </ol>
 
@@ -59,17 +59,8 @@
           </button>
 
         </a>
-        <a href="ventas-credito">
 
-          <button class="btn btn-success">
-            
-            Ver creditos
-
-          </button>
-
-        </a>
-
-         <button type="button" class="btn btn-default pull-right" id="daterange-btn">
+         <!-- <button type="button" class="btn btn-default pull-right" id="daterange-btn">
            
             <span>
               <i class="fa fa-calendar"></i> 
@@ -91,7 +82,7 @@
 
             <i class="fa fa-caret-down"></i>
 
-         </button>
+         </button> -->
 
       </div>
 
@@ -124,19 +115,7 @@
 
         <?php
 
-          if(isset($_GET["fechaInicial"])){
-
-            $fechaInicial = $_GET["fechaInicial"];
-            $fechaFinal = $_GET["fechaFinal"];
-
-          }else{
-
-            $fechaInicial = null;
-            $fechaFinal = null;
-
-          }
-
-          $respuesta = ControladorVentas::ctrRangoFechasVentas($fechaInicial, $fechaFinal);
+          $respuesta = ControladorVentas::ctrVentasCreditos();
 
           foreach ($respuesta as $key => $value) {
            
