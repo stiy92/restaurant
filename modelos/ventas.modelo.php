@@ -130,7 +130,7 @@ class ModeloVentas{
 		if($datos["metodo_pago"]=="Crédito"){
 			//preparar la insercion
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET  id_cliente = :id_cliente, id_vendedor = :id_vendedor, productos = :productos, impuesto = :impuesto, neto = :neto, total= :total, metodo_pago = :metodo_pago, saldo_pendiente = :saldo_pendiente WHERE codigo = :codigo");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET  id_cliente = :id_cliente, id_vendedor = :id_vendedor, productos = :productos, impuesto = :impuesto, neto = :neto, total= :total, metodo_pago = :metodo_pago, saldo_pendiente = :saldo_pendiente, descuento = :descuento  WHERE codigo = :codigo");
 
 		$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
 		$stmt->bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_INT);
@@ -144,8 +144,9 @@ class ModeloVentas{
 		$stmt->bindParam(":descuento", $datos["descuento"], PDO::PARAM_STR);
 
 		}else {
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET  id_cliente = :id_cliente, id_vendedor = :id_vendedor, productos = :productos, impuesto = :impuesto, neto = :neto, total= :total, metodo_pago = :metodo_pago WHERE codigo = :codigo");
-
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET  id_cliente = :id_cliente, id_vendedor = :id_vendedor, productos = :productos, impuesto = :impuesto, neto = :neto, total= :total, metodo_pago = :metodo_pago, saldo_pendiente = :saldo_pendiente, descuento = :descuento WHERE codigo = :codigo");
+        
+	    $debe= 0;
 		$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
 		$stmt->bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_INT);
 		$stmt->bindParam(":id_vendedor", $datos["id_vendedor"], PDO::PARAM_INT);
@@ -154,6 +155,7 @@ class ModeloVentas{
 		$stmt->bindParam(":neto", $datos["neto"], PDO::PARAM_STR);
 		$stmt->bindParam(":total", $datos["total"], PDO::PARAM_STR);
 		$stmt->bindParam(":metodo_pago", $datos["metodo_pago"], PDO::PARAM_STR);
+		$stmt->bindParam(":saldo_pendiente", $debe, PDO::PARAM_STR);
 		$stmt->bindParam(":descuento", $datos["descuento"], PDO::PARAM_STR);
 		}
 
@@ -488,7 +490,7 @@ class ModeloVentas{
 	}
 
 	/*===============================================================================
-	SUMAR EL TOTAL DE VENTAS CREDITO CAJA SUPERIOR REPORTE FINAL POR RANGO DE FECHAS
+	SUMAR EL TOTAL DE VENTAS NEQUI CAJA SUPERIOR REPORTE FINAL POR RANGO DE FECHAS
 	=================================================================================*/
 
 	static public function mdlRangonequif($tabla, $fechaInicial, $fechaFinal){	
@@ -538,7 +540,7 @@ class ModeloVentas{
 	}
 
 	/*=============================================
-	REPORTE FINAL PARA EL GRAFICO SUMA EFECTIVO, CREDITO, NEQUI
+	REPORTE FINAL PARA EL GRAFICO SUMA EFECTIVO, NEQUI
 	=============================================*/	
 
 	static public function mdlRangoFF($tabla){
