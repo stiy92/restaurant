@@ -197,12 +197,15 @@ class ModeloVentas{
 		// verificar si el abono no supera la deuda
 		if($ultimoAbono <= $totall )
 		{
-			// actualiza el estado del crédito a efectivo se el abono alcanza el valor total
+			// actualiza el estado del crédito a efectivo si el abono alcanza el valor total
 
 			if($ultimoAbono == $totall) {
 				$metodo_pago = "Efectivo";
-				$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET monto_abonado = :monto_abonado, metodo_pago = :metodo_pago WHERE id = :id");
+				$debe = 0;
+				$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET monto_abonado = :monto_abonado, metodo_pago = :metodo_pago, saldo_pendiente = :saldo_pendiente WHERE id = :id");
 				$stmt->bindParam(":metodo_pago", $metodo_pago, PDO::PARAM_STR);
+				$stmt->bindParam(":saldo_pendiente", $debe, PDO::PARAM_STR);
+				
 			} else {
 				$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET monto_abonado = :monto_abonado WHERE id = :id");
 			}
