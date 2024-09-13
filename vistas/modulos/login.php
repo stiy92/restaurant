@@ -4,13 +4,13 @@
   
   <div class="login-logo">
 
-    <img src="vistas/img/plantilla/logo-socios.png" class="img-responsive">
+    <img src="vistas/img/plantilla/logo-lotion.jpeg" class="img-responsive">
 
   </div>
 
   <div class="login-box-body">
 
-    <p class="login-box-msg">Ingresar al sistema de los socios</p>
+    <p class="login-box-msg">Ingresar al sistema de ventas</p>
 
     <form method="post">
 
