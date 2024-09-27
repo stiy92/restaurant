@@ -26,8 +26,13 @@ $creditot = ControladorVentas::ctrRangocreditof($fechaInicial, $fechaFinal);
 $nequit = ControladorVentas::ctrRangonequif($fechaInicial, $fechaFinal);
 ///////////////////////////////////////////////////
 
+
+// VER SUMA TOTAL ABONADO//////////////////////
+$abonadot = ControladorVentas::ctrRangocreditofabonado($fechaInicial, $fechaFinal);
+///////////////////////////////////////////////////
+
 //// VALOR FINAL/////////////////////////////////
-$valor =$ventas["total"] + $nequit["total"] - $gastos["total"];
+$valor =$ventas["total"] + $nequit["total"] + $abonadot["total"] - $gastos["total"];
 ////////////////////////////////////////////////////////
 }else{
 
@@ -47,12 +52,16 @@ $gastos = ControladorGastos::ctrMostrarSumaGastos();
 $creditot = ControladorVentas::ctrSumaTotalCreditos();
 //////////////////////////////////////////////////////////
 
+// VER SUMA TOTAL DE VENTAS CREDITOS ABONADO ////////////////////////////
+$abonadot  = ControladorVentas::ctrSumaTotalCreditosab();
+//////////////////////////////////////////////////////////
+
 // VER SUMA TOTAL DE VENTAS NEQUI ////////////////////////////
 $nequit = ControladorVentas::ctrSumaTotalNequi();
 //////////////////////////////////////////////////////////
 
 //// VALOR FINAL/////////////////////////////////
-$valor =$ventas["total"] + $nequit["total"] - $gastos["total"];
+$valor =$ventas["total"] + $nequit["total"] + $abonadot["total"] - $gastos["total"];
 ////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////TOTALES END////////////////////////////////////////////
 }
@@ -185,7 +194,7 @@ $valor =$ventas["total"] + $nequit["total"] - $gastos["total"];
 </div>
 
 <!-- VALOR REAL -->
-<div class="col-lg-12 col-xs-6">
+<div class="col-lg-6 col-xs-6">
 
   <div class="small-box bg-blue">
     
@@ -194,6 +203,35 @@ $valor =$ventas["total"] + $nequit["total"] - $gastos["total"];
       <h3>$<?php echo number_format($valor); ?></h3>
 
       <p>Valor</p>
+    
+    </div>
+    
+    <div class="icon">
+      
+      <i class="ion ion-social-usd"></i>
+    
+    </div>
+    
+    <a href="ventas" class="small-box-footer">
+      
+      Más info <i class="fa fa-arrow-circle-right"></i>
+    
+    </a>
+
+  </div>
+
+</div>
+
+<!-- VALOR ABONADO -->
+<div class="col-lg-6 col-xs-6">
+
+  <div class="small-box bg-success">
+    
+    <div class="inner">
+      
+      <h3>$<?php echo number_format($abonadot["total"]); ?></h3>
+
+      <p>Abonos de credito</p>
     
     </div>
     

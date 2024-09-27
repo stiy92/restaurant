@@ -107,7 +107,7 @@ class ControladorGastos{
 	=============================================*/
 
 	/*=============================================
-	EDITAR CLIENTE
+	EDITAR GASTO
 	=============================================*/
 
 	static public function ctrEditarGasto(){
@@ -225,21 +225,7 @@ class ControladorGastos{
 	}
 
 		/*=============================================
-	SUMA TOTAL GASTOS EL DIA ACTUAL
-	=============================================*/
-
-	static public function ctrSumaTotalGastosdia(){
-
-		$tabla = "gastos";
-
-		$respuesta = ModeloGastos::mdlSumaTotalgastosdia($tabla);
-
-		return $respuesta;
-
-	}
-
-		/*=============================================
-	SUMA TOTAL GASTOS POR FECHA CAJA S FINAL
+	SUMA TOTAL GASTOS POR FECHA
 	=============================================*/
 
 	static public function ctrRangogastosf($fechaInicial, $fechaFinal){

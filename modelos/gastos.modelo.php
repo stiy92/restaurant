@@ -155,9 +155,15 @@ class ModeloGastos{
 	static public function mdlRangogastosf($tabla, $fechaInicial, $fechaFinal){	
 
 		try {
-			// Agregar las horas para abarcar el día completo
-			$fechaInicial .= ' 00:00:01';
-			$fechaFinal .= ' 23:59:59';
+			// Si las fechas son nulas, usar el día actual
+			if (empty($fechaInicial) && empty($fechaFinal)) {
+				$fechaInicial = date('Y-m-d') . ' 00:00:01';
+				$fechaFinal = date('Y-m-d') . ' 23:59:59';
+			} else {
+				// Agregar las horas para abarcar el día completo
+				$fechaInicial .= ' 00:00:01';
+				$fechaFinal .= ' 23:59:59';
+			}
 	
 			// Preparar la consulta con parámetros de fechas
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(valor) as total FROM $tabla WHERE fecha BETWEEN :fechaInicial AND :fechaFinal");

@@ -862,7 +862,7 @@ class ControladorVentas{
 	}
 
 	/*=============================================
-	RANGO FECHAS MOSTRAR VENTAS
+	RANGO FECHAS MOSTRAR VENTAS TABLA
 	=============================================*/	
 
 	static public function ctrRangoFechasVentas($fechaInicial, $fechaFinal){
@@ -876,7 +876,7 @@ class ControladorVentas{
 	}
 
    /*=============================================
-	RANGO FECHAS MOSTRAR VENTAS CREDITOS
+	RANGO FECHAS MOSTRAR VENTAS CREDITOS TABLA
 	=============================================*/	
 
 	static public function ctrVentasCreditos(){
@@ -904,7 +904,7 @@ class ControladorVentas{
 	}
 
 	/*=============================================
-	REPORTE PRINCIPAL PARA EL GRAFICO SUMA EFECTIVO, CREDITO, NEQUI
+	REPORTE PRINCIPAL PARA EL GRAFICO SUMA EFECTIVO Y NEQUI
 	=============================================*/	
 
 	static public function ctrRangoF(){
@@ -955,6 +955,20 @@ class ControladorVentas{
 		$tabla = "ventas";
 
 		$respuesta = ModeloVentas::mdlRangocreditof($tabla, $fechaInicial, $fechaFinal);
+
+		return $respuesta;
+		
+	}
+
+	/*=============================================
+	REPORTE FINAL CAJA SUPERIOR VENTAS CREDITOS POR FECHA ABONADO
+	=============================================*/	
+
+	static public function ctrRangocreditofabonado($fechaInicial, $fechaFinal){
+
+		$tabla = "ventas";
+
+		$respuesta = ModeloVentas::mdlRangocreditofabonado($tabla, $fechaInicial, $fechaFinal);
 
 		return $respuesta;
 		
@@ -1074,7 +1088,7 @@ class ControladorVentas{
 
 
 	/*=============================================
-	SUMA TOTAL VENTAS
+	SUMA TOTAL VENTAS EN GENERAL USADO POR EL REPORTE FINAL
 	=============================================*/
 
 	static public function ctrSumaTotalVentas(){
@@ -1102,6 +1116,20 @@ class ControladorVentas{
 	}
 
 	/*=============================================
+	SUMA TOTAL CREDITOS ABONADOS
+	=============================================*/
+
+	static public function ctrSumaTotalCreditosab(){
+
+		$tabla = "ventas";
+
+		$respuesta = ModeloVentas::mdlSumaTotalCreditosab($tabla);
+
+		return $respuesta;
+
+	}
+
+	/*=============================================
 	SUMA TOTAL NEQUI
 	=============================================*/
 
@@ -1114,48 +1142,7 @@ class ControladorVentas{
 		return $respuesta;
 
 	}
-
-	/*=============================================
-	SUMA TOTAL VENTAS EL DIA ACTUAL
-	=============================================*/
-
-	static public function ctrSumaTotalVentasdia(){
-
-		$tabla = "ventas";
-
-		$respuesta = ModeloVentas::mdlSumaTotalVentasdia($tabla);
-
-		return $respuesta;
-
-	}
 	
-	/*=============================================
-	SUMA TOTAL VENTAS EL DIA ACTUAL credito
-	=============================================*/
-
-	static public function ctrSumaTotalVentasdiacredito(){
-
-		$tabla = "ventas";
-
-		$respuesta = ModeloVentas::mdlSumaTotalVentascreditodia($tabla);
-
-		return $respuesta;
-
-	}
-
-		/*=============================================
-	SUMA TOTAL VENTAS NEQUI EL DIA
-	=============================================*/
-
-	static public function ctrSumaTotalVentasdianequi(){
-
-		$tabla = "ventas";
-
-		$respuesta = ModeloVentas::mdlSumaTotalVentasdianequi($tabla);
-
-		return $respuesta;
-
-	}
 	/*=============================================
 	DESCARGAR XML
 	=============================================*/

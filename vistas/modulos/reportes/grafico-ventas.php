@@ -6,49 +6,67 @@ if(isset($_GET["fechaInicial"])){
 
   $fechaInicial = $_GET["fechaInicial"];
   $fechaFinal = $_GET["fechaFinal"];
+
+  // OBTENER VENTAS
   $respuesta = ControladorVentas::ctrRangoFechasVentas2($fechaInicial, $fechaFinal);
 
   // VER SUMA TOTAL DE GASTOS POR DIA ////////////////////////////
   $gastos = ControladorGastos::ctrRangogastosf($fechaInicial, $fechaFinal);
+  $totalGastos = isset($gastos['total']) ? $gastos['total'] : 0;
   //////////////////////////////////////////////////////////
+
+
+// VER SUMA TOTAL ABONADO//////////////////////
+$abonadot = ControladorVentas::ctrRangocreditofabonado($fechaInicial, $fechaFinal);
+$totalAbonos = isset($abonadot['total']) ? $abonadot['total'] : 0;
+///////////////////////////////////////////////////
+
 }else{
 
 $fechaInicial = null;
 $fechaFinal = null;
+
+// OBTENER VENTAS SIN RANGO DE FECHAS
 $respuesta = ControladorVentas::ctrRangoFF();
 // VER SUMA TOTAL DE GASTOS ////////////////////////////
 $gastos = ControladorGastos::ctrMostrarSumaGastos();
+$totalGastos = isset($gastos['total']) ? $gastos['total'] : 0;
+//////////////////////////////////////////////////////////
+// VER SUMA TOTAL DE VENTAS CREDITOS ABONADO ////////////////////////////
+$abonadot  = ControladorVentas::ctrSumaTotalCreditosab();
+$totalAbonos = isset($abonadot['total']) ? $abonadot['total'] : 0;
 //////////////////////////////////////////////////////////
 }
 
-
 $arrayFechas = array();
-$arrayVentas = array();
 $sumaPagosMes = array();
 
-foreach ($respuesta as $key => $value) {
+foreach ($respuesta as $value) {
+    // Capturamos sólo el año y el mes
+    $fecha = substr($value["fecha"], 0, 7);
 
-	#Capturamos sólo el año y el mes
-	$fecha = substr($value["fecha"],0,7);
+    // Introducir las fechas en arrayFechas
+    array_push($arrayFechas, $fecha);
 
-	#Introducir las fechas en arrayFechas
-	array_push($arrayFechas, $fecha);
+    // Inicializamos el valor de ventas y sumas si no existe
+    if (!isset($sumaPagosMes[$fecha])) {
+        $sumaPagosMes[$fecha] = 0;
+    }
 
-	#Capturamos las ventas
-	$arrayVentas = array($fecha => $value["total"]);
-
-	#Sumamos los pagos que ocurrieron el mismo mes
-	foreach ($arrayVentas as $key => $value) {
-		
-		$sumaPagosMes[$key] += $value;
-	}
-
+    // Sumamos las ventas del mismo mes
+    $sumaPagosMes[$fecha] += $value["total"];
 }
 
-// Aqui le resto los gastos al total en el grafico
-$sumaPagosMes[$key] -= $gastos["total"];
-$noRepetirFechas = array_unique($arrayFechas);
+// Resta los gastos y suma los abonos para cada mes
 
+foreach ($sumaPagosMes as $fecha => $total) {
+    // Aplica gastos y abonos solo si hay un rango de fechas
+    if (isset($_GET["fechaInicial"])) {
+      $sumaPagosMes[$fecha] -= $totalGastos; // Resta el total de gastos
+      $sumaPagosMes[$fecha] += $totalAbonos; // Suma el total de abonos
+  }
+}
+$noRepetirFechas = array_unique($arrayFechas);
 ?>
 
 <!--=====================================

@@ -1,10 +1,16 @@
 <?php
+$fechaInicial = null;
+$fechaFinal = null;
 
 error_reporting(0);
 
 // VER SUMA TOTAL DE GASTOS POR DIA ////////////////////////////
-$gastos = ControladorGastos::ctrSumaTotalGastosdia();
+$gastos = ControladorGastos::ctrRangogastosf($fechaInicial, $fechaFinal);
 //////////////////////////////////////////////////////////
+
+// VER SUMA TOTAL ABONADO//////////////////////
+$abonadot = ControladorVentas::ctrRangocreditofabonado($fechaInicial, $fechaFinal);
+///////////////////////////////////////////////////
 
 $respuesta = ControladorVentas::ctrRangoF();
 
@@ -30,8 +36,9 @@ foreach ($respuesta as $key => $value) {
 	}
   
 }
-// Aqui le resto los gastos al total en el grafico
-$sumaPagosMes[$key] -= $gastos["total"];
+// Aqui le resto los gastos al total y le sumo lo abonado en el grafico
+$sumaPagosMes[$key] -= $gastos["total"];  // Resta los gastos
+$sumaPagosMes[$key] += $abonadot["total"]; // Suma lo abonado
 $noRepetirFechas = array_unique($arrayFechas);
 
 

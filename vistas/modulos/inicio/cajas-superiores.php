@@ -3,39 +3,44 @@
 $item = null;
 $valor = null;
 $orden = "id";
+$fechaInicial = null;
+$fechaFinal = null;
 
 // VER SUMA TOTAL DE VENTAS POR DIA//////////////////////
-$ventass = ControladorVentas::ctrSumaTotalVentasdia();
+$ventass = ControladorVentas::ctrRangoventasf($fechaInicial, $fechaFinal);
 ///////////////////////////////////////////////////
 
 // VER SUMA TOTAL DE GASTOS POR DIA ////////////////////////////
-$gastos = ControladorGastos::ctrSumaTotalGastosdia();
+$gastos = ControladorGastos::ctrRangogastosf($fechaInicial, $fechaFinal);
 //////////////////////////////////////////////////////////
 
 // VER SUMA TOTAL CREDITO POR DIA//////////////////////
-$ventascre = ControladorVentas::ctrSumaTotalVentasdiacredito();
+$ventascre = ControladorVentas::ctrRangocreditof($fechaInicial, $fechaFinal);
 ///////////////////////////////////////////////////
 
 // VER SUMA TOTAL NEQUI POR DIA//////////////////////
-$ventasneq = ControladorVentas::ctrSumaTotalVentasdianequi();
+$ventasneq = ControladorVentas::ctrRangonequif($fechaInicial, $fechaFinal);
 ///////////////////////////////////////////////////
 
-// VER SUMA TOTAL DE VENTAS ////////////////////////////
-$ventas = ControladorVentas::ctrSumaTotalVentas();
-//////////////////////////////////////////////////////////
+// VER SUMA TOTAL ABONADO//////////////////////
+$abonadot = ControladorVentas::ctrRangocreditofabonado($fechaInicial, $fechaFinal);
+///////////////////////////////////////////////////
+//// VALOR FINAL/////////////////////////////////
+$valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["total"];
+////////////////////////////////////////////////////////
 
-// VER SUMA TOTAL DE VENTAS CREDITOS ////////////////////////////
-$creditot = ControladorVentas::ctrSumaTotalCreditos();
-//////////////////////////////////////////////////////////
+// // VER SUMA TOTAL DE VENTAS CREDITOS ////////////////////////////
+// $creditot = ControladorVentas::ctrSumaTotalCreditos();
+// //////////////////////////////////////////////////////////
 
-$categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
-$totalCategorias = count($categorias);
+// $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+// $totalCategorias = count($categorias);
 
-$clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
-$totalClientes = count($clientes);
+// $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
+// $totalClientes = count($clientes);
 
-$productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
-$totalProductos = count($productos);
+// $productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
+// $totalProductos = count($productos);
 
 ?>
 
@@ -138,6 +143,62 @@ $totalProductos = count($productos);
       <h3>$<?php echo number_format($ventasneq["total"],2); ?></h3>
 
       <p>Ventas Nequi hoy</p>
+    
+    </div>
+    
+    <div class="icon">
+      
+      <i class="ion ion-social-usd"></i>
+    
+    </div>
+    
+    <a href="ventas" class="small-box-footer">
+      
+      Más info <i class="fa fa-arrow-circle-right"></i>
+    
+    </a>
+
+  </div>
+
+</div>
+<!-- VALOR REAL -->
+<div class="col-lg-6 col-xs-6">
+
+  <div class="small-box bg-blue">
+    
+    <div class="inner">
+      
+      <h3>$<?php echo number_format($valor); ?></h3>
+
+      <p>Valor</p>
+    
+    </div>
+    
+    <div class="icon">
+      
+      <i class="ion ion-social-usd"></i>
+    
+    </div>
+    
+    <a href="ventas" class="small-box-footer">
+      
+      Más info <i class="fa fa-arrow-circle-right"></i>
+    
+    </a>
+
+  </div>
+
+</div>
+<!-- VALOR ABONADO -->
+<div class="col-lg-6 col-xs-6">
+
+  <div class="small-box bg-success">
+    
+    <div class="inner">
+      
+      <h3>$<?php echo number_format($abonadot["total"]); ?></h3>
+
+      <p>Abonos de credito</p>
     
     </div>
     

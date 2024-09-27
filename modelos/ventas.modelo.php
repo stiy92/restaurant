@@ -205,12 +205,14 @@ class ModeloVentas{
 				$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET monto_abonado = :monto_abonado, metodo_pago = :metodo_pago, saldo_pendiente = :saldo_pendiente WHERE id = :id");
 				$stmt->bindParam(":metodo_pago", $metodo_pago, PDO::PARAM_STR);
 				$stmt->bindParam(":saldo_pendiente", $debe, PDO::PARAM_STR);
+				$stmt->bindParam(":monto_abonado", $debe, PDO::PARAM_STR);
 				
 			} else {
 				$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET monto_abonado = :monto_abonado WHERE id = :id");
+				$stmt->bindParam(":monto_abonado", $ultimoAbono, PDO::PARAM_STR);
 			}
 	
-			$stmt->bindParam(":monto_abonado", $ultimoAbono, PDO::PARAM_STR);
+			
 			$stmt->bindParam(":id", $datos['id'], PDO::PARAM_INT);
 				
 	
@@ -240,13 +242,14 @@ class ModeloVentas{
 		$stmtTotal->bindParam(":id", $valor, PDO::PARAM_INT);
         $stmtTotal->execute();
 		$resultadoTotal = $stmtTotal->fetch(PDO::FETCH_ASSOC);
-		$totall = $resultadoTotal['total'];
+		$debe = 0;
         
 		
 			$metodo_pago = "Efectivo";
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET monto_abonado = :monto_abonado, metodo_pago = :metodo_pago WHERE id = :id");
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET monto_abonado = :monto_abonado, metodo_pago = :metodo_pago, saldo_pendiente = :saldo_pendiente WHERE id = :id");
 			$stmt->bindParam(":metodo_pago", $metodo_pago, PDO::PARAM_STR);
-			$stmt->bindParam(":monto_abonado", $totall, PDO::PARAM_STR);
+			$stmt->bindParam(":monto_abonado", $debe, PDO::PARAM_STR);
+			$stmt->bindParam(":saldo_pendiente", $debe, PDO::PARAM_STR);
 			$stmt->bindParam(":id", $valor, PDO::PARAM_INT);
 				
 	
@@ -430,10 +433,15 @@ class ModeloVentas{
 
 	static public function mdlRangoventasf($tabla, $fechaInicial, $fechaFinal){	
 		try {
-			// Agregar las horas para abarcar el día completo
-			$fechaInicial .= ' 00:00:01';
-			$fechaFinal .= ' 23:59:59';
-	
+			 // Si las fechas son nulas, usar el día actual
+			 if (is_null($fechaInicial) && is_null($fechaFinal)) {
+				$fechaInicial = date('Y-m-d') . ' 00:00:01';
+				$fechaFinal = date('Y-m-d') . ' 23:59:59';
+			} else {
+				// Agregar las horas para abarcar el día completo
+				$fechaInicial .= ' 00:00:01';
+				$fechaFinal .= ' 23:59:59';
+			}
 			// Preparar la consulta con parámetros de fechas
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(total) as total FROM $tabla WHERE metodo_pago = 'Efectivo' AND fecha BETWEEN :fechaInicial AND :fechaFinal");
 	
@@ -464,9 +472,15 @@ class ModeloVentas{
 
 	static public function mdlRangocreditof($tabla, $fechaInicial, $fechaFinal){	
 		try {
-			// Agregar las horas para abarcar el día completo
-			$fechaInicial .= ' 00:00:01';
-			$fechaFinal .= ' 23:59:59';
+			 // Si las fechas son nulas, usar el día actual
+			 if (empty($fechaInicial) && empty($fechaFinal)) {
+				$fechaInicial = date('Y-m-d') . ' 00:00:01';
+				$fechaFinal = date('Y-m-d') . ' 23:59:59';
+			} else {
+				// Agregar las horas para abarcar el día completo
+				$fechaInicial .= ' 00:00:01';
+				$fechaFinal .= ' 23:59:59';
+			}
 	
 			// Preparar la consulta con parámetros de fechas
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(total) as total FROM $tabla WHERE metodo_pago = 'Crédito' AND fecha BETWEEN :fechaInicial AND :fechaFinal");
@@ -492,15 +506,61 @@ class ModeloVentas{
 		}
 	}
 
+		/*===============================================================================
+	SUMAR EL TOTAL DE VENTAS CREDITO ABONADO CAJA SUPERIOR REPORTE FINAL POR RANGO DE FECHAS
+	=================================================================================*/
+
+	static public function mdlRangocreditofabonado($tabla, $fechaInicial, $fechaFinal){	
+		try {
+			 // Si las fechas son nulas, usar el día actual
+			 if (empty($fechaInicial) && empty($fechaFinal)) {
+				$fechaInicial = date('Y-m-d') . ' 00:00:01';
+				$fechaFinal = date('Y-m-d') . ' 23:59:59';
+			} else {
+				// Agregar las horas para abarcar el día completo
+				$fechaInicial .= ' 00:00:01';
+				$fechaFinal .= ' 23:59:59';
+			}
+			// Preparar la consulta con parámetros de fechas
+			$stmt = Conexion::conectar()->prepare("SELECT SUM(monto_abonado) as total FROM $tabla WHERE metodo_pago = 'Crédito' AND fecha BETWEEN :fechaInicial AND :fechaFinal");
+	
+			// Vincular parámetros
+			$stmt->bindParam(":fechaInicial", $fechaInicial, PDO::PARAM_STR);
+			$stmt->bindParam(":fechaFinal", $fechaFinal, PDO::PARAM_STR);
+	
+			// Ejecutar la consulta
+			$stmt->execute();
+	
+			// Devolver el resultado
+			return $stmt->fetch();
+		} catch (Exception $e) {
+			// Manejar excepciones
+			echo "Error: " . $e->getMessage();
+		} finally {
+			// Cerrar la conexión
+			if ($stmt) {
+				$stmt->closeCursor();
+				$stmt = null;
+			}
+		}
+	}
+	
+
 	/*===============================================================================
 	SUMAR EL TOTAL DE VENTAS NEQUI CAJA SUPERIOR REPORTE FINAL POR RANGO DE FECHAS
 	=================================================================================*/
 
 	static public function mdlRangonequif($tabla, $fechaInicial, $fechaFinal){	
 		try {
-			// Agregar las horas para abarcar el día completo
-			$fechaInicial .= ' 00:00:01';
-			$fechaFinal .= ' 23:59:59';
+			 // Si las fechas son nulas, usar el día actual
+			 if (empty($fechaInicial) && empty($fechaFinal)) {
+				$fechaInicial = date('Y-m-d') . ' 00:00:01';
+				$fechaFinal = date('Y-m-d') . ' 23:59:59';
+			} else {
+				// Agregar las horas para abarcar el día completo
+				$fechaInicial .= ' 00:00:01';
+				$fechaFinal .= ' 23:59:59';
+			}
 	
 			// Preparar la consulta con parámetros de fechas
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(total) as total FROM $tabla WHERE metodo_pago = 'Nequi' AND fecha BETWEEN :fechaInicial AND :fechaFinal");
@@ -591,6 +651,25 @@ class ModeloVentas{
 		$stmt = null;
 
 	}
+
+	/*=============================================
+	SUMAR EL TOTAL DE VENTAS CREDITOS ABONADOS REPORTE FINAL
+	=============================================*/
+
+	static public function mdlSumaTotalCreditosab($tabla){	
+
+		$stmt = Conexion::conectar()->prepare("SELECT SUM(monto_abonado) as total FROM $tabla where metodo_pago= 'Crédito'");
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+	
 	
 		/*=============================================
 	SUMAR EL TOTAL DE VENTAS NEQUI REPORTE FINAL
@@ -599,62 +678,6 @@ class ModeloVentas{
 	static public function mdlSumaTotalNequi($tabla){	
 
 		$stmt = Conexion::conectar()->prepare("SELECT SUM(total) as total FROM $tabla where metodo_pago= 'Nequi'");
-
-		$stmt -> execute();
-
-		return $stmt -> fetch();
-
-		$stmt -> close();
-
-		$stmt = null;
-
-	}
-
-	////////////////////////////////////////////////////REPORTE INICIAL//////////////////////////////////////////////////
-	/*=============================================
-	SUMAR EL TOTAL DE VENTAS POR DIA EFECTIVO REPORTE INICIAL
-	=============================================*/
-
-	static public function mdlSumaTotalVentasdia($tabla){	
-
-		$stmt = Conexion::conectar()->prepare("SELECT SUM(total) as total FROM $tabla where DATE(fecha) >= DATE( NOW()) and metodo_pago= 'Efectivo'" );
-
-		$stmt -> execute();
-
-		return $stmt -> fetch();
-
-		$stmt -> close();
-
-		$stmt = null;
-
-	}
-
-	/*=============================================
-	SUMAR EL TOTAL DE VENTAS POR DIA CREDITO REPORTE INICIAL
-	=============================================*/
-
-	static public function mdlSumaTotalVentascreditodia($tabla){	
-
-		$stmt = Conexion::conectar()->prepare("SELECT SUM(total) as total FROM $tabla where DATE(fecha) >= DATE( NOW())and metodo_pago= 'Crédito'" );
-
-		$stmt -> execute();
-
-		return $stmt -> fetch();
-
-		$stmt -> close();
-
-		$stmt = null;
-
-	}
-
-	
-	/*=============================================
-	SUMAR EL TOTAL DE VENTAS POR DIA NEQUI REPORTE INICIAL
-	=============================================*/
-
-	static public function mdlSumaTotalVentasdianequi($tabla){	
-
-		$stmt = Conexion::conectar()->prepare("SELECT SUM(total) as total FROM $tabla where DATE(fecha) >= DATE( NOW())and metodo_pago= 'Nequi'" );
 
 		$stmt -> execute();
 

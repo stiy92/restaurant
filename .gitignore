@@ -1,14 +1,14 @@
-# # Ignore csc and imagenes para el proyecto individual
-# vistas/dist/
+# Ignore csc and imagenes para el proyecto individual
+vistas/dist/
 
-# # Ignore csc and imagenes para el proyecto individual
-# vistas/img/plantilla/
+# Ignore csc and imagenes para el proyecto individual
+vistas/img/plantilla/
 
-# #color barra
-# vistas/modulos/cabezote.php
+#color barra
+vistas/modulos/cabezote.php
 
-# #color barra too
-# vistas/bower_components
+#color barra too
+vistas/bower_components
 
-# #login po la imagen
-# vistas/modulos/login.php
+#login po la imagen
+vistas/modulos/login.php
