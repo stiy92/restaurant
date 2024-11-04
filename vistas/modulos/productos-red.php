@@ -65,7 +65,7 @@ if($_SESSION["perfil"] == "Vendedor"){
            <th>Precio de compra</th>
            <th>Precio de venta</th>
            <th>Agregado</th>
-           <!-- <th>Acciones</th> -->
+           <th>Acciones</th>
            
          </tr> 
 
@@ -540,5 +540,17 @@ MODAL EDITAR PRODUCTO
 
 ?>      
 
+<!-- //Validacion de caracteres paa el ingreso de datos de un producto  -->
 
+<script>
+    function validarEntrada(input) {
+      // Expresión regular que acepta solo números y letras
+      var regex = /^[a-zA-Z0-9]*$/;
+      // Verifica si el valor ingresado coincide con la expresión regular
+      if (!regex.test(input.value)) {
+        // Si no coincide, elimina el último carácter ingresado
+        input.value = input.value.slice(0, -1);
+      }
+    }
+  </script>
 
