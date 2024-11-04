@@ -31,3 +31,9 @@ si en caso tal no permite el servidor toca agregar la regla en el firewall
 para los datos reales de las entas toca veririfcar la zona horaria del servidor que sea igual al equipo
 por que si verificamos la zona horaria en un archivo 'la zona horaria: ' . date_default_timezone_get(); nos muestra por defecto echo la zona horaria: Europe/Berlin
 toca cambiarla en el archivo php.in search this: date.timezone = America/Bogota
+
+problema de impimir tickect y pdf tocaba actualizar la carpeta tcpdf exactamente el archivo tcpdf, tcpdf_barcodes_1d, tcpdf_static, tcpdf_images listo
+
+el error despues de realizar venta si estaba en la linea 126 como mostraba el mensaje y se modifico la linea poniendo el - al final
+
+la impresora par que sea modo bidirecional tiene que ser version -4 y no -3  en regedy se pude ver w+r y regedy

@@ -1260,7 +1260,7 @@ class ControladorVentas{
 									  }).then(function(result){
 												if (result.value) {
 			
-												window.location = "ventas";
+												window.location = "ventas-credito";
 			
 												}
 											})
@@ -1281,7 +1281,7 @@ class ControladorVentas{
 									  }).then(function(result){
 										if (result.value) {
 			
-										window.location = "ventas";
+										window.location = "ventas-credito";
 			
 										}
 									})
@@ -1342,7 +1342,7 @@ class ControladorVentas{
 								   }).then(function(result){
 											 if (result.value) {
 		 
-											 window.location = "ventas";
+											 window.location = "ventas-credito";
 		 
 											 }
 										 })
@@ -1361,7 +1361,7 @@ class ControladorVentas{
 								   }).then(function(result){
 									 if (result.value) {
 		 
-									 window.location = "ventas";
+									 window.location = "ventas-credito";
 		 
 									 }
 								 })
