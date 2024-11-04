@@ -1,6 +1,8 @@
-#al realizar un cambio debo de comentar los siguientes archivos para que se modiiquen en ferre
+#estos campos no van en ferre pero si van en lotion lo comento ambio debo de comentar los siguientes archivos para que se modiiquen en ferre
 
 # push ferre y push lotion ahora debo de crear push rest
+
+#estos cambios deben de agregarce a git y luego do de push luego apdate y luego push jeje
 
 # Ignore csc and imagenes para el proyecto individual
 vistas/dist/
