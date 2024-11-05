@@ -978,6 +978,21 @@ class ControladorVentas{
 		
 	}
 
+	  /*=============================================
+	REPORTE MESAS
+	=============================================*/	
+
+	static public function ctrmesas($idmesa){
+
+		$tabla = "ventas";
+
+		$respuesta = ModeloVentas::mdlmesas($tabla, $idmesa);
+
+		return $respuesta;
+		
+	}
+
+
 	/*=============================================
 	REPORTE FINAL CAJA SUPERIOR VENTAS CREDITOS POR FECHA
 	=============================================*/	

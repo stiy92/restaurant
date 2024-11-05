@@ -37,3 +37,5 @@ problema de impimir tickect y pdf tocaba actualizar la carpeta tcpdf exactamente
 el error despues de realizar venta si estaba en la linea 126 como mostraba el mensaje y se modifico la linea poniendo el - al final
 
 la impresora par que sea modo bidirecional tiene que ser version -4 y no -3  en regedy se pude ver w+r y regedy
+
+actualize fontawesome descargando el archivo y remplazando el actual ubicado en link rel="stylesheet" href="vistas/bower_components/font-awesome/ lo puedes ver en la plantilla su uso

@@ -6,8 +6,8 @@ $orden = "id";
 $fechaInicial = null;
 $fechaFinal = null;
 
-// VER SUMA TOTAL DE VENTAS POR DIA//////////////////////
-$ventass = ControladorVentas::ctrRangoventasf($fechaInicial, $fechaFinal);
+// VER TOTAL DE MESA #1
+$mesa1 = ControladorVentas::ctrmesa1(1);
 ///////////////////////////////////////////////////
 
 // VER SUMA TOTAL DE GASTOS POR DIA ////////////////////////////
@@ -40,7 +40,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="inner">
       
-      <h3>$<?php echo number_format($ventass["total"],2); ?></h3>
+      <h3>$<?php echo number_format($mesa1["total"],2); ?></h3>
 
       <h4 style="font-weight: bold;">Mesa #1</h4>
     
@@ -48,7 +48,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="icon">
       
-      <i class="fa fa-cutlery"></i>
+     <i class="fa-solid fa-shrimp"></i>
     
     </div>
     
@@ -77,7 +77,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="icon">
       
-      <i class="fa fa-cutlery"></i>
+     <i class="fa-solid fa-fish-fins"></i>
     
     </div>
     
@@ -107,7 +107,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="icon">
       
-      <i class="fa fa-cutlery"></i>
+     <i class="fa-solid fa-plate-wheat"></i>
     
     </div>
     
@@ -136,7 +136,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="icon">
       
-      <i class="fa fa-cutlery"></i>
+     <i class="fa-solid fa-pizza-slice"></i>
     
     </div>
     
@@ -169,7 +169,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="icon">
       
-      <i class="fa fa-cutlery"></i>
+     <i class="fa-solid fa-drumstick-bite"></i>
     
     </div>
     
@@ -198,7 +198,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="icon">
       
-      <i class="fa fa-cutlery"></i>
+     <i class="fa-solid fa-burger"></i>
     
     </div>
     
@@ -228,7 +228,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="icon">
       
-      <i class="fa fa-cutlery"></i>
+     <i class="fa-solid fa-ice-cream"></i>
     
     </div>
     
@@ -257,7 +257,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="icon">
       
-      <i class="fa fa-cutlery"></i>
+    <i class="fa-solid fa-hotdog"></i>
     
     </div>
     
@@ -290,7 +290,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="icon">
       
-      <i class="fa fa-cutlery"></i>
+     <i class="fa-solid fa-martini-glass-citrus"></i>
     
     </div>
     
@@ -319,7 +319,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="icon">
       
-      <i class="fa fa-cutlery"></i>
+      <i class="fa-solid fa-champagne-glasses"></i>
     
     </div>
     
@@ -349,7 +349,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="icon">
       
-      <i class="fa fa-cutlery"></i>
+    <i class="fa-solid fa-beer-mug-empty"></i>
     
     </div>
     
@@ -378,7 +378,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="icon">
       
-      <i class="fa fa-cutlery"></i>
+    <i class="fa-solid fa-mug-hot"></i>
     
     </div>
     
@@ -411,7 +411,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="icon">
       
-      <i class="fa fa-cutlery"></i>
+    <i class="fa-solid fa-bowl-food"></i>
     
     </div>
     
@@ -440,7 +440,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="icon">
       
-      <i class="fa fa-cutlery"></i>
+    <i class="fa-solid fa-cookie"></i>
     
     </div>
     
@@ -470,7 +470,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="icon">
       
-      <i class="fa fa-cutlery"></i>
+     <i class="fa-solid fa-bacon"></i>
     
     </div>
     
@@ -499,7 +499,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="icon">
       
-      <i class="fa fa-cutlery"></i>
+    <i class="fa-solid fa-stroopwafel"></i>
     
     </div>
     

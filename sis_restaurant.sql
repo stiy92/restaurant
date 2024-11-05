@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-11-2024 a las 08:37:09
+-- Tiempo de generación: 05-11-2024 a las 16:05:53
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -332,7 +332,21 @@ CREATE TABLE `mesas` (
 
 INSERT INTO `mesas` (`id`, `numero`, `nombre`, `estado`) VALUES
 (1, 1, 'Mesa #1', 1),
-(2, 2, 'Mesa #2', 0);
+(2, 2, 'Mesa #2', 0),
+(3, 3, 'Mesa #3', 0),
+(4, 4, 'Mesa #4', 0),
+(5, 5, 'Mesa #5', 0),
+(6, 6, 'Mesa #6', 0),
+(7, 7, 'Mesa #7', 0),
+(8, 8, 'Mesa #8', 0),
+(9, 9, 'Mesa #9', 0),
+(10, 10, 'Mesa #10', 0),
+(11, 11, 'Mesa #11', 0),
+(12, 12, 'Mesa #12', 0),
+(13, 13, 'Mesa #13', 0),
+(14, 14, 'Mesa #14', 0),
+(15, 15, 'Mesa #15', 0),
+(16, 16, 'Mesa #16', 0);
 
 -- --------------------------------------------------------
 
@@ -541,7 +555,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
-(1, 'Stiy2', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'Administrador', 'vistas/img/usuarios/admin/637.png', 1, '2024-11-05 07:40:20', '2024-11-05 12:40:20'),
+(1, 'Stiy2', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'Administrador', 'vistas/img/usuarios/admin/637.png', 1, '2024-11-05 09:20:01', '2024-11-05 14:20:01'),
 (3, 'Stiy', '025', '$2a$07$asxx54ahjppf45sd87a5auhEdRJns4bvTXClZQNJmLgvrB8MtVva2', 'Administrador', '', 1, '2024-11-05 07:29:56', '2024-11-05 12:29:56'),
 (4, 'prueba', '45', '$2a$07$asxx54ahjppf45sd87a5auADJmk67gomZb0LKDA56FrJOY/UD5bq2', 'Especial', 'vistas/img/usuarios/45/800.png', 1, '0000-00-00 00:00:00', '2024-09-20 21:53:18'),
 (5, 'Stiyee', 'Preteldd', '$2a$07$asxx54ahjppf45sd87a5auz95UA.fNt2O7K09MJ1A5xvJGBEODt6q', 'Especial', 'vistas/img/usuarios/Preteldd/475.jpg', 1, '0000-00-00 00:00:00', '2024-09-20 21:53:19');
@@ -1371,7 +1385,7 @@ ALTER TABLE `gastos`
 -- AUTO_INCREMENT de la tabla `mesas`
 --
 ALTER TABLE `mesas`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`

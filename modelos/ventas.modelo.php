@@ -468,6 +468,35 @@ class ModeloVentas{
 		}
 	}
 
+		/*===============================================================================
+	VERIFICAR VALOR DE MESA PENDIENTE
+	=================================================================================*/
+
+	static public function mdlmesas($tabla, $idmesa){	
+		try {
+			// Preparar la consulta con parámetros de fechas
+			$stmt = Conexion::conectar()->prepare("SELECT SUM(total) as total FROM $tabla WHERE metodo_pago = 'Pendiente' AND idmesa= :idmesa");
+	
+			// Vincular parámetros
+			$stmt->bindParam(":idmesa", $idmesa, PDO::PARAM_INT);
+	
+			// Ejecutar la consulta
+			$stmt->execute();
+	
+			// Devolver el resultado
+			return $stmt->fetch();
+		} catch (Exception $e) {
+			// Manejar excepciones
+			echo "Error: " . $e->getMessage();
+		} finally {
+			// Cerrar la conexión
+			if ($stmt) {
+				$stmt->closeCursor();
+				$stmt = null;
+			}
+		}
+	}
+
 	/*===============================================================================
 	SUMAR EL TOTAL DE VENTAS CREDITO CAJA SUPERIOR REPORTE FINAL POR RANGO DE FECHAS
 	=================================================================================*/
