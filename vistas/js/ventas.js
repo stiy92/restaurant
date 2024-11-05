@@ -553,6 +553,32 @@ function agregarDescuento(){
 }
 
 /*=============================================
+FUNCIÓN VALIDAR MESA PENDIENTE
+=============================================*/
+// Función para validar la selección de mesa según el método de pago
+function validarSeleccionMesa() {
+    const seleccionarMesa = document.getElementById("seleccionarMesa");
+    const nuevoMetodoPago = document.getElementById("nuevoMetodoPago");
+
+	// Escuchamos el evento de cambio en el campo de método de pago
+    nuevoMetodoPago.addEventListener("change", function() {
+        // Verificamos si el método de pago es "Pendiente"
+        if (this.value === "Pendiente") {
+            seleccionarMesa.required = true; // Hacemos que la mesa sea obligatoria
+        } else {
+            seleccionarMesa.required = false; // Quitamos la obligatoriedad de la mesa
+            seleccionarMesa.value = ""; // Reseteamos el campo de selección de mesa
+        }
+    });
+}
+
+// Llamada a las funciones cuando el DOM esté completamente cargado
+document.addEventListener("DOMContentLoaded", function() {
+    validarSeleccionMesa();  // Activar validación de selección de mesa según el método de pago
+});
+
+
+/*=============================================
 CUANDO CAMBIA EL DESCUENTO
 =============================================*/
 

@@ -165,6 +165,45 @@
                   $('#seleccionarCliente').select2();
                   </script>
 
+                   <!--=====================================
+                ENTRADA DE LA MESA
+                ======================================--> 
+
+                <div class="form-group">
+                  
+                  <div class="input-group">
+                    
+                    <span class="input-group-addon"><i class="fa fa-cutlery"></i></span>
+                    
+                    <select class="form-control" id="seleccionarMesa" name="seleccionarMesa" required>
+
+                    <option value="">Seleccionar mesa</option>
+
+                    <?php
+
+                      $item = null;
+                      $valor = null;
+
+                      $categorias = ControladorMesas::ctrMostrarMesas($item, $valor);
+
+                       foreach ($categorias as $key => $value) {
+
+                         echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
+
+                       }
+
+                    ?>
+
+                    </select>
+                  
+                  </div>
+                
+                </div>
+                
+                <script>
+                  $('#seleccionarMesa').select2();
+                  </script>
+
                 
                 <!--=====================================
                 ENTRADA PARA AGREGAR PRODUCTO
@@ -276,6 +315,7 @@
                   
                       <select class="form-control" id="nuevoMetodoPago" name="nuevoMetodoPago" required>
                         <option value="">Seleccione método de pago</option>
+                        <option value="Pendiente">Pendiente</option>
                         <option value="Efectivo">Efectivo</option>
                         <option value="Nequi">Nequi</option> 
                         <option value="Crédito">Crédito</option>

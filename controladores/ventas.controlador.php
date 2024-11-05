@@ -47,6 +47,7 @@ class ControladorVentas{
 
 			$valor = $_POST["seleccionarCliente"];
 			$metodo =$_POST["nuevoMetodoPago"];
+			$idmesa = $_POST["seleccionarMesa"];
 		          //	echo $valor;
                      
 		                                    /*=============================================
@@ -235,6 +236,7 @@ class ControladorVentas{
 
 			elseif($valor!="42" || $metodo!="Cotizacion"){
 
+
 			                    /*=============================================
 			                    TRAER DATOS PARA LA VENTA REAL
                     			=============================================*/
@@ -260,6 +262,7 @@ class ControladorVentas{
                        
 				                       return;
                        			}
+
 
 			
 			                  $listaProductos = json_decode($_POST["listaProductos"], true);
@@ -327,7 +330,8 @@ class ControladorVentas{
 						                     "neto"=>$_POST["nuevoPrecioNeto"],
 						                     "total"=>$_POST["totalVenta"],
 						                     "metodo_pago"=>$_POST["listaMetodoPago"],
-						                     "descuento"=>$_POST["nuevodescuento"]);
+						                     "descuento"=>$_POST["nuevodescuento"],
+											"idmesa"=>$_POST["seleccionarMesa"]);
                   
 			                  $respuesta = ModeloVentas::mdlIngresarVenta($tabla, $datos);
                   
@@ -340,6 +344,13 @@ class ControladorVentas{
 			                  $lastcodigo1 = $traercodigo["max_codigo"];
                   
 			                  if($respuesta == "ok"){
+
+								if($metodo=="Pendiente"){
+									// Cambiar el estado de la mesa a 1 (ocupado)
+									$estadoMesa = ControladorMesas::ctrCambiarEstadoMesa($idmesa, 1);
+								 }
+
+								if($metodo!="Pendiente"){
                   
                                    /*=============================================
 			                       PRIMERA COPIA PARA EL CLIENTE
@@ -533,7 +544,28 @@ class ControladorVentas{
                   
 				                  </script>';
                   
-			                  }
+								} else {
+									echo'<script>
+                  
+				                  localStorage.removeItem("rango");
+                  
+				                  swal({
+					                    type: "success",
+					                    title: "La mesa fue ocupada, La venta esta pendiente de pago",
+					                    showConfirmButton: true,
+					                    confirmButtonText: "Cerrar"
+					                    }).then(function(result){
+								                  if (result.value) {
+                  
+								                  window.location = "ventas";
+                  
+								                  }
+							                  })
+                  
+				                  </script>'; 
+								}
+								
+							}
 
 		  }
 	    }
