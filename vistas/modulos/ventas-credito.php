@@ -59,6 +59,15 @@
           </button>
 
         </a>
+        <a href="ventas">
+
+          <button class="btn btn-success">
+            
+            Ver ventas
+
+          </button>
+
+        </a>
 
          <!-- <button type="button" class="btn btn-default pull-right" id="daterange-btn">
            

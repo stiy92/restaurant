@@ -44,7 +44,10 @@ if($_SESSION["perfil"] == "Vendedor"){
           Agregar producto
 
         </button>
-       
+        <button class="btn btn-success"  >
+          
+          <a href="productos" class="pred"></i>Ver Productos</a>
+          </button>
 
       </div>
       
