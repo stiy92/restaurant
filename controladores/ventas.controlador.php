@@ -346,8 +346,9 @@ class ControladorVentas{
 			                  if($respuesta == "ok"){
 
 								if($metodo=="Pendiente"){
-									// Cambiar el estado de la mesa a 1 (ocupado)
-									$estadoMesa = ControladorMesas::ctrCambiarEstadoMesa($idmesa, 1);
+									$cventa= $_POST["nuevaVenta"];
+									// Cambiar el estado de la mesa a 1 (ocupado) y asignar codigo de venta
+									$estadoMesa = ControladorMesas::ctrCambiarEstadoMesa($idmesa, 1, $cventa);
 								 }
 
 								if($metodo!="Pendiente"){

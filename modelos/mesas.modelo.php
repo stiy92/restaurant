@@ -69,10 +69,11 @@ class ModeloMesas{
 	/*=============================================
     CAMBIAR ESTADO DE MESA
     =============================================*/
-    static public function mdlCambiarEstadoMesa($tabla, $idMesa, $nuevoEstado) {
-        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET estado = :nuevoEstado WHERE id = :idMesa");
+    static public function mdlCambiarEstadoMesa($tabla, $idMesa, $nuevoEstado, $cventa) {
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET estado = :nuevoEstado, cventa = :cventa WHERE id = :idMesa");
 
         $stmt->bindParam(":nuevoEstado", $nuevoEstado, PDO::PARAM_INT);
+		$stmt->bindParam(":cventa", $cventa, PDO::PARAM_INT);
         $stmt->bindParam(":idMesa", $idMesa, PDO::PARAM_INT);
 
         if ($stmt->execute()) {

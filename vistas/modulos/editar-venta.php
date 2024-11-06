@@ -40,8 +40,22 @@
 
                 <?php
 
-                    $item = "id";
-                    $valor = $_GET["idVenta"];
+                          if (isset($_GET["idVenta"])) {
+                            $item = "id"; // Campo de la base de datos que representa el ID de la venta
+                            $valor = $_GET["idVenta"];
+                          } elseif (isset($_GET["codigoVenta"])) {
+                            $item = "codigo"; // Campo de la base de datos que representa el código de venta
+                            $valor = $_GET["codigoVenta"];
+                          } else {
+                            // Manejo de error en caso de que ningún parámetro esté presente
+                              echo "Error: No se proporcionó un identificador de venta válido.";
+                            exit;
+                          }
+                          
+                    // $item = "id";
+                    // $valor = $_GET["idVenta"];
+                    
+                     // Llama a la función con el parámetro adecuado
 
                     $venta = ControladorVentas::ctrMostrarVentas($item, $valor);
 

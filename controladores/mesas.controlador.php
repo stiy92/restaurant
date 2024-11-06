@@ -93,9 +93,9 @@ class ControladorMesas{
     CAMBIAR ESTADO DE MESA
     =============================================*/
 
-    static public function ctrCambiarEstadoMesa($idMesa, $nuevoEstado){
+    static public function ctrCambiarEstadoMesa($idMesa, $nuevoEstado, $cventa){
       $tabla = "mesas";
-      $respuesta = ModeloMesas::mdlCambiarEstadoMesa($tabla, $idMesa, $nuevoEstado);
+      $respuesta = ModeloMesas::mdlCambiarEstadoMesa($tabla, $idMesa, $nuevoEstado, $cventa);
     
        return $respuesta;
     }

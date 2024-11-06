@@ -476,9 +476,9 @@ class ModeloVentas{
 		try {
 			 // Preparar la consulta con el JOIN entre las tablas ventas y mesas
 			 $stmt = Conexion::conectar()->prepare("
-			 SELECT SUM(total) as total, m.estado
+			 SELECT SUM(total) as total, m.estado, cventa
 			 FROM $tablaVentas v
-			 INNER JOIN $tablaMesas m ON v.idmesa = m.id
+			 INNER JOIN $tablaMesas m ON v.codigo = m.cventa
 			 WHERE v.metodo_pago = 'Pendiente' AND v.idmesa = :idmesa AND m.estado = 1
 		 ");
 	

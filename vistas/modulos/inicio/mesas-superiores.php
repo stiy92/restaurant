@@ -46,6 +46,7 @@ $mesas = [
 ];
 
 // Iterar sobre las mesas para mostrar cada una con el color adecuado
+// <button class="btn btn-warning btnEditarVenta" idVenta="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
 foreach ($mesas as $mesa) {
     if ($mesa["data"]) {
         $total = number_format($mesa["data"]["total"], 2);
@@ -65,7 +66,7 @@ foreach ($mesas as $mesa) {
                 <div class="icon">
                     <i class="fa-solid <?php echo $icono; ?>"></i>
                 </div>
-                <a href="ventas" class="small-box-footer">
+                <a href="#" class="small-box-footer btnEditarVentaM" codigoVenta="<?php echo $mesa["data"]["cventa"]; ?>">
                     Más info <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>

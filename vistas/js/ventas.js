@@ -766,6 +766,22 @@ $(".tablas").on("click", ".btnEditarVenta", function(){
 
 })
 
+// BOTÓN EDITAR VENTA PARA LAS MESAS
+$(document).on("click", ".btnEditarVentaM", function(event) {
+    event.preventDefault(); // Previene el comportamiento predeterminado del enlace
+
+    // Obtiene el código de venta
+    var codigoVenta = $(this).attr("codigoVenta");
+    console.log("Código de Venta:", codigoVenta); // Para verificar si se captura correctamente
+
+    // Redirige a la ruta de edición si el código de venta existe
+    if (codigoVenta) {
+        window.location = "index.php?ruta=editar-venta&codigoVenta=" + codigoVenta;
+    } else {
+        window.location = "index.php?ruta=crear-venta"; // Redirige a la página de crear venta Si no hay código de venta
+    }
+	
+});
 /*=============================================
 FUNCIÓN PARA DESACTIVAR LOS BOTONES AGREGAR CUANDO EL PRODUCTO YA HABÍA SIDO SELECCIONADO EN LA CARPETA
 =============================================*/
