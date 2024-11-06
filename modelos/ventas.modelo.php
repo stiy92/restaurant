@@ -472,10 +472,15 @@ class ModeloVentas{
 	VERIFICAR VALOR DE MESA PENDIENTE
 	=================================================================================*/
 
-	static public function mdlmesas($tabla, $idmesa){	
+	static public function mdlmesas($tablaVentas, $tablaMesas, $idmesa){	
 		try {
-			// Preparar la consulta con parámetros de fechas
-			$stmt = Conexion::conectar()->prepare("SELECT SUM(total) as total FROM $tabla WHERE metodo_pago = 'Pendiente' AND idmesa= :idmesa");
+			 // Preparar la consulta con el JOIN entre las tablas ventas y mesas
+			 $stmt = Conexion::conectar()->prepare("
+			 SELECT SUM(total) as total, m.estado
+			 FROM $tablaVentas v
+			 INNER JOIN $tablaMesas m ON v.idmesa = m.id
+			 WHERE v.metodo_pago = 'Pendiente' AND v.idmesa = :idmesa AND m.estado = 1
+		 ");
 	
 			// Vincular parámetros
 			$stmt->bindParam(":idmesa", $idmesa, PDO::PARAM_INT);

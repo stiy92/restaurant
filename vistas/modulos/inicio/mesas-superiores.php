@@ -7,510 +7,72 @@ $fechaInicial = null;
 $fechaFinal = null;
 
 // VER TOTAL DE MESA #1
-$mesa1 = ControladorVentas::ctrmesa1(1);
-///////////////////////////////////////////////////
+// Consultas individuales para cada mesa
+$mesa1 = ControladorVentas::ctrmesas(1);
+$mesa2 = ControladorVentas::ctrmesas(2);
+$mesa3 = ControladorVentas::ctrmesas(3);
+$mesa4 = ControladorVentas::ctrmesas(4);
+$mesa5 = ControladorVentas::ctrmesas(5);
+$mesa6 = ControladorVentas::ctrmesas(6);
+$mesa7 = ControladorVentas::ctrmesas(7);
+$mesa8 = ControladorVentas::ctrmesas(8);
+$mesa9 = ControladorVentas::ctrmesas(9);
+$mesa10 = ControladorVentas::ctrmesas(10);
+$mesa11 = ControladorVentas::ctrmesas(11);
+$mesa12 = ControladorVentas::ctrmesas(12);
+$mesa13 = ControladorVentas::ctrmesas(13);
+$mesa14 = ControladorVentas::ctrmesas(14);
+$mesa15 = ControladorVentas::ctrmesas(15);
+$mesa16 = ControladorVentas::ctrmesas(16);
 
-// VER SUMA TOTAL DE GASTOS POR DIA ////////////////////////////
-$gastos = ControladorGastos::ctrRangogastosf($fechaInicial, $fechaFinal);
-//////////////////////////////////////////////////////////
+// Array con los datos de cada mesa para simplificar el código HTML
+$mesas = [
+    ["data" => $mesa1, "nombre" => "Mesa #1", "icono" => "fa-shrimp"],
+    ["data" => $mesa2, "nombre" => "Mesa #2", "icono" => "fa-fish-fins"],
+    ["data" => $mesa3, "nombre" => "Mesa #3", "icono" => "fa-plate-wheat"],
+    ["data" => $mesa4, "nombre" => "Mesa #4", "icono" => "fa-pizza-slice"],
+    ["data" => $mesa5, "nombre" => "Mesa #5", "icono" => "fa-drumstick-bite"],
+    ["data" => $mesa6, "nombre" => "Mesa #6", "icono" => "fa-burger"],
+    ["data" => $mesa7, "nombre" => "Mesa #7", "icono" => "fa-ice-cream"],
+    ["data" => $mesa8, "nombre" => "Mesa #8", "icono" => "fa-hotdog"],
+    ["data" => $mesa9, "nombre" => "Mesa #9", "icono" => "fa-martini-glass-citrus"],
+    ["data" => $mesa10, "nombre" => "Mesa #10", "icono" => "fa-champagne-glasses"],
+    ["data" => $mesa11, "nombre" => "Mesa #11", "icono" => "fa-beer-mug-empty"],
+    ["data" => $mesa12, "nombre" => "Mesa #12", "icono" => "fa-mug-hot"],
+    ["data" => $mesa13, "nombre" => "Mesa #13", "icono" => "fa-bowl-food"],
+    ["data" => $mesa14, "nombre" => "Mesa #14", "icono" => "fa-cookie"],
+    ["data" => $mesa15, "nombre" => "Mesa #15", "icono" => "fa-bacon"],
+    ["data" => $mesa16, "nombre" => "Mesa #16", "icono" => "fa-stroopwafel"]
+];
 
-// VER SUMA TOTAL CREDITO POR DIA//////////////////////
-$ventascre = ControladorVentas::ctrRangocreditof($fechaInicial, $fechaFinal);
-///////////////////////////////////////////////////
+// Iterar sobre las mesas para mostrar cada una con el color adecuado
+foreach ($mesas as $mesa) {
+    if ($mesa["data"]) {
+        $total = number_format($mesa["data"]["total"], 2);
+        $nombreMesa = $mesa["nombre"];
+        $icono = $mesa["icono"];
+        
+        // Definir color según el estado
+        $color = ($mesa["data"]["estado"] == 1) ? "bg-red" : "bg-aqua";
+        ?>
 
-// VER SUMA TOTAL NEQUI POR DIA//////////////////////
-$ventasneq = ControladorVentas::ctrRangonequif($fechaInicial, $fechaFinal);
-///////////////////////////////////////////////////
+        <div class="col-lg-3 col-xs-6">
+            <div class="small-box <?php echo $color; ?>">
+                <div class="inner">
+                    <h3>$<?php echo $total; ?></h3>
+                    <h4 style="font-weight: bold;"><?php echo $nombreMesa; ?></h4>
+                </div>
+                <div class="icon">
+                    <i class="fa-solid <?php echo $icono; ?>"></i>
+                </div>
+                <a href="ventas" class="small-box-footer">
+                    Más info <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
 
-// VER SUMA TOTAL ABONADO//////////////////////
-$abonadot = ControladorVentas::ctrRangocreditofabonado($fechaInicial, $fechaFinal);
-///////////////////////////////////////////////////
-//// VALOR FINAL/////////////////////////////////
-$valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["total"];
-////////////////////////////////////////////////////////
-
+        <?php
+    }
+}
 ?>
 
-<!-- primera cuatro mesas -->
-
-<!-- VENTAS EFECTIVOS POR DIA-->
-<div class="col-lg-3 col-xs-6">
-
-  <div class="small-box bg-aqua">
-    
-    <div class="inner">
-      
-      <h3>$<?php echo number_format($mesa1["total"],2); ?></h3>
-
-      <h4 style="font-weight: bold;">Mesa #1</h4>
-    
-    </div>
-    
-    <div class="icon">
-      
-     <i class="fa-solid fa-shrimp"></i>
-    
-    </div>
-    
-    <a href="ventas" class="small-box-footer">
-      
-      Más info <i class="fa fa-arrow-circle-right"></i>
-    
-    </a>
-
-  </div>
-
-</div>
-
-<!-- VENTAS EFECTIVOS POR DIA-->
-<div class="col-lg-3 col-xs-6">
-
-  <div class="small-box bg-aqua">
-    
-    <div class="inner">
-      
-      <h3>$<?php echo number_format($ventass["total"],2); ?></h3>
-
-      <h4 style="font-weight: bold;">Mesa #2</h4>
-    
-    </div>
-    
-    <div class="icon">
-      
-     <i class="fa-solid fa-fish-fins"></i>
-    
-    </div>
-    
-    <a href="ventas" class="small-box-footer">
-      
-      Más info <i class="fa fa-arrow-circle-right"></i>
-    
-    </a>
-
-  </div>
-
-</div>
-
-
-<!-- VENTAS EFECTIVOS POR DIA-->
-<div class="col-lg-3 col-xs-6">
-
-  <div class="small-box bg-aqua">
-    
-    <div class="inner">
-      
-      <h3>$<?php echo number_format($ventass["total"],2); ?></h3>
-
-      <h4 style="font-weight: bold;">Mesa #3</h4>
-    
-    </div>
-    
-    <div class="icon">
-      
-     <i class="fa-solid fa-plate-wheat"></i>
-    
-    </div>
-    
-    <a href="ventas" class="small-box-footer">
-      
-      Más info <i class="fa fa-arrow-circle-right"></i>
-    
-    </a>
-
-  </div>
-
-</div>
-
-<!-- VENTAS EFECTIVOS POR DIA-->
-<div class="col-lg-3 col-xs-6">
-
-  <div class="small-box bg-aqua">
-    
-    <div class="inner">
-      
-      <h3>$<?php echo number_format($ventass["total"],2); ?></h3>
-
-      <h4 style="font-weight: bold;">Mesa #4</h4>
-    
-    </div>
-    
-    <div class="icon">
-      
-     <i class="fa-solid fa-pizza-slice"></i>
-    
-    </div>
-    
-    <a href="ventas" class="small-box-footer">
-      
-      Más info <i class="fa fa-arrow-circle-right"></i>
-    
-    </a>
-
-  </div>
-
-</div>
-
-<!-- end -->
-
-<!-- segundas cuatro mesas -->
-
-<!-- VENTAS EFECTIVOS POR DIA-->
-<div class="col-lg-3 col-xs-6">
-
-  <div class="small-box bg-aqua">
-    
-    <div class="inner">
-      
-      <h3>$<?php echo number_format($ventass["total"],2); ?></h3>
-
-      <h4 style="font-weight: bold;">Mesa #5</h4>
-    
-    </div>
-    
-    <div class="icon">
-      
-     <i class="fa-solid fa-drumstick-bite"></i>
-    
-    </div>
-    
-    <a href="ventas" class="small-box-footer">
-      
-      Más info <i class="fa fa-arrow-circle-right"></i>
-    
-    </a>
-
-  </div>
-
-</div>
-
-<!-- VENTAS EFECTIVOS POR DIA-->
-<div class="col-lg-3 col-xs-6">
-
-  <div class="small-box bg-aqua">
-    
-    <div class="inner">
-      
-      <h3>$<?php echo number_format($ventass["total"],2); ?></h3>
-
-      <h4 style="font-weight: bold;">Mesa #6</h4>
-    
-    </div>
-    
-    <div class="icon">
-      
-     <i class="fa-solid fa-burger"></i>
-    
-    </div>
-    
-    <a href="ventas" class="small-box-footer">
-      
-      Más info <i class="fa fa-arrow-circle-right"></i>
-    
-    </a>
-
-  </div>
-
-</div>
-
-
- <!-- VENTAS EFECTIVOS POR DIA-->
-<div class="col-lg-3 col-xs-6">
-
-  <div class="small-box bg-aqua">
-    
-    <div class="inner">
-      
-      <h3>$<?php echo number_format($ventass["total"],2); ?></h3>
-
-      <h4 style="font-weight: bold;">Mesa #7</h4>
-    
-    </div>
-    
-    <div class="icon">
-      
-     <i class="fa-solid fa-ice-cream"></i>
-    
-    </div>
-    
-    <a href="ventas" class="small-box-footer">
-      
-      Más info <i class="fa fa-arrow-circle-right"></i>
-    
-    </a>
-
-  </div>
-
-</div>
-
- <!-- VENTAS EFECTIVOS POR DIA-->
-<div class="col-lg-3 col-xs-6">
-
-  <div class="small-box bg-aqua">
-    
-    <div class="inner">
-      
-      <h3>$<?php echo number_format($ventass["total"],2); ?></h3>
-
-      <h4 style="font-weight: bold;">Mesa #8</h4>
-    
-    </div>
-    
-    <div class="icon">
-      
-    <i class="fa-solid fa-hotdog"></i>
-    
-    </div>
-    
-    <a href="ventas" class="small-box-footer">
-      
-      Más info <i class="fa fa-arrow-circle-right"></i>
-    
-    </a>
-
-  </div>
-
-</div>
-
-<!-- end -->
-
-<!-- #3 cuatro mesas -->
-
-<!-- VENTAS EFECTIVOS POR DIA-->
-<div class="col-lg-3 col-xs-6">
-
-  <div class="small-box bg-aqua">
-    
-    <div class="inner">
-      
-      <h3>$<?php echo number_format($ventass["total"],2); ?></h3>
-
-      <h4 style="font-weight: bold;">Mesa #9</h4>
-    
-    </div>
-    
-    <div class="icon">
-      
-     <i class="fa-solid fa-martini-glass-citrus"></i>
-    
-    </div>
-    
-    <a href="ventas" class="small-box-footer">
-      
-      Más info <i class="fa fa-arrow-circle-right"></i>
-    
-    </a>
-
-  </div>
-
-</div>
-
-<!-- VENTAS EFECTIVOS POR DIA-->
-<div class="col-lg-3 col-xs-6">
-
-  <div class="small-box bg-aqua">
-    
-    <div class="inner">
-      
-      <h3>$<?php echo number_format($ventass["total"],2); ?></h3>
-
-      <h4 style="font-weight: bold;">Mesa #10</h4>
-    
-    </div>
-    
-    <div class="icon">
-      
-      <i class="fa-solid fa-champagne-glasses"></i>
-    
-    </div>
-    
-    <a href="ventas" class="small-box-footer">
-      
-      Más info <i class="fa fa-arrow-circle-right"></i>
-    
-    </a>
-
-  </div>
-
-</div>
-
-
- <!-- VENTAS EFECTIVOS POR DIA-->
-<div class="col-lg-3 col-xs-6">
-
-  <div class="small-box bg-aqua">
-    
-    <div class="inner">
-      
-      <h3>$<?php echo number_format($ventass["total"],2); ?></h3>
-
-      <h4 style="font-weight: bold;">Mesa #11</h4>
-    
-    </div>
-    
-    <div class="icon">
-      
-    <i class="fa-solid fa-beer-mug-empty"></i>
-    
-    </div>
-    
-    <a href="ventas" class="small-box-footer">
-      
-      Más info <i class="fa fa-arrow-circle-right"></i>
-    
-    </a>
-
-  </div>
-
-</div>
-
- <!-- VENTAS EFECTIVOS POR DIA-->
-<div class="col-lg-3 col-xs-6">
-
-  <div class="small-box bg-aqua">
-    
-    <div class="inner">
-      
-      <h3>$<?php echo number_format($ventass["total"],2); ?></h3>
-
-      <h4 style="font-weight: bold;">Mesa #12</h4>
-    
-    </div>
-    
-    <div class="icon">
-      
-    <i class="fa-solid fa-mug-hot"></i>
-    
-    </div>
-    
-    <a href="ventas" class="small-box-footer">
-      
-      Más info <i class="fa fa-arrow-circle-right"></i>
-    
-    </a>
-
-  </div>
-
-</div>
-
-<!-- end -->
-
-<!-- #4 cuatro mesas -->
-
-<!-- VENTAS EFECTIVOS POR DIA-->
-<div class="col-lg-3 col-xs-6">
-
-  <div class="small-box bg-aqua">
-    
-    <div class="inner">
-      
-      <h3>$<?php echo number_format($ventass["total"],2); ?></h3>
-
-      <h4 style="font-weight: bold;">Mesa #13</h4>
-    
-    </div>
-    
-    <div class="icon">
-      
-    <i class="fa-solid fa-bowl-food"></i>
-    
-    </div>
-    
-    <a href="ventas" class="small-box-footer">
-      
-      Más info <i class="fa fa-arrow-circle-right"></i>
-    
-    </a>
-
-  </div>
-
-</div>
-
-<!-- VENTAS EFECTIVOS POR DIA-->
-<div class="col-lg-3 col-xs-6">
-
-  <div class="small-box bg-aqua">
-    
-    <div class="inner">
-      
-      <h3>$<?php echo number_format($ventass["total"],2); ?></h3>
-
-      <h4 style="font-weight: bold;">Mesa #14</h4>
-    
-    </div>
-    
-    <div class="icon">
-      
-    <i class="fa-solid fa-cookie"></i>
-    
-    </div>
-    
-    <a href="ventas" class="small-box-footer">
-      
-      Más info <i class="fa fa-arrow-circle-right"></i>
-    
-    </a>
-
-  </div>
-
-</div>
-
-
- <!-- VENTAS EFECTIVOS POR DIA-->
-<div class="col-lg-3 col-xs-6">
-
-  <div class="small-box bg-aqua">
-    
-    <div class="inner">
-      
-      <h3>$<?php echo number_format($ventass["total"],2); ?></h3>
-
-      <h4 style="font-weight: bold;">Mesa #15</h4>
-    
-    </div>
-    
-    <div class="icon">
-      
-     <i class="fa-solid fa-bacon"></i>
-    
-    </div>
-    
-    <a href="ventas" class="small-box-footer">
-      
-      Más info <i class="fa fa-arrow-circle-right"></i>
-    
-    </a>
-
-  </div>
-
-</div>
-
- <!-- VENTAS EFECTIVOS POR DIA-->
-<div class="col-lg-3 col-xs-6">
-
-  <div class="small-box bg-aqua">
-    
-    <div class="inner">
-      
-      <h3>$<?php echo number_format($ventass["total"],2); ?></h3>
-
-      <h4 style="font-weight: bold;">Mesa #16</h4>
-    
-    </div>
-    
-    <div class="icon">
-      
-    <i class="fa-solid fa-stroopwafel"></i>
-    
-    </div>
-    
-    <a href="ventas" class="small-box-footer">
-      
-      Más info <i class="fa fa-arrow-circle-right"></i>
-    
-    </a>
-
-  </div>
-
-</div>
-
-<!-- end -->

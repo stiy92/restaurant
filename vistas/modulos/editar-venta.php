@@ -291,6 +291,7 @@
                   
                       <select class="form-control" id="nuevoMetodoPago" name="nuevoMetodoPago" required>
                         <option value="">Seleccione método de pago</option>
+                        <option value="Pendiente">Pendiente</option>
                         <option value="Efectivo">Efectivo</option>
                         <option value="Nequi">Nequi</option> 
                         <option value="Crédito">Crédito</option>

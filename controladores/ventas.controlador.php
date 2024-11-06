@@ -984,9 +984,12 @@ class ControladorVentas{
 
 	static public function ctrmesas($idmesa){
 
-		$tabla = "ventas";
+		 // Define los nombres de las tablas
+		 $tablaVentas = "ventas";
+		 $tablaMesas = "mesas";
 
-		$respuesta = ModeloVentas::mdlmesas($tabla, $idmesa);
+		// Llama al modelo con ambas tablas
+		$respuesta = ModeloVentas::mdlmesas($tablaVentas, $tablaMesas, $idmesa);
 
 		return $respuesta;
 		
