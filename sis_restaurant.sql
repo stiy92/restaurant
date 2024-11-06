@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-11-2024 a las 16:05:53
+-- Tiempo de generación: 06-11-2024 a las 17:14:23
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -72,8 +72,8 @@ CREATE TABLE `clientes` (
 
 INSERT INTO `clientes` (`id`, `nombre`, `documento`, `email`, `telefono`, `direccion`, `fecha_nacimiento`, `compras`, `ultima_compra`, `fecha`) VALUES
 (24, 'marivel cctv', 1425457, 'dsd@gmail.com', '(577) 554-5454', 'dsfasdf', '2023-10-10', 380, '2024-11-05 08:26:19', '2024-11-05 13:26:19'),
-(25, 'luis prometalico', 5165, 'dsd@gmail.com', '(566) 556-6444', 'dsfsd', '2023-11-11', 249, '2024-11-05 08:26:42', '2024-11-05 13:26:42'),
-(26, 'brainer lastre', 654654, 'dsd@gmail.com', '(121) 231-2155', 'fdgsdf', '2000-02-16', 68, '2024-07-19 22:33:16', '2024-11-04 18:20:55'),
+(25, 'luis prometalico', 5165, 'dsd@gmail.com', '(566) 556-6444', 'dsfsd', '2023-11-11', 264, '2024-11-06 10:50:43', '2024-11-06 15:50:43'),
+(26, 'brainer lastre', 654654, 'dsd@gmail.com', '(121) 231-2155', 'fdgsdf', '2000-02-16', 183, '2024-11-06 11:05:09', '2024-11-06 16:05:09'),
 (27, 'jhoany cctv', 5654556, 'dsd@gmail.com', '(546) 454-6544', 'eafde', '2012-05-05', 0, '0000-00-00 00:00:00', '2024-09-22 19:35:32'),
 (28, 'carla cctv', 1321, 'dsd@gmail.com', '(312) 311-2311', 'fdgsfdg', '2032-05-06', 30, '2024-01-24 13:30:12', '2024-01-24 18:30:12'),
 (29, 'liliana vecina diana', 25445, 'lilina@hotmail.com', '(142) 132-3434', '435234gf', '2011-02-11', 31, '2023-11-21 22:20:57', '2023-11-22 03:20:57'),
@@ -323,30 +323,31 @@ CREATE TABLE `mesas` (
   `id` int(50) NOT NULL,
   `numero` int(50) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `estado` int(50) NOT NULL
+  `estado` int(50) NOT NULL,
+  `cventa` int(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `mesas`
 --
 
-INSERT INTO `mesas` (`id`, `numero`, `nombre`, `estado`) VALUES
-(1, 1, 'Mesa #1', 1),
-(2, 2, 'Mesa #2', 0),
-(3, 3, 'Mesa #3', 0),
-(4, 4, 'Mesa #4', 0),
-(5, 5, 'Mesa #5', 0),
-(6, 6, 'Mesa #6', 0),
-(7, 7, 'Mesa #7', 0),
-(8, 8, 'Mesa #8', 0),
-(9, 9, 'Mesa #9', 0),
-(10, 10, 'Mesa #10', 0),
-(11, 11, 'Mesa #11', 0),
-(12, 12, 'Mesa #12', 0),
-(13, 13, 'Mesa #13', 0),
-(14, 14, 'Mesa #14', 0),
-(15, 15, 'Mesa #15', 0),
-(16, 16, 'Mesa #16', 0);
+INSERT INTO `mesas` (`id`, `numero`, `nombre`, `estado`, `cventa`) VALUES
+(1, 1, 'Mesa #1', 1, NULL),
+(2, 2, 'Mesa #2', 0, NULL),
+(3, 3, 'Mesa #3', 1, 10720),
+(4, 4, 'Mesa #4', 0, NULL),
+(5, 5, 'Mesa #5', 1, 10719),
+(6, 6, 'Mesa #6', 0, NULL),
+(7, 7, 'Mesa #7', 0, NULL),
+(8, 8, 'Mesa #8', 0, NULL),
+(9, 9, 'Mesa #9', 0, NULL),
+(10, 10, 'Mesa #10', 1, NULL),
+(11, 11, 'Mesa #11', 1, 10721),
+(12, 12, 'Mesa #12', 0, NULL),
+(13, 13, 'Mesa #13', 0, NULL),
+(14, 14, 'Mesa #14', 0, NULL),
+(15, 15, 'Mesa #15', 0, NULL),
+(16, 16, 'Mesa #16', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -521,7 +522,7 @@ INSERT INTO `productos` (`id`, `id_categoria`, `codigo`, `descripcion`, `imagen`
 (155, 21, 'KHAN', 'KHANRAH BY LATTAFA', 'vistas/img/productos/default/anonymous.png', 269, 268, 600, 339, '2024-11-01 02:16:16', 510),
 (156, 21, 'SUBL', 'SUBLIME BY LATTAFA', 'vistas/img/productos/default/anonymous.png', 55, 405, 850, 55, '2024-10-06 15:21:31', 110),
 (157, 21, 'MONTALE', 'ARABIAN TONCAN MONTALE', 'vistas/img/productos/default/anonymous.png', 185, 250, 600, 111, '2024-11-01 02:16:16', 200),
-(158, 21, 'lacoste wh', 'Lacoste white', 'vistas/img/productos/default/anonymous.png', 189, 250, 600, 11, '2024-09-22 19:35:32', 200),
+(158, 21, 'lacoste wh', 'Lacoste white', 'vistas/img/productos/default/anonymous.png', 89, 250, 600, 111, '2024-11-06 16:05:09', 200),
 (159, 28, 'BLUE', 'BLUE 120ML FRASCO', 'vistas/img/productos/default/anonymous.png', 0, 7000, 14000, 2, '2024-11-02 03:54:58', 3),
 (160, 28, 'INVITU120ML', 'INVITU 120ML FRASCO', 'vistas/img/productos/default/anonymous.png', 0, 7000, 14000, 2, '2024-11-02 03:56:24', 3),
 (162, 21, 'Scandal', 'Scandal', 'vistas/img/productos/default/anonymous.png', 17, 250, 600, 83, '2024-10-31 03:21:43', 100),
@@ -529,7 +530,7 @@ INSERT INTO `productos` (`id`, `id_categoria`, `codigo`, `descripcion`, `imagen`
 (164, 22, 'celos', 'celos', 'vistas/img/productos/default/anonymous.png', 79, 250, 600, 21, '2024-10-31 03:35:36', 100),
 (165, 21, 'oscar de la renta', 'oscar de la renta', 'vistas/img/productos/default/anonymous.png', 100, 260, 600, 81, '2024-11-01 01:27:42', 100),
 (166, 21, 'NICHO OUD SEFFROM', 'NICHO OUD SEFFROM', 'vistas/img/productos/default/anonymous.png', 142, 240, 600, 158, '2024-11-04 18:20:55', 300),
-(167, 21, 'CLUB THE NUIT', 'CLUB THE NUIT', 'vistas/img/productos/default/anonymous.png', 279, 240, 600, 21, '2024-11-05 13:26:42', 300),
+(167, 21, 'CLUB THE NUIT', 'CLUB THE NUIT', 'vistas/img/productos/default/anonymous.png', 264, 240, 600, 51, '2024-11-06 16:05:09', 300),
 (168, 21, 'Asad', 'Asad', 'vistas/img/productos/default/anonymous.png', 0, 240, 600, 100, '2024-11-02 03:56:24', 100);
 
 -- --------------------------------------------------------
@@ -555,7 +556,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
-(1, 'Stiy2', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'Administrador', 'vistas/img/usuarios/admin/637.png', 1, '2024-11-05 09:20:01', '2024-11-05 14:20:01'),
+(1, 'Stiy2', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'Administrador', 'vistas/img/usuarios/admin/637.png', 1, '2024-11-06 11:29:16', '2024-11-06 16:29:16'),
 (3, 'Stiy', '025', '$2a$07$asxx54ahjppf45sd87a5auhEdRJns4bvTXClZQNJmLgvrB8MtVva2', 'Administrador', '', 1, '2024-11-05 07:29:56', '2024-11-05 12:29:56'),
 (4, 'prueba', '45', '$2a$07$asxx54ahjppf45sd87a5auADJmk67gomZb0LKDA56FrJOY/UD5bq2', 'Especial', 'vistas/img/usuarios/45/800.png', 1, '0000-00-00 00:00:00', '2024-09-20 21:53:18'),
 (5, 'Stiyee', 'Preteldd', '$2a$07$asxx54ahjppf45sd87a5auz95UA.fNt2O7K09MJ1A5xvJGBEODt6q', 'Especial', 'vistas/img/usuarios/Preteldd/475.jpg', 1, '0000-00-00 00:00:00', '2024-09-20 21:53:19');
@@ -1309,7 +1310,9 @@ INSERT INTO `ventas` (`id`, `codigo`, `id_cliente`, `id_vendedor`, `productos`, 
 (768, 10715, 128, 3, '[{\"id\":\"105\",\"descripcion\":\"BAD BOY\",\"cantidad\":\"20\",\"stock\":\"204\",\"precio\":\"600\",\"total\":\"12000\"},{\"id\":\"111\",\"descripcion\":\"YARA DAMA\",\"cantidad\":\"20\",\"stock\":\"213\",\"precio\":\"600\",\"total\":\"12000\"},{\"id\":\"11\",\"descripcion\":\"Xeroff 50ml\",\"cantidad\":\"1\",\"stock\":\"82\",\"precio\":\"10000\",\"total\":\"10000\"},{\"id\":\"67\",\"descripcion\":\"CORAZON 60 ML\",\"cantidad\":\"1\",\"stock\":\"131\",\"precio\":\"6000\",\"total\":\"6000\"},{\"id\":\"144\",\"descripcion\":\"AMATHYS LATTAFA\",\"cantidad\":\"3\",\"stock\":\"982\",\"precio\":\"600\",\"total\":\"1800\"}]', 0, 41800, 39000, 'Efectivo', '2024-11-04 17:55:01', 0.00, 0.00, 2800, NULL),
 (769, 10716, 128, 3, '[{\"id\":\"144\",\"descripcion\":\"AMATHYS LATTAFA\",\"cantidad\":\"45\",\"stock\":\"937\",\"precio\":\"600\",\"total\":\"27000\"},{\"id\":\"166\",\"descripcion\":\"NICHO OUD SEFFROM\",\"cantidad\":\"15\",\"stock\":\"142\",\"precio\":\"600\",\"total\":\"9000\"},{\"id\":\"52\",\"descripcion\":\"Eros caballero\",\"cantidad\":\"15\",\"stock\":\"156\",\"precio\":\"600\",\"total\":\"9000\"},{\"id\":\"33\",\"descripcion\":\"Ultra Male\",\"cantidad\":\"15\",\"stock\":\"408\",\"precio\":\"600\",\"total\":\"9000\"},{\"id\":\"96\",\"descripcion\":\"BHARARA KINGS\",\"cantidad\":\"8\",\"stock\":\"101\",\"precio\":\"600\",\"total\":\"4800\"},{\"id\":\"56\",\"descripcion\":\"INVICTUS\",\"cantidad\":\"30\",\"stock\":\"388\",\"precio\":\"600\",\"total\":\"18000\"},{\"id\":\"17\",\"descripcion\":\"Invitus 50ml\",\"cantidad\":\"1\",\"stock\":\"60\",\"precio\":\"8000\",\"total\":\"8000\"},{\"id\":\"5\",\"descripcion\":\"atlantic 30ml\",\"cantidad\":\"1\",\"stock\":\"57\",\"precio\":\"2350\",\"total\":\"2350\"},{\"id\":\"9\",\"descripcion\":\"manzana 30ml\",\"cantidad\":\"1\",\"stock\":\"56\",\"precio\":\"5000\",\"total\":\"5000\"},{\"id\":\"34\",\"descripcion\":\"Feromonas\",\"cantidad\":\"1\",\"stock\":\"318\",\"precio\":\"600\",\"total\":\"600\"},{\"id\":\"4\",\"descripcion\":\"Alcohol l\",\"cantidad\":\"65\",\"stock\":\"2722\",\"precio\":\"80\",\"total\":\"5200\"}]', 0, 97950, 97600, 'Efectivo', '2024-11-04 18:01:07', 0.00, 0.00, 350, NULL),
 (772, 10717, 24, 1, '[{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"1\",\"stock\":\"280\",\"precio\":\"600\",\"total\":\"600\"}]', 0, 600, 600, 'Pendiente', '2024-11-05 13:26:19', 0.00, 0.00, 0, 1),
-(773, 10718, 25, 1, '[{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"1\",\"stock\":\"279\",\"precio\":\"600\",\"total\":\"600\"}]', 0, 600, 600, 'Efectivo', '2024-11-05 13:26:42', 0.00, 0.00, 0, 0);
+(773, 10718, 25, 1, '[{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"1\",\"stock\":\"279\",\"precio\":\"600\",\"total\":\"600\"}]', 0, 600, 600, 'Efectivo', '2024-11-05 13:26:42', 0.00, 0.00, 0, 0),
+(779, 10719, 25, 1, '[{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"15\",\"stock\":\"279\",\"precio\":\"600\",\"total\":\"9000\"}]', 0, 9000, 9000, 'Pendiente', '2024-11-06 15:50:43', 0.00, 0.00, 0, 5),
+(780, 10720, 26, 1, '[{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"15\",\"stock\":\"264\",\"precio\":\"600\",\"total\":\"9000\"},{\"id\":\"158\",\"descripcion\":\"Lacoste white\",\"cantidad\":\"100\",\"stock\":\"89\",\"precio\":\"600\",\"total\":\"60000\"}]', 0, 69000, 69000, 'Pendiente', '2024-11-06 16:05:09', 0.00, 0.00, 0, 3);
 
 --
 -- Índices para tablas volcadas
@@ -1403,7 +1406,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=774;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=781;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
