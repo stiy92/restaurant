@@ -2369,7 +2369,7 @@ a:focus {
   background-color: #e7e7e7;
 }
 .btn-primary {
-  background-color: #6234cc;
+  background-color: #e3b03e;
   border-color: #367fa9;
 }
 .btn-primary:hover,
@@ -3418,12 +3418,13 @@ table.text-center th {
   left:0;
   width:100%;
   height:100vh;
-  background: url(../../img/plantilla/Perfumes11.png);
+  background: url(../../img/plantilla/restlogin.png);
   background-size:cover;
   overflow:hidden;
   z-index:-1;
 
 }
+
 
 .login-box,
 .register-box {

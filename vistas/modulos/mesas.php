@@ -1,4 +1,4 @@
-<div class="content-wrapper">
+<div class="content-wrapper" style="background-image: url('vistas/img/plantilla/restlogin.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
 
   <section class="content-header">
     

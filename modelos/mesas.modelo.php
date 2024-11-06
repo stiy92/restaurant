@@ -35,7 +35,7 @@ class ModeloMesas{
 	// }
 
 	/*=============================================
-	MOSTRAR CLIENTES
+	MOSTRAR MESAS
 	=============================================*/
 
 	static public function mdlMostrarMesas($tabla, $item, $valor){

@@ -76,7 +76,7 @@ class ControladorMesas{
 	// }
 
 	/*=============================================
-	MOSTRAR CLIENTES
+	MOSTRAR MESAS
 	=============================================*/
 
 	static public function ctrMostrarMesas($item, $valor){
