@@ -1,6 +1,6 @@
-<div class="content-wrapper">
+<div class="content-wrapper" style="background-image: url('vistas/img/plantilla/p1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
 
-  <section class="content-header">
+  <section class="content-header" style="color: white">
     
     <h1>
       
@@ -10,9 +10,9 @@
 
     <ol class="breadcrumb">
       
-      <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+      <li><a href="#" style="color: white"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Crear venta</li>
+      <li class="active" style="color: white">Crear venta</li>
     
     </ol>
 

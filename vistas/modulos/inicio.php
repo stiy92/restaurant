@@ -1,20 +1,20 @@
-<div class="content-wrapper">
+<div class="content-wrapper" style="background-image: url('vistas/img/plantilla/inicio.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
 
-  <section class="content-header">
+  <section class="content-header" style="color: white">
     
     <h1>
       
       Tablero
       
-      <small>Panel de Control</small>
+      <small style="color: white">Panel de Control</small>
     
     </h1>
 
     <ol class="breadcrumb">
       
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+      <li><a href="inicio" style="color: white"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Tablero</li>
+      <li class="active" style="color: white">Tablero</li>
     
     </ol>
 

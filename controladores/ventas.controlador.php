@@ -706,6 +706,8 @@ class ControladorVentas{
 			$idmesa=$_POST["seleccionarMesa"];
 			$antiguamesa= $_POST["idMesaAntigua"];
 
+			$traermesa = ControladorMesas::ctrMostrarMesas($idmesa);
+
 			$traerVenta = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
 
 			/*=============================================

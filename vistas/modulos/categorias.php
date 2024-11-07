@@ -14,9 +14,9 @@ if($_SESSION["perfil"] == "Vendedor"){
 
 ?>
 
-<div class="content-wrapper">
+<div class="content-wrapper" style="background-image: url('vistas/img/plantilla/second.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
 
-  <section class="content-header">
+  <section class="content-header" style="color: white">
     
     <h1>
       
@@ -26,9 +26,9 @@ if($_SESSION["perfil"] == "Vendedor"){
 
     <ol class="breadcrumb">
       
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+      <li><a href="inicio" style="color: white"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Administrar categorías</li>
+      <li class="active" style="color: white">Administrar categorías</li>
     
     </ol>
 
