@@ -62,12 +62,19 @@
                     $itemUsuario = "id";
                     $valorUsuario = $venta["id_vendedor"];
 
+                    $metodo =$venta["metodo_pago"];
+
                     $vendedor = ControladorUsuarios::ctrMostrarUsuarios($itemUsuario, $valorUsuario);
 
                     $itemCliente = "id";
                     $valorCliente = $venta["id_cliente"];
 
                     $cliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
+
+                    $itemmesa = "id";
+                    $valormesa = $venta["idmesa"];
+
+                    $mesa = ControladorMesas::ctrMostrarMesas($itemCliente, $valormesa);
 
                     $porcentajeImpuesto = $venta["impuesto"] * 100 / $venta["neto"];
 
@@ -121,6 +128,7 @@
                     <select class="form-control" id="seleccionarCliente" name="seleccionarCliente" required>
 
                     <option value="<?php echo $cliente["id"]; ?>"><?php echo $cliente["nombre"]; ?></option>
+                    
 
                     <?php
 
@@ -144,6 +152,51 @@
                   </div>
                 
                 </div>
+
+                <script>
+                  $('#seleccionarCliente').select2();
+                  </script>
+
+                      <input type="hidden" name="idMesaAntigua" id="idMesaAntigua" value="<?php echo $mesa["id"]; ?>">
+
+                    <!--=====================================
+                ENTRADA DE LA MESA
+                ======================================--> 
+
+                <div class="form-group">
+                  
+                  <div class="input-group">
+                    
+                    <span class="input-group-addon"><i class="fa fa-cutlery"></i></span>
+                    
+                    <select class="form-control" id="seleccionarMesa" name="seleccionarMesa"  required>
+
+                    <option value="<?php echo $mesa["id"]; ?>"><?php echo $mesa["nombre"]; ?></option>
+
+                    <?php
+
+                      $item = null;
+                      $valor = null;
+
+                      $categorias = ControladorMesas::ctrMostrarMesas($item, $valor);
+
+                       foreach ($categorias as $key => $value) {
+
+                         echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
+
+                       }
+
+                    ?>
+
+                    </select>
+                  
+                  </div>
+                
+                </div>
+                
+                <script>
+                  $('#seleccionarMesa').select2();
+                  </script>
 
                 <!--=====================================
                 ENTRADA PARA AGREGAR PRODUCTO
@@ -305,14 +358,12 @@
                   
                       <select class="form-control" id="nuevoMetodoPago" name="nuevoMetodoPago" required>
                         <option value="">Seleccione método de pago</option>
-                        <option value="Pendiente">Pendiente</option>
-                        <option value="Efectivo">Efectivo</option>
-                        <option value="Nequi">Nequi</option> 
-                        <option value="Crédito">Crédito</option>
-                        <!-- <option value="TC">Tarjeta Crédito</option>
-                        <option value="TD">Tarjeta Débito</option>                   -->
-                        <!-- <option value="TC">Tarjeta Crédito</option> -->
-                      </select>    
+                        <option value="Pendiente" <?php echo ($metodo == "Pendiente") ? 'selected' : ''; ?>>Pendiente</option>
+                        <option value="Efectivo" <?php echo ($metodo == "Efectivo") ? 'selected' : ''; ?>>Efectivo</option>
+                        <option value="Nequi" <?php echo ($metodo == "Nequi") ? 'selected' : ''; ?>>Nequi</option>
+                        <option value="Crédito" <?php echo ($metodo == "Crédito") ? 'selected' : ''; ?>>Crédito</option>
+                        <!-- Más opciones si es necesario -->
+                    </select>   
 
                     </div>
 

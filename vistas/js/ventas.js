@@ -559,15 +559,19 @@ FUNCIÓN VALIDAR MESA PENDIENTE
 function validarSeleccionMesa() {
     const seleccionarMesa = document.getElementById("seleccionarMesa");
     const nuevoMetodoPago = document.getElementById("nuevoMetodoPago");
+	const listaMetodoPago = document.getElementById("listaMetodoPago");
+
+	// Copia el valor seleccionado en listaMetodoPago cuando se cargue la página
+    listaMetodoPago.value = nuevoMetodoPago.value;
 
 	// Escuchamos el evento de cambio en el campo de método de pago
     nuevoMetodoPago.addEventListener("change", function() {
+		listaMetodoPago.value = this.value;
         // Verificamos si el método de pago es "Pendiente"
         if (this.value === "Pendiente") {
             seleccionarMesa.required = true; // Hacemos que la mesa sea obligatoria
         } else {
             seleccionarMesa.required = false; // Quitamos la obligatoriedad de la mesa
-            seleccionarMesa.value = ""; // Reseteamos el campo de selección de mesa
         }
     });
 }

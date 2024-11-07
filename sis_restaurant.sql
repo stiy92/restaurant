@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-11-2024 a las 17:14:23
+-- Tiempo de generación: 06-11-2024 a las 23:23:57
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -71,11 +71,11 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id`, `nombre`, `documento`, `email`, `telefono`, `direccion`, `fecha_nacimiento`, `compras`, `ultima_compra`, `fecha`) VALUES
-(24, 'marivel cctv', 1425457, 'dsd@gmail.com', '(577) 554-5454', 'dsfasdf', '2023-10-10', 380, '2024-11-05 08:26:19', '2024-11-05 13:26:19'),
-(25, 'luis prometalico', 5165, 'dsd@gmail.com', '(566) 556-6444', 'dsfsd', '2023-11-11', 264, '2024-11-06 10:50:43', '2024-11-06 15:50:43'),
-(26, 'brainer lastre', 654654, 'dsd@gmail.com', '(121) 231-2155', 'fdgsdf', '2000-02-16', 183, '2024-11-06 11:05:09', '2024-11-06 16:05:09'),
-(27, 'jhoany cctv', 5654556, 'dsd@gmail.com', '(546) 454-6544', 'eafde', '2012-05-05', 0, '0000-00-00 00:00:00', '2024-09-22 19:35:32'),
-(28, 'carla cctv', 1321, 'dsd@gmail.com', '(312) 311-2311', 'fdgsfdg', '2032-05-06', 30, '2024-01-24 13:30:12', '2024-01-24 18:30:12'),
+(24, 'marivel cctv', 1425457, 'dsd@gmail.com', '(577) 554-5454', 'dsfasdf', '2023-10-10', 440, '2024-11-06 22:05:32', '2024-11-07 04:18:50'),
+(25, 'luis prometalico', 5165, 'dsd@gmail.com', '(566) 556-6444', 'dsfsd', '2023-11-11', 416, '2024-11-06 22:55:05', '2024-11-07 03:55:05'),
+(26, 'brainer lastre', 654654, 'dsd@gmail.com', '(121) 231-2155', 'fdgsdf', '2000-02-16', 218, '2024-11-06 23:05:16', '2024-11-07 04:05:16'),
+(27, 'jhoany cctv', 5654556, 'dsd@gmail.com', '(546) 454-6544', 'eafde', '2012-05-05', 2, '2024-11-06 23:09:09', '2024-11-07 04:09:09'),
+(28, 'carla cctv', 1321, 'dsd@gmail.com', '(312) 311-2311', 'fdgsfdg', '2032-05-06', 31, '2024-11-06 23:11:25', '2024-11-07 04:11:25'),
 (29, 'liliana vecina diana', 25445, 'lilina@hotmail.com', '(142) 132-3434', '435234gf', '2011-02-11', 31, '2023-11-21 22:20:57', '2023-11-22 03:20:57'),
 (30, 'Diana vecina diana', 11241234, 'Dina@hotmail.com', '(321) 432-4343', '435234gf', '2012-04-01', 64, '2023-11-21 22:47:36', '2023-11-22 03:47:36'),
 (31, 'mary vecina', 112412356, 'mary@hotmail.com', '(788) 799-8778', '435234gf78', '2050-02-22', 82, '2024-02-01 23:20:51', '2024-02-02 04:20:51'),
@@ -332,18 +332,18 @@ CREATE TABLE `mesas` (
 --
 
 INSERT INTO `mesas` (`id`, `numero`, `nombre`, `estado`, `cventa`) VALUES
-(1, 1, 'Mesa #1', 1, NULL),
-(2, 2, 'Mesa #2', 0, NULL),
-(3, 3, 'Mesa #3', 1, 10720),
+(1, 1, 'Mesa #1', 0, 0),
+(2, 2, 'Mesa #2', 0, 0),
+(3, 3, 'Mesa #3', 0, 0),
 (4, 4, 'Mesa #4', 0, NULL),
-(5, 5, 'Mesa #5', 1, 10719),
+(5, 5, 'Mesa #5', 0, 0),
 (6, 6, 'Mesa #6', 0, NULL),
-(7, 7, 'Mesa #7', 0, NULL),
+(7, 7, 'Mesa #7', 0, 0),
 (8, 8, 'Mesa #8', 0, NULL),
-(9, 9, 'Mesa #9', 0, NULL),
+(9, 9, 'Mesa #9', 0, 0),
 (10, 10, 'Mesa #10', 1, NULL),
-(11, 11, 'Mesa #11', 1, 10721),
-(12, 12, 'Mesa #12', 0, NULL),
+(11, 11, 'Mesa #11', 0, 0),
+(12, 12, 'Mesa #12', 0, 0),
 (13, 13, 'Mesa #13', 0, NULL),
 (14, 14, 'Mesa #14', 0, NULL),
 (15, 15, 'Mesa #15', 0, NULL),
@@ -482,7 +482,7 @@ INSERT INTO `productos` (`id`, `id_categoria`, `codigo`, `descripcion`, `imagen`
 (111, 22, 'NICHO ARAY', 'YARA DAMA', 'vistas/img/productos/default/anonymous.png', 213, 310, 600, 1070, '2024-11-04 17:55:01', 500),
 (112, 21, 'SAUVAGE', 'SAUVAGE MAN', 'vistas/img/productos/default/anonymous.png', 182, 220, 600, 174, '2024-11-01 02:03:44', 200),
 (113, 22, 'FANTASY', 'FANTASY MIDNIGHT', 'vistas/img/productos/default/anonymous.png', 283, 220, 600, 32, '2024-09-11 03:52:46', 200),
-(114, 21, 'wins', '212 VIP WINS', 'vistas/img/productos/default/anonymous.png', 439, 190, 600, 158, '2024-08-14 02:47:33', 500),
+(114, 21, 'wins', '212 VIP WINS', 'vistas/img/productos/default/anonymous.png', 419, 190, 600, 178, '2024-11-07 03:36:24', 500),
 (115, 25, 'BOLSAS', 'BOLSAS BOUQUE', 'vistas/img/productos/default/anonymous.png', 852, 330, 670, 148, '2024-10-16 03:48:15', 1000),
 (116, 21, 'LEMALE', 'LEMALE', 'vistas/img/productos/default/anonymous.png', 90, 220, 600, 191, '2024-10-22 03:23:45', 200),
 (117, 21, 'OMB NOMADA', 'OMBRE NOMADA', 'vistas/img/productos/default/anonymous.png', 238, 230, 600, 361, '2024-10-22 03:25:37', 300),
@@ -525,12 +525,12 @@ INSERT INTO `productos` (`id`, `id_categoria`, `codigo`, `descripcion`, `imagen`
 (158, 21, 'lacoste wh', 'Lacoste white', 'vistas/img/productos/default/anonymous.png', 89, 250, 600, 111, '2024-11-06 16:05:09', 200),
 (159, 28, 'BLUE', 'BLUE 120ML FRASCO', 'vistas/img/productos/default/anonymous.png', 0, 7000, 14000, 2, '2024-11-02 03:54:58', 3),
 (160, 28, 'INVITU120ML', 'INVITU 120ML FRASCO', 'vistas/img/productos/default/anonymous.png', 0, 7000, 14000, 2, '2024-11-02 03:56:24', 3),
-(162, 21, 'Scandal', 'Scandal', 'vistas/img/productos/default/anonymous.png', 17, 250, 600, 83, '2024-10-31 03:21:43', 100),
-(163, 22, 'yara candy', 'yara candy', 'vistas/img/productos/default/anonymous.png', 97, 250, 600, 99, '2024-10-16 03:48:15', 100),
-(164, 22, 'celos', 'celos', 'vistas/img/productos/default/anonymous.png', 79, 250, 600, 21, '2024-10-31 03:35:36', 100),
-(165, 21, 'oscar de la renta', 'oscar de la renta', 'vistas/img/productos/default/anonymous.png', 100, 260, 600, 81, '2024-11-01 01:27:42', 100),
-(166, 21, 'NICHO OUD SEFFROM', 'NICHO OUD SEFFROM', 'vistas/img/productos/default/anonymous.png', 142, 240, 600, 158, '2024-11-04 18:20:55', 300),
-(167, 21, 'CLUB THE NUIT', 'CLUB THE NUIT', 'vistas/img/productos/default/anonymous.png', 264, 240, 600, 51, '2024-11-06 16:05:09', 300),
+(162, 21, 'Scandal', 'Scandal', 'vistas/img/productos/default/anonymous.png', 5, 250, 600, 95, '2024-11-07 03:54:51', 100),
+(163, 22, 'yara candy', 'yara candy', 'vistas/img/productos/default/anonymous.png', 54, 250, 600, 142, '2024-11-07 04:05:16', 100),
+(164, 22, 'celos', 'celos', 'vistas/img/productos/default/anonymous.png', 55, 250, 600, 45, '2024-11-07 03:55:05', 100),
+(165, 21, 'oscar de la renta', 'oscar de la renta', 'vistas/img/productos/default/anonymous.png', 45, 260, 600, 136, '2024-11-07 03:55:05', 100),
+(166, 21, 'NICHO OUD SEFFROM', 'NICHO OUD SEFFROM', 'vistas/img/productos/default/anonymous.png', 125, 240, 600, 175, '2024-11-07 04:05:16', 300),
+(167, 21, 'CLUB THE NUIT', 'CLUB THE NUIT', 'vistas/img/productos/default/anonymous.png', 185, 240, 600, 130, '2024-11-07 04:18:50', 300),
 (168, 21, 'Asad', 'Asad', 'vistas/img/productos/default/anonymous.png', 0, 240, 600, 100, '2024-11-02 03:56:24', 100);
 
 -- --------------------------------------------------------
@@ -556,7 +556,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
-(1, 'Stiy2', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'Administrador', 'vistas/img/usuarios/admin/637.png', 1, '2024-11-06 11:29:16', '2024-11-06 16:29:16'),
+(1, 'Stiy2', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'Administrador', 'vistas/img/usuarios/admin/637.png', 1, '2024-11-06 21:10:38', '2024-11-07 02:10:38'),
 (3, 'Stiy', '025', '$2a$07$asxx54ahjppf45sd87a5auhEdRJns4bvTXClZQNJmLgvrB8MtVva2', 'Administrador', '', 1, '2024-11-05 07:29:56', '2024-11-05 12:29:56'),
 (4, 'prueba', '45', '$2a$07$asxx54ahjppf45sd87a5auADJmk67gomZb0LKDA56FrJOY/UD5bq2', 'Especial', 'vistas/img/usuarios/45/800.png', 1, '0000-00-00 00:00:00', '2024-09-20 21:53:18'),
 (5, 'Stiyee', 'Preteldd', '$2a$07$asxx54ahjppf45sd87a5auz95UA.fNt2O7K09MJ1A5xvJGBEODt6q', 'Especial', 'vistas/img/usuarios/Preteldd/475.jpg', 1, '0000-00-00 00:00:00', '2024-09-20 21:53:19');
@@ -1311,8 +1311,22 @@ INSERT INTO `ventas` (`id`, `codigo`, `id_cliente`, `id_vendedor`, `productos`, 
 (769, 10716, 128, 3, '[{\"id\":\"144\",\"descripcion\":\"AMATHYS LATTAFA\",\"cantidad\":\"45\",\"stock\":\"937\",\"precio\":\"600\",\"total\":\"27000\"},{\"id\":\"166\",\"descripcion\":\"NICHO OUD SEFFROM\",\"cantidad\":\"15\",\"stock\":\"142\",\"precio\":\"600\",\"total\":\"9000\"},{\"id\":\"52\",\"descripcion\":\"Eros caballero\",\"cantidad\":\"15\",\"stock\":\"156\",\"precio\":\"600\",\"total\":\"9000\"},{\"id\":\"33\",\"descripcion\":\"Ultra Male\",\"cantidad\":\"15\",\"stock\":\"408\",\"precio\":\"600\",\"total\":\"9000\"},{\"id\":\"96\",\"descripcion\":\"BHARARA KINGS\",\"cantidad\":\"8\",\"stock\":\"101\",\"precio\":\"600\",\"total\":\"4800\"},{\"id\":\"56\",\"descripcion\":\"INVICTUS\",\"cantidad\":\"30\",\"stock\":\"388\",\"precio\":\"600\",\"total\":\"18000\"},{\"id\":\"17\",\"descripcion\":\"Invitus 50ml\",\"cantidad\":\"1\",\"stock\":\"60\",\"precio\":\"8000\",\"total\":\"8000\"},{\"id\":\"5\",\"descripcion\":\"atlantic 30ml\",\"cantidad\":\"1\",\"stock\":\"57\",\"precio\":\"2350\",\"total\":\"2350\"},{\"id\":\"9\",\"descripcion\":\"manzana 30ml\",\"cantidad\":\"1\",\"stock\":\"56\",\"precio\":\"5000\",\"total\":\"5000\"},{\"id\":\"34\",\"descripcion\":\"Feromonas\",\"cantidad\":\"1\",\"stock\":\"318\",\"precio\":\"600\",\"total\":\"600\"},{\"id\":\"4\",\"descripcion\":\"Alcohol l\",\"cantidad\":\"65\",\"stock\":\"2722\",\"precio\":\"80\",\"total\":\"5200\"}]', 0, 97950, 97600, 'Efectivo', '2024-11-04 18:01:07', 0.00, 0.00, 350, NULL),
 (772, 10717, 24, 1, '[{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"1\",\"stock\":\"280\",\"precio\":\"600\",\"total\":\"600\"}]', 0, 600, 600, 'Pendiente', '2024-11-05 13:26:19', 0.00, 0.00, 0, 1),
 (773, 10718, 25, 1, '[{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"1\",\"stock\":\"279\",\"precio\":\"600\",\"total\":\"600\"}]', 0, 600, 600, 'Efectivo', '2024-11-05 13:26:42', 0.00, 0.00, 0, 0),
-(779, 10719, 25, 1, '[{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"15\",\"stock\":\"279\",\"precio\":\"600\",\"total\":\"9000\"}]', 0, 9000, 9000, 'Pendiente', '2024-11-06 15:50:43', 0.00, 0.00, 0, 5),
-(780, 10720, 26, 1, '[{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"15\",\"stock\":\"264\",\"precio\":\"600\",\"total\":\"9000\"},{\"id\":\"158\",\"descripcion\":\"Lacoste white\",\"cantidad\":\"100\",\"stock\":\"89\",\"precio\":\"600\",\"total\":\"60000\"}]', 0, 69000, 69000, 'Pendiente', '2024-11-06 16:05:09', 0.00, 0.00, 0, 3);
+(779, 10719, 25, 1, '[{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"15\",\"stock\":\"279\",\"precio\":\"600\",\"total\":\"9000\"}]', 0, 9000, 9000, 'Efectivo', '2024-11-06 15:50:43', 0.00, 0.00, 0, 5),
+(780, 10720, 26, 1, '[{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"15\",\"stock\":\"264\",\"precio\":\"600\",\"total\":\"9000\"},{\"id\":\"158\",\"descripcion\":\"Lacoste white\",\"cantidad\":\"100\",\"stock\":\"89\",\"precio\":\"600\",\"total\":\"60000\"}]', 0, 69000, 69000, 'Efectivo', '2024-11-06 16:05:09', 0.00, 0.00, 0, NULL),
+(781, 10721, 24, 1, '[{\"id\":\"163\",\"descripcion\":\"yara candy\",\"cantidad\":\"15\",\"stock\":\"82\",\"precio\":\"600\",\"total\":\"9000\"},{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"15\",\"stock\":\"249\",\"precio\":\"600\",\"total\":\"9000\"},{\"id\":\"165\",\"descripcion\":\"oscar de la renta\",\"cantidad\":\"15\",\"stock\":\"85\",\"precio\":\"600\",\"total\":\"9000\"},{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"15\",\"stock\":\"234\",\"precio\":\"600\",\"total\":\"9000\"}]', 0, 36000, 36000, 'Pendiente', '2024-11-06 21:39:21', 0.00, 0.00, 0, 2),
+(782, 10722, 26, 1, '[{\"id\":\"166\",\"descripcion\":\"NICHO OUD SEFFROM\",\"cantidad\":\"15\",\"stock\":\"127\",\"precio\":\"600\",\"total\":\"9000\"}]', 0, 9000, 9000, 'Efectivo', '2024-11-07 02:54:46', 0.00, 0.00, 0, 9),
+(783, 10723, 25, 1, '[{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"15\",\"stock\":\"219\",\"precio\":\"600\",\"total\":\"9000\"}]', 0, 9000, 9000, 'Pendiente', '2024-11-07 03:03:31', 0.00, 0.00, 0, 1),
+(784, 10724, 24, 1, '[{\"id\":\"163\",\"descripcion\":\"yara candy\",\"cantidad\":\"15\",\"stock\":\"67\",\"precio\":\"600\",\"total\":\"9000\"}]', 0, 9000, 9000, 'Efectivo', '2024-11-07 03:05:32', 0.00, 0.00, 0, 1),
+(785, 10725, 25, 1, '[{\"id\":\"114\",\"descripcion\":\"212 VIP WINS\",\"cantidad\":\"20\",\"stock\":\"419\",\"precio\":\"600\",\"total\":\"12000\"},{\"id\":\"164\",\"descripcion\":\"celos\",\"cantidad\":\"12\",\"stock\":\"67\",\"precio\":\"600\",\"total\":\"7200\"},{\"id\":\"165\",\"descripcion\":\"oscar de la renta\",\"cantidad\":\"12\",\"stock\":\"73\",\"precio\":\"600\",\"total\":\"7200\"}]', 0, 26400, 26400, 'Pendiente', '2024-11-07 03:27:56', 0.00, 0.00, 0, 1),
+(786, 10726, 26, 1, '[{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"15\",\"stock\":\"204\",\"precio\":\"600\",\"total\":\"9000\"}]', 0, 9000, 9000, 'Efectivo', '2024-11-07 03:31:32', 0.00, 0.00, 0, 0),
+(787, 10727, 26, 1, '[{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"1\",\"stock\":\"203\",\"precio\":\"600\",\"total\":\"600\"}]', 0, 600, 600, 'Pendiente', '2024-11-07 03:32:07', 0.00, 0.00, 0, 2),
+(788, 10728, 26, 1, '[{\"id\":\"166\",\"descripcion\":\"NICHO OUD SEFFROM\",\"cantidad\":\"1\",\"stock\":\"126\",\"precio\":\"600\",\"total\":\"600\"},{\"id\":\"165\",\"descripcion\":\"oscar de la renta\",\"cantidad\":\"1\",\"stock\":\"72\",\"precio\":\"600\",\"total\":\"600\"}]', 0, 1200, 1200, 'Pendiente', '2024-11-07 03:39:55', 0.00, 0.00, 0, 2),
+(789, 10729, 25, 1, '[{\"id\":\"165\",\"descripcion\":\"oscar de la renta\",\"cantidad\":\"15\",\"stock\":\"57\",\"precio\":\"600\",\"total\":\"9000\"},{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"15\",\"stock\":\"188\",\"precio\":\"600\",\"total\":\"9000\"},{\"id\":\"162\",\"descripcion\":\"Scandal\",\"cantidad\":\"12\",\"stock\":\"5\",\"precio\":\"600\",\"total\":\"7200\"}]', 0, 25200, 25200, 'Efectivo', '2024-11-07 03:49:00', 0.00, 0.00, 0, 3),
+(790, 10730, 25, 1, '[{\"id\":\"164\",\"descripcion\":\"celos\",\"cantidad\":\"12\",\"stock\":\"55\",\"precio\":\"600\",\"total\":\"7200\"},{\"id\":\"163\",\"descripcion\":\"yara candy\",\"cantidad\":\"12\",\"stock\":\"55\",\"precio\":\"600\",\"total\":\"7200\"},{\"id\":\"165\",\"descripcion\":\"oscar de la renta\",\"cantidad\":\"12\",\"stock\":\"45\",\"precio\":\"600\",\"total\":\"7200\"}]', 0, 21600, 21600, 'Efectivo', '2024-11-07 03:54:06', 0.00, 0.00, 0, 7),
+(791, 10731, 26, 1, '[{\"id\":\"163\",\"descripcion\":\"yara candy\",\"cantidad\":\"1\",\"stock\":\"54\",\"precio\":\"600\",\"total\":\"600\"},{\"id\":\"166\",\"descripcion\":\"NICHO OUD SEFFROM\",\"cantidad\":\"1\",\"stock\":\"125\",\"precio\":\"600\",\"total\":\"600\"}]', 0, 1200, 1200, 'Nequi', '2024-11-07 04:04:47', 0.00, 0.00, 0, 3),
+(792, 10732, 27, 1, '[{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"1\",\"stock\":\"187\",\"precio\":\"600\",\"total\":\"600\"}]', 0, 600, 600, 'Efectivo', '2024-11-07 04:06:28', 0.00, 0.00, 0, 5),
+(793, 10733, 27, 1, '[{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"1\",\"stock\":\"186\",\"precio\":\"600\",\"total\":\"600\"}]', 0, 600, 600, 'Efectivo', '2024-11-07 04:09:09', 0.00, 0.00, 0, 5),
+(794, 10734, 28, 1, '[{\"id\":\"167\",\"descripcion\":\"CLUB THE NUIT\",\"cantidad\":\"1\",\"stock\":\"185\",\"precio\":\"600\",\"total\":\"600\"}]', 0, 600, 600, 'Nequi', '2024-11-07 04:11:26', 0.00, 0.00, 0, 7);
 
 --
 -- Índices para tablas volcadas
@@ -1406,7 +1420,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=781;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=796;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

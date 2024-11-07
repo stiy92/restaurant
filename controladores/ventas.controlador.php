@@ -348,7 +348,7 @@ class ControladorVentas{
 								if($metodo=="Pendiente"){
 									$cventa= $_POST["nuevaVenta"];
 									// Cambiar el estado de la mesa a 1 (ocupado) y asignar codigo de venta
-									$estadoMesa = ControladorMesas::ctrCambiarEstadoMesa($idmesa, 1, $cventa);
+									ControladorMesas::ctrCambiarEstadoMesa($idmesa, 1, $cventa);
 								 }
 
 								if($metodo!="Pendiente"){
@@ -588,6 +588,10 @@ class ControladorVentas{
 
 			$item = "codigo";
 			$valor = $_POST["editarVenta"];
+			$metodo =$_POST["listaMetodoPago"];
+			$codigo =$_POST["editarVenta"];
+			$idmesa=$_POST["seleccionarMesa"];
+			$antiguamesa= $_POST["idMesaAntigua"];
 
 			$traerVenta = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
 
@@ -718,31 +722,82 @@ class ControladorVentas{
 						   "neto"=>$_POST["nuevoPrecioNeto"],
 						   "total"=>$_POST["totalVenta"],
 						   "metodo_pago"=>$_POST["listaMetodoPago"],
-						   "descuento"=>$_POST["nuevodescuento"]);
+						   "descuento"=>$_POST["nuevodescuento"],
+						   "idmesa"=>$_POST["seleccionarMesa"]);
 
 
 			$respuesta = ModeloVentas::mdlEditarVenta($tabla, $datos);
-
+			$cventa= $codigo;
 			if($respuesta == "ok"){
+                 
+				// Verificar si el método de pago es "Pendiente"
+				if($metodo=="Pendiente"){
 
-				echo'<script>
+					// Si la mesa ha cambiado, actualizar los estados de ambas mesas
+					if($idmesa!=$antiguamesa){
+						
+						// Asignar el estado de ocupada (1) a la nueva mesa y asignar el código de venta
+						ControladorMesas::ctrCambiarEstadoMesa($idmesa, 1, $cventa);
 
-				localStorage.removeItem("rango");
+						// Cambiar el estado de la antigua mesa a 0 (desocupada) y quitar codigo de venta
+						ControladorMesas::ctrCambiarEstadoMesa($antiguamesa, 0, 0);
+					 
+					}
+                    //   mensaje al agregar otro producto y continua en pendiente
+					echo'<script>
+                  
+				                  localStorage.removeItem("rango");
+                  
+				                  swal({
+					                    type: "success",
+					                    title: "Mesa ocupada, La venta esta pendiente de pago",
+					                    showConfirmButton: true,
+					                    confirmButtonText: "Cerrar"
+					                    }).then(function(result){
+								                  if (result.value) {
+                  
+								                  window.location = "ventas";
+                  
+								                  }
+							                  })
+                  
+				                  </script>';
 
-				swal({
-					  type: "success",
-					  title: "La venta ha sido editada correctamente",
-					  showConfirmButton: true,
-					  confirmButtonText: "Cerrar"
-					  }).then((result) => {
-								if (result.value) {
+					} else { // Si el método no es "Pendiente"
+					
+					         if($idmesa != $antiguamesa){
+						
+						         // Cambiar el estado de la mesa a 0 (ocupado) y asignar codigo de venta 0
+						         ControladorMesas::ctrCambiarEstadoMesa($idmesa, 0, 0);
 
-								window.location = "ventas";
+						          // Cambiar el estado de la antigua mesa a 0 (desocupada) y quitar codigo de venta
+						         ControladorMesas::ctrCambiarEstadoMesa($antiguamesa, 0, 0);
 
-								}
-							})
+					            } else {
+					            	ControladorMesas::ctrCambiarEstadoMesa($idmesa, 0, 0);
+					             }
+                    
+								 //   mensaje al agregar otro producto y continua en pendiente
+								 echo'<script>
 
-				</script>';
+				                      localStorage.removeItem("rango");
+                      
+				                      swal({
+				                      	  type: "success",
+				                      	  title: "La venta ha sido editada y finalizada correctamente",
+				                      	  showConfirmButton: true,
+				                      	  confirmButtonText: "Cerrar"
+				                      	  }).then((result) => {
+				                      				if (result.value) {
+                      
+				                      				window.location = "ventas";
+
+				                      				}
+				                      			})
+
+				                      </script>';
+				   }
+
 
 			}
 
@@ -765,6 +820,8 @@ class ControladorVentas{
 			$valor = $_GET["idEliminarVenta"];
 
 			$traerVenta = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
+
+			$idmesa = $traerVenta["idmesa"];
 
 			/*=============================================
 			ACTUALIZAR FECHA ÚLTIMA COMPRA
@@ -871,6 +928,9 @@ class ControladorVentas{
 			$respuesta = ModeloVentas::mdlEliminarVenta($tabla, $_GET["idEliminarVenta"]);
 
 			if($respuesta == "ok"){
+
+				// Cambiar el estado de la mesa a 0 (ocupado) y asignar codigo de venta 0
+				ControladorMesas::ctrCambiarEstadoMesa($idmesa, 0, 0);
 
 				echo'<script>
 

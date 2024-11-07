@@ -132,7 +132,7 @@ class ModeloVentas{
 		if($datos["metodo_pago"]=="Crédito"){
 			//preparar la insercion
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET  id_cliente = :id_cliente, id_vendedor = :id_vendedor, productos = :productos, impuesto = :impuesto, neto = :neto, total= :total, metodo_pago = :metodo_pago, saldo_pendiente = :saldo_pendiente, descuento = :descuento  WHERE codigo = :codigo");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET  id_cliente = :id_cliente, id_vendedor = :id_vendedor, productos = :productos, impuesto = :impuesto, neto = :neto, total= :total, metodo_pago = :metodo_pago, saldo_pendiente = :saldo_pendiente, descuento = :descuento, idmesa = :idmesa  WHERE codigo = :codigo");
 
 		$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
 		$stmt->bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_INT);
@@ -144,9 +144,10 @@ class ModeloVentas{
 		$stmt->bindParam(":metodo_pago", $datos["metodo_pago"], PDO::PARAM_STR);
 		$stmt->bindParam(":saldo_pendiente", $datos["total"], PDO::PARAM_STR);
 		$stmt->bindParam(":descuento", $datos["descuento"], PDO::PARAM_STR);
+		$stmt->bindParam(":idmesa", $datos["idmesa"], PDO::PARAM_INT);
 
 		}else {
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET  id_cliente = :id_cliente, id_vendedor = :id_vendedor, productos = :productos, impuesto = :impuesto, neto = :neto, total= :total, metodo_pago = :metodo_pago, saldo_pendiente = :saldo_pendiente, descuento = :descuento WHERE codigo = :codigo");
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET  id_cliente = :id_cliente, id_vendedor = :id_vendedor, productos = :productos, impuesto = :impuesto, neto = :neto, total= :total, metodo_pago = :metodo_pago, saldo_pendiente = :saldo_pendiente, descuento = :descuento, idmesa = :idmesa WHERE codigo = :codigo");
         
 	    $debe= 0;
 		$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
@@ -159,6 +160,7 @@ class ModeloVentas{
 		$stmt->bindParam(":metodo_pago", $datos["metodo_pago"], PDO::PARAM_STR);
 		$stmt->bindParam(":saldo_pendiente", $debe, PDO::PARAM_STR);
 		$stmt->bindParam(":descuento", $datos["descuento"], PDO::PARAM_STR);
+		$stmt->bindParam(":idmesa", $datos["idmesa"], PDO::PARAM_INT);
 		}
 
 		if($stmt->execute()){
@@ -172,6 +174,7 @@ class ModeloVentas{
 		}
 
 		$stmt->close();
+		
 		$stmt = null;
 
 	}

@@ -110,6 +110,7 @@
            <th>Forma</th>
            <th>Neto</th> 
            <th>Total</th> 
+           <th>Mesa</th>
            <th>Fecha</th>
            <th>Debe</th>
            <th>Abono</th>
@@ -165,6 +166,7 @@
                   <td>$ '.number_format($value["neto"]).'</td> 
 
                   <td>$ '.number_format($value["total"]).'</td>
+                  <td># '.number_format($value["idmesa"]).'</td>
 
                   <td>'.$value["fecha"].'</td>
                   <td>$ '.number_format($value["saldo_pendiente"]).'</td>
