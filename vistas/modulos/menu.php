@@ -82,6 +82,15 @@
 		if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor" || $_SESSION["perfil"] == "Especial"){
 
 			echo '<li>
+				<a href="mesas">
+
+					<i class="fa fa-cutlery"></i>
+					<span>Mesas</span>
+
+				</a>
+
+			</li>
+			<li>
 
 				<a href="clientes">
 

@@ -48,6 +48,7 @@ class ControladorVentas{
 			$valor = $_POST["seleccionarCliente"];
 			$metodo =$_POST["nuevoMetodoPago"];
 			$idmesa = $_POST["seleccionarMesa"];
+			$itemmesa= "id";
 		          //	echo $valor;
                      
 		                                    /*=============================================
@@ -298,7 +299,7 @@ class ControladorVentas{
 			                  $item = "id";
 			                  $valor = $_POST["seleccionarCliente"];
 
-							  $traermesa = ControladorMesas::ctrMostrarMesas($idmesa);
+							  $traermesa = ControladorMesas::ctrMostrarMesas($itemmesa, $idmesa);
                   
 			                  $traerCliente = ModeloClientes::mdlMostrarClientes($tablaClientes, $item, $valor);
                   
@@ -705,8 +706,9 @@ class ControladorVentas{
 			$codigo =$_POST["editarVenta"];
 			$idmesa=$_POST["seleccionarMesa"];
 			$antiguamesa= $_POST["idMesaAntigua"];
+			$itemmesa = "id";
 
-			$traermesa = ControladorMesas::ctrMostrarMesas($idmesa);
+			$traermesa = ControladorMesas::ctrMostrarMesas($itemmesa, $idmesa);
 
 			$traerVenta = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
 
@@ -857,6 +859,9 @@ class ControladorVentas{
 						// Cambiar el estado de la antigua mesa a 0 (desocupada) y quitar codigo de venta
 						ControladorMesas::ctrCambiarEstadoMesa($antiguamesa, 0, 0);
 					 
+					}else {
+                          // Cambiar el estado de la mesa a 1 (ocupado) y asignar codigo de venta
+					ControladorMesas::ctrCambiarEstadoMesa($idmesa, 1, $cventa);
 					}
 
 					                        /*=============================================
@@ -882,6 +887,9 @@ class ControladorVentas{
 									$printer -> feed(1); //Alimentamos el papel 1 vez
 
 									$printer -> text("MESA N.".$traermesa["nombre"]."\n");//Número de factura
+
+									// Información del cliente
+									$traerCliente = ModeloClientes::mdlMostrarClientes("clientes", "id", $datos['id_cliente']);
 					
 									$printer -> text("Cliente: ".$traerCliente["nombre"]."\n");//Nombre del cliente
 					
@@ -894,6 +902,8 @@ class ControladorVentas{
 									$printer -> text("ATENDIDO POR: ".$traerVendedor["nombre"]."\n");//Nombre del vendedor
 					
 									$printer -> feed(1); //Alimentamos el papel 1 vez*/
+
+									$listaProductos = json_decode($datos['productos'], true); // Convierte JSON a un array asociativo
 					
 									foreach ($listaProductos as $key => $value) {
 					
@@ -915,8 +925,8 @@ class ControladorVentas{
 					
 									$printer -> close();
 
-                    //   mensaje al agregar otro producto y continua en pendiente
-					echo'<script>
+                        //   mensaje al agregar otro producto y continua en pendiente
+					   echo'<script>
                   
 				                  localStorage.removeItem("rango");
                   
@@ -953,6 +963,8 @@ class ControladorVentas{
                     
 								 //   mensaje al agregar otro producto y finaliza
 
+								 // Preguntar si se desea imprimir el ticket cuando el método de pago es diferente a "Pendiente"
+								   
 								 /*=============================================
 			                       PRIMERA COPIA PARA EL CLIENTE
 			                       =============================================*/
@@ -980,6 +992,9 @@ class ControladorVentas{
 								   $printer -> text("FACTURA N.".$codigo."\n");//Número de factura
 				   
 								   $printer -> feed(1); //Alimentamos el papel 1 vez
+
+								    // Información del cliente
+                                   $traerCliente = ModeloClientes::mdlMostrarClientes("clientes", "id", $datos['id_cliente']);
 				   
 								   $printer -> text("Cliente: ".$traerCliente["nombre"]."\n");//Nombre del cliente
 				   
@@ -994,6 +1009,8 @@ class ControladorVentas{
 								   $printer -> text("Vendedor: ".$traerVendedor["nombre"]."\n");//Nombre del vendedor
 				   
 								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
+								   
+								   $listaProductos = json_decode($datos['productos'], true); // Convierte JSON a un array asociativo
 				   
 								   foreach ($listaProductos as $key => $value) {
 				   
@@ -1062,6 +1079,8 @@ class ControladorVentas{
 								   $printer -> feed(1); //Alimentamos el papel 1 vez
  
 								   // Condición para imprimir el mensaje de descuento si existe
+
+								   $traerCliente = ModeloClientes::mdlMostrarClientes("clientes", "id", $datos['id_cliente']);
  
 								   $tablaVendedor = "usuarios";
 								   $item = "id";
@@ -1088,6 +1107,8 @@ class ControladorVentas{
 								  }
 				   
 								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
+
+								   $listaProductos = json_decode($datos['productos'], true); // Convierte JSON a un array asociativo
 				   
 								   foreach ($listaProductos as $key => $value) {
 				   

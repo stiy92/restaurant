@@ -25,7 +25,7 @@
       
     <?php
 
-    if($_SESSION["perfil"] =="Administrador"){
+    if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor" || $_SESSION["perfil"] == "Especial"){
 
       include "inicio/mesas-superiores.php";
 

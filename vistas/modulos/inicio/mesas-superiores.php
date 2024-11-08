@@ -49,7 +49,7 @@ $mesas = [
 // <button class="btn btn-warning btnEditarVenta" idVenta="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
 foreach ($mesas as $mesa) {
     if ($mesa["data"]) {
-        $total = number_format($mesa["data"]["total"], 2);
+        $total = number_format($mesa["data"]["total"]);
         $nombreMesa = $mesa["nombre"];
         $icono = $mesa["icono"];
         
@@ -66,9 +66,14 @@ foreach ($mesas as $mesa) {
                 <div class="icon">
                     <i class="fa-solid <?php echo $icono; ?>"></i>
                 </div>
-                <a href="#" class="small-box-footer btnEditarVentaM" codigoVenta="<?php echo $mesa["data"]["cventa"]; ?>">
+                <?php if($_SESSION["perfil"] == "Administrador") : ?>
+          
+                    <a href="#" class="small-box-footer btnEditarVentaM" codigoVenta="<?php echo $mesa["data"]["cventa"]; ?>">
                     Más info <i class="fa fa-arrow-circle-right"></i>
                 </a>
+
+                <?php endif; ?>
+               
             </div>
         </div>
 

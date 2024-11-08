@@ -1,13 +1,42 @@
-sistema de logeo
-tablero inicial caja superiores muestra el total de las ventas efectivo por dia, gastos, ventas creditos, ventas nequi
-tiene un grafico de ventas sumando efectivo y nequi y resta los gastos
-grafico de productos mas vendidos y un listado de los ultimos pordutos agregados
-secion de usuarios:
-permite agregar usuarios con ciertos roles y fotos, los muestra en una tabla donde indica nombre usuario foto perfil estado y se pueden modificar o eliminar mas agregar nuevos
-secion de gastos:
-tambien tiene una secion similar aplicando el crud
-categorias lo mismo para agregarlos a los productos
-productos despues sigo
+# nombre de la aplicacion
+sistema pos para un restaurante, permite el manejo de ventas, clientes, inventario de productos reportes, tickets, pdf, excel y muchas funciones mas.
+
+## Funcionalidades
+- # 1 inicio secion por tres tipos de usuarios administrador, especial y vendedor cada uno con diferentes rol
+   si no existe el usuario debe de mostrar un mensaje de Error al ingresar, vuelva a intentarlo
+- # 2 al ingresar se encuentra el panel inicial de control donde puedes visualizar
+  - el total de las ventas del dia, los gastos, ventas creditos, pagos por nequi, abonos a las ventas credito
+  - y el total valor entre lo efectivo, nequi, abono - gastos
+  - tambien una grafica del mismo valor
+  - una lista con grafico de los productos mas vendidos
+  - una lista de productos recien agregados
+  - si le das click a cualquier caja en más info te dirige a admistrar ventas
+- # 3 tablero de mesas: es un total de 16 mesas de color azul disponibles en cero al darle click en una de
+   - ellas te dirige al registro de una venta, si la venta se seleciona pendiente la mesa se pone en rojo
+   - se imprime un ticket para el chef y se visualiza el total del valor de la venta
+   - si volvemos a ingresar en esa mesa podemos ver los datos de la venta y podemos agregar datos o cambiar
+   - la informacion cuando la venta cambia de metodo de pago la mesa ya cambia de estado y imprime los dos 
+   - tickets
+- # 4 administrar usuarios 
+   - podemos registrar usuarios con diferentes roles, visualizarlos, editarlos, activarlos,
+   - desactivarlos y eliminarlos
+- # 5 admistrar gastos se puede realizar el crud
+- # 6 Administrar categorias se puede realizar el crud
+- # 7 administrar producto se puede realizar el crud 
+   - el producto lleva categoria, codigo, descripsion, stock maximo, cantidad en bodega, precio de compra
+   - precio de venta, agregar imagen, y cambia de calor su cantidad a medida que se vaya agotando como
+   - advertencia
+   # 8 lo mismo para ver los productos rojos
+   # 9 administrar clientes permite crud de clientes
+   # 10 administrar ventas permite el crud, abonar a credito, pagar credito total, ver pdf o ticket
+   - podemos ver solo las ventas credito si se quiere
+   # 11 crear venta se ingresa cliente, mesa si gusta , agregar productos, iva, dsecuento, selecion metodo de
+   - pago si el producto esta agotado no permite ingresar, si no seleciona producto tampoco, si el metodo esta
+   - pendiente inicia el proceso de las mesas
+   # 12 reportes de ventas puedes visualizar el total de las ventas, graficos, prodcutos mas endidos compradores y vendedores por rango de fecha.
+
+# intalaciones xamp, impresora pos de 80mm configurar controladores, poner ip fija, configuerar servidor
+- en ocaciones por regla de xamp por temas de firewall
 
 nota de posibles errores con su soluction
 si al crear un usuario nuevo o producto y no permite la imagen, se debe de activar en el php.ini 

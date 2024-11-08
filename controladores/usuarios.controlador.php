@@ -98,7 +98,7 @@ class ControladorUsuarios{
 
 				$ruta = "";
 
-				if(isset($_FILES["nuevaFoto"]["tmp_name"])){
+				if(isset($_FILES["nuevaFoto"]["tmp_name"])&& !empty($_FILES["nuevaFoto"]["tmp_name"])){
 
 					list($ancho, $alto) = getimagesize($_FILES["nuevaFoto"]["tmp_name"]);
 
@@ -111,8 +111,11 @@ class ControladorUsuarios{
 
 					$directorio = "vistas/img/usuarios/".$_POST["nuevoUsuario"];
 
+					// Crear el directorio solo si no existe
+                     if(!file_exists($directorio)){
 					mkdir($directorio, 0755);
-
+					 }
+					 
 					/*=============================================
 					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
 					=============================================*/
