@@ -17,9 +17,12 @@
 
 				</a>
 
-			</li>
-                 
-			<li>
+			</li>';
+
+		}
+		if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor" || $_SESSION["perfil"] == "Especial"){
+
+			echo '<li>
 				<a href="mesas">
 
 					<i class="fa fa-cutlery"></i>
@@ -28,8 +31,12 @@
 				</a>
 
 			</li>
+			';
 
-			<li>
+		}
+		if($_SESSION["perfil"] == "Administrador"){
+
+			echo '<li>
 
 				<a href="usuarios">
 
@@ -82,15 +89,6 @@
 		if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor" || $_SESSION["perfil"] == "Especial"){
 
 			echo '<li>
-				<a href="mesas">
-
-					<i class="fa fa-cutlery"></i>
-					<span>Mesas</span>
-
-				</a>
-
-			</li>
-			<li>
 
 				<a href="clientes">
 
@@ -99,13 +97,8 @@
 
 				</a>
 
-			</li>';
-
-		}
-
-		if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor" || $_SESSION["perfil"] == "Especial"){
-
-			echo '<li class="treeview">
+			</li>
+			<li class="treeview">
 
 				<a href="#">
 
