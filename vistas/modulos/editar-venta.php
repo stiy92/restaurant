@@ -171,8 +171,6 @@
                     
                     <select class="form-control" id="seleccionarMesa" name="seleccionarMesa"  required>
 
-                    <option value="<?php echo $mesa["id"]; ?>"><?php echo $mesa["nombre"]; ?></option>
-
                     <?php
 
                       $item = null;
@@ -180,13 +178,22 @@
 
                       $categorias = ControladorMesas::ctrMostrarMesas($item, $valor);
 
-                       foreach ($categorias as $key => $value) {
-
-                         echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
-
-                       }
-
-                    ?>
+                       // Verificar si hay mesas disponibles y si `$mesa` está definido
+                        if (isset($mesa) && !empty($mesa)) {
+                          echo '<option value="'.$mesa["id"].'">'.$mesa["nombre"].'</option>';
+                        } elseif (!empty($categorias)) {
+                          // Si no hay una mesa preseleccionada, selecciona la primera mesa
+                          echo '<option value="'.$categorias[0]["id"].'">'.$categorias[0]["nombre"].'</option>';
+                        } else {
+                          // Mensaje en caso de que no haya mesas disponibles
+                          echo '<option value="" disabled>No hay mesas disponibles</option>';
+                        }
+                
+                        // Añadir el resto de las mesas como opciones
+                        foreach ($categorias as $key => $value) {
+                          echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
+                        }
+                      ?>
 
                     </select>
                   

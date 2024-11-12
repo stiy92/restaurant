@@ -534,6 +534,7 @@ class ControladorVentas{
 			                                =============================================*/
 
 									//UNICA COPIA PARA EL CHEF
+									$nombreMesa = ($traermesa && isset($traermesa["nombre"])) ? $traermesa["nombre"] : "0";
                         				
 									$impresora = "POS-80C";
                         
@@ -551,7 +552,7 @@ class ControladorVentas{
 					
 									$printer -> feed(1); //Alimentamos el papel 1 vez
 
-									$printer -> text("MESA N.".$traermesa["nombre"]."\n");//Número de factura
+									$printer -> text("MESA N." . $nombreMesa . "\n");//Número de factura
 					
 									$printer -> text("Cliente: ".$traerCliente["nombre"]."\n");//Nombre del cliente
 					
