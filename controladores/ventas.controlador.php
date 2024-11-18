@@ -984,7 +984,7 @@ class ControladorVentas{
 				   
 								   $printer -> text("TRADICION MALL GASTRONOMICO"."\n");//Nombre de la empresa
                   
-				                  $printer -> text("NIT: 130.670.324-7"."\n");//Nit de la empresa
+				                  $printer -> text("NIT: 1.130.670.324-7"."\n");//Nit de la empresa
                   
 				                  $printer -> text("Dirección: Calle 2 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
                   
@@ -1069,7 +1069,7 @@ class ControladorVentas{
 				   
 								   $printer -> text("TRADICION MALL GASTRONOMICO"."\n");//Nombre de la empresa
                   
-				                  $printer -> text("NIT: 130.670.324-7"."\n");//Nit de la empresa
+				                  $printer -> text("NIT: 1.130.670.324-7"."\n");//Nit de la empresa
                   
 				                  $printer -> text("Dirección: Calle 2 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
                   
