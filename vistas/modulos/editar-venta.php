@@ -125,16 +125,18 @@
                     
                     <span class="input-group-addon"><i class="fa fa-users"></i></span>
                     
-                    <?php if ($_SESSION["perfil"] == "Vendedor") { ?>
-                      <input type="hidden" name="seleccionarCliente" value="<?php echo $cliente["id"]; ?>">
-                    <?php } ?>
+                    <?php 
+                   $isDisabled = ($_SESSION["perfil"] == "Vendedor") ? 'disabled' : '';
+                   if ($_SESSION["perfil"] == "Vendedor") { 
+                    ?>
                    
-                    <select class="form-control" id="seleccionarCliente" name="seleccionarCliente" <?php echo $isDisabled; ?> required>
+                    <!-- Input oculto para enviar el ID del cliente -->
+                     <input type="hidden" name="seleccionarCliente" value="<?php echo $cliente["id"]; ?>">
+                      <?php } ?>
 
-                    <option value="<?php echo $cliente["id"]; ?>"><?php echo $cliente["nombre"]; ?></option>
-                    
-
-                    <?php
+                      <select class="form-control" id="seleccionarCliente" name="seleccionarCliente" <?php echo $isDisabled; ?> required>
+                      <option value="<?php echo htmlspecialchars($cliente["id"]); ?>"><?php echo htmlspecialchars($cliente["nombre"]); ?></option>
+                      <?php
 
                       $item = null;
                       $valor = null;
@@ -179,8 +181,9 @@
                     
 
                     <?php if ($_SESSION["perfil"] == "Vendedor") { ?>
-                      <input type="hidden" name="seleccionarMesa" value="<?php echo $mesa["id"]; ?>">
-                    <?php } ?>
+                    <!-- Input oculto para enviar el ID de la mesa -->
+                    <input type="hidden" name="seleccionarMesa" value="<?php echo htmlspecialchars($mesa["id"]); ?>">
+                     <?php } ?>
                    
                     <select class="form-control" id="seleccionarMesa" name="seleccionarMesa" <?php echo $isDisabled; ?> required>
 
