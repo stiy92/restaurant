@@ -66,7 +66,7 @@ foreach ($mesas as $mesa) {
                 <div class="icon">
                     <i class="fa-solid <?php echo $icono; ?>"></i>
                 </div>
-                <?php if($_SESSION["perfil"] == "Administrador") : ?>
+                <?php if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor") : ?>
           
                     <a href="#" class="small-box-footer btnEditarVentaM" codigoVenta="<?php echo $mesa["data"]["cventa"]; ?>">
                     Más info <i class="fa fa-arrow-circle-right"></i>

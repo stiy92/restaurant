@@ -125,7 +125,11 @@
                     
                     <span class="input-group-addon"><i class="fa fa-users"></i></span>
                     
-                    <select class="form-control" id="seleccionarCliente" name="seleccionarCliente" required>
+                    <?php if ($_SESSION["perfil"] == "Vendedor") { ?>
+                      <input type="hidden" name="seleccionarCliente" value="<?php echo $cliente["id"]; ?>">
+                    <?php } ?>
+                   
+                    <select class="form-control" id="seleccionarCliente" name="seleccionarCliente" <?php echo $isDisabled; ?> required>
 
                     <option value="<?php echo $cliente["id"]; ?>"><?php echo $cliente["nombre"]; ?></option>
                     
@@ -139,7 +143,7 @@
 
                        foreach ($categorias as $key => $value) {
 
-                         echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
+                         echo '<option value="'.htmlspecialchars($value["id"]).'">'.htmlspecialchars($value["nombre"]).'</option>';
 
                        }
 
@@ -154,7 +158,11 @@
                 </div>
 
                 <script>
+                    // Inicializar select2 si no está deshabilitado
+                  const selectClient = document.getElementById('seleccionarCliente');
+                  if (!selectClient.hasAttribute('disabled')) {
                   $('#seleccionarCliente').select2();
+                  }
                   </script>
 
                       <input type="hidden" name="idMesaAntigua" id="idMesaAntigua" value="<?php echo $mesa["id"]; ?>">
@@ -169,7 +177,12 @@
                     
                     <span class="input-group-addon"><i class="fa fa-cutlery"></i></span>
                     
-                    <select class="form-control" id="seleccionarMesa" name="seleccionarMesa"  required>
+
+                    <?php if ($_SESSION["perfil"] == "Vendedor") { ?>
+                      <input type="hidden" name="seleccionarMesa" value="<?php echo $mesa["id"]; ?>">
+                    <?php } ?>
+                   
+                    <select class="form-control" id="seleccionarMesa" name="seleccionarMesa" <?php echo $isDisabled; ?> required>
 
                     <?php
 
@@ -180,10 +193,10 @@
 
                        // Verificar si hay mesas disponibles y si `$mesa` está definido
                         if (isset($mesa) && !empty($mesa)) {
-                          echo '<option value="'.$mesa["id"].'">'.$mesa["nombre"].'</option>';
+                          echo '<option value="'.htmlspecialchars($mesa["id"]).'">'.htmlspecialchars($mesa["nombre"]).'</option>';
                         } elseif (!empty($categorias)) {
                           // Si no hay una mesa preseleccionada, selecciona la primera mesa
-                          echo '<option value="'.$categorias[0]["id"].'">'.$categorias[0]["nombre"].'</option>';
+                          echo '<option value="'.htmlspecialchars($categorias[0]["id"]).'">'.htmlspecialchars($categorias[0]["nombre"]).'</option>';
                         } else {
                           // Mensaje en caso de que no haya mesas disponibles
                           echo '<option value="" disabled>No hay mesas disponibles</option>';
@@ -191,7 +204,7 @@
                 
                         // Añadir el resto de las mesas como opciones
                         foreach ($categorias as $key => $value) {
-                          echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
+                          echo '<option value="'.htmlspecialchars($value["id"]).'">'.htmlspecialchars($value["nombre"]).'</option>';
                         }
                       ?>
 
@@ -202,7 +215,11 @@
                 </div>
                 
                 <script>
-                  $('#seleccionarMesa').select2();
+                 // Inicializar select2 si no está deshabilitado
+                          const selectMesa = document.getElementById('seleccionarMesa');
+                          if (!selectMesa.hasAttribute('disabled')) {
+                            $('#seleccionarMesa').select2();
+  }
                   </script>
 
                 <!--=====================================
@@ -225,15 +242,18 @@
 
                   $stockAntiguo = $respuesta["stock"] + $value["cantidad"];
                   
-                  echo '<div class="row" style="padding:5px 15px">
+                  // Verificar si el perfil del usuario es "Vendedor"
+                 $minValue = ($_SESSION["perfil"] == "Vendedor") ? $value["cantidad"] : 1;
+                 ?>
+                  <div class="row" style="padding:5px 15px">
             
                         <div class="col-xs-6" style="padding-right:0px">
             
                           <div class="input-group">
                 
-                            <span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto="'.$value["id"].'"><i class="fa fa-times"></i></button></span>
+                            <span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto="<?php echo $value['id']; ?>"><i class="fa fa-times"></i></button></span>
 
-                            <input type="text" class="form-control nuevaDescripcionProducto" idProducto="'.$value["id"].'" name="agregarProducto" value="'.$value["descripcion"].'" readonly required>
+                            <input type="text" class="form-control nuevaDescripcionProducto" idProducto="<?php echo $value['id']; ?>" name="agregarProducto" value="<?php echo $value['descripcion']; ?>"  readonly required>
 
                           </div>
 
@@ -241,7 +261,14 @@
 
                         <div class="col-xs-3">
               
-                          <input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="'.$value["cantidad"].'" stock="'.$stockAntiguo.'" nuevoStock="'.$value["stock"].'" required>
+                          <input   type="number"
+                             class="form-control nuevaCantidadProducto"
+                             name="nuevaCantidadProducto"
+                             min="<?php echo $minValue; ?>" 
+                             value="<?php echo $value["cantidad"]; ?>" 
+                             stock="<?php echo $stockAntiguo; ?>"
+                             nuevoStock="<?php echo $value["stock"]; ?>" 
+                             required>
 
                         </div>
 
@@ -251,16 +278,16 @@
 
                             <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
                    
-                            <input type="text" class="form-control nuevoPrecioProducto" precioReal="'.$respuesta["precio_venta"].'" name="nuevoPrecioProducto" value="'.$value["total"].'" readonly required>
+                            <input type="text" class="form-control nuevoPrecioProducto" precioReal="<?php echo $respuesta["precio_venta"]; ?>" name="nuevoPrecioProducto" value="<?php echo $value["total"]; ?>" readonly required>
    
                           </div>
                
                         </div>
 
-                      </div>';
+                      </div>
+
+                      <?php   
                 }
-
-
                 ?>
 
                 </div>
