@@ -452,13 +452,13 @@ class ControladorVentas{
                   
 				                  $printer -> feed(1); //Alimentamos el papel 1 vez
                   
-				                  $printer -> text("FERRETERIA LOS SOCIOS"."\n");//Nombre de la empresa
+				                  $printer -> text("TRADICION MALL GASTRONOMICO"."\n");//Nombre de la empresa
                   
-				                  $printer -> text("NIT: 1.006.197.159-0"."\n");//Nit de la empresa
+				                  $printer -> text("NIT: 130.670.324-7"."\n");//Nit de la empresa
                   
-				                  $printer -> text("Dirección: Calle 3 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
+				                  $printer -> text("Dirección: Calle 2 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
                   
-				                  $printer -> text("Teléfono: 311 656 5195"."\n");//Teléfono de la empresa
+				                  $printer -> text("Teléfono: 323 488 5888"."\n");//Teléfono de la empresa
                   
 				                  $printer -> text("FACTURA N.".$lastcodigo1."\n");//Número de factura
                   
@@ -982,13 +982,13 @@ class ControladorVentas{
 				   
 								   $printer -> feed(1); //Alimentamos el papel 1 vez
 				   
-								   $printer -> text("FERRETERIA LOS SOCIOS"."\n");//Nombre de la empresa
-				   
-								   $printer -> text("NIT: 1.006.197.159-0"."\n");//Nit de la empresa
-				   
-								   $printer -> text("Dirección: Calle 3 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
-				   
-								   $printer -> text("Teléfono: 311 656 5195"."\n");//Teléfono de la empresa
+								   $printer -> text("TRADICION MALL GASTRONOMICO"."\n");//Nombre de la empresa
+                  
+				                  $printer -> text("NIT: 130.670.324-7"."\n");//Nit de la empresa
+                  
+				                  $printer -> text("Dirección: Calle 2 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
+                  
+				                  $printer -> text("Teléfono: 323 488 5888"."\n");//Teléfono de la empresa
 				   
 								   $printer -> text("FACTURA N.".$codigo."\n");//Número de factura
 				   
@@ -1067,13 +1067,13 @@ class ControladorVentas{
 				   
 								   $printer -> feed(1); //Alimentamos el papel 1 vez
 				   
-								   $printer -> text("FERRETERIA LOS SOCIOS"."\n");//Nombre de la empresa
-				   
-								   $printer -> text("NIT: 1.006.197.159-0"."\n");//Nit de la empresa
-				   
-								   $printer -> text("Dirección: Calle 3 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
-				   
-								   $printer -> text("Teléfono: 311 656 5195"."\n");//Teléfono de la empresa
+								   $printer -> text("TRADICION MALL GASTRONOMICO"."\n");//Nombre de la empresa
+                  
+				                  $printer -> text("NIT: 130.670.324-7"."\n");//Nit de la empresa
+                  
+				                  $printer -> text("Dirección: Calle 2 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
+                  
+				                  $printer -> text("Teléfono: 323 488 5888"."\n");//Teléfono de la empresa
 				   
 								   $printer -> text("FACTURA N.".$codigo."\n");//Número de factura
 				   
