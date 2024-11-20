@@ -544,7 +544,7 @@ class ControladorVentas{
 									
 									// Aumentar el tamaño del texto (por ejemplo, 2x de ancho y alto)
 
-                                    $printer->setTextSize(4, 4);
+                                    $printer->setTextSize(2, 2);
 					
 									$printer -> text(date("Y-m-d H:i:s")."\n" ."PEDIDO"."* ¡CHEF! (*.*)*\n");//Fecha de la factura
 					
@@ -627,7 +627,7 @@ class ControladorVentas{
 
 									// Aumentar el tamaño del texto (por ejemplo, 2x de ancho y alto)
 
-                                    $printer->setTextSize(4, 4);
+                                    $printer->setTextSize(2, 2);
 					
 									$printer -> text(date("Y-m-d H:i:s")."\n" ."PEDIDO"."* ¡CHEF! (*.*)*\n");//Fecha de la factura
 					
@@ -896,7 +896,7 @@ class ControladorVentas{
 
 									// Aumentar el tamaño del texto (por ejemplo, 2x de ancho y alto)
 
-                                    $printer->setTextSize(4, 4);
+                                    $printer->setTextSize(2, 2);
 					
 									$printer -> text(date("Y-m-d H:i:s")."\n" ."PEDIDO"."* ¡CHEF! (*.*)*\n");//Fecha de la factura
 					
