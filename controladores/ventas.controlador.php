@@ -541,6 +541,10 @@ class ControladorVentas{
 									$conector = new WindowsPrintConnector($impresora);
 					
 									$printer = new Printer($conector);
+									
+									// Aumentar el tamaño del texto (por ejemplo, 2x de ancho y alto)
+
+                                    $printer->setTextSize(4, 4);
 					
 									$printer -> text(date("Y-m-d H:i:s")."\n" ."PEDIDO"."* ¡CHEF! (*.*)*\n");//Fecha de la factura
 					
@@ -577,6 +581,10 @@ class ControladorVentas{
 										$printer->text("$ ".number_format($value["precio"],2)." Und x ".$value["cantidad"]." = $ ".number_format($value["total"],2)."\n");
 					
 									}
+
+									// Resetear el tamaño de texto al valor predeterminado
+
+                                    $printer->setTextSize(1, 1);
 				
 									$printer -> feed(3); //Alimentamos el papel 3 veces*/
 					
@@ -616,6 +624,10 @@ class ControladorVentas{
 									$conector = new WindowsPrintConnector($impresora);
 					
 									$printer = new Printer($conector);
+
+									// Aumentar el tamaño del texto (por ejemplo, 2x de ancho y alto)
+
+                                    $printer->setTextSize(4, 4);
 					
 									$printer -> text(date("Y-m-d H:i:s")."\n" ."PEDIDO"."* ¡CHEF! (*.*)*\n");//Fecha de la factura
 					
@@ -652,6 +664,10 @@ class ControladorVentas{
 										$printer->text("$ ".number_format($value["precio"],2)." Und x ".$value["cantidad"]." = $ ".number_format($value["total"],2)."\n");
 					
 									}
+
+									// Resetear el tamaño de texto al valor predeterminado
+
+                                    $printer->setTextSize(1, 1);
 				
 									$printer -> feed(3); //Alimentamos el papel 3 veces*/
 					
@@ -864,6 +880,7 @@ class ControladorVentas{
                           // Cambiar el estado de la mesa a 1 (ocupado) y asignar codigo de venta
 					ControladorMesas::ctrCambiarEstadoMesa($idmesa, 1, $cventa);
 					}
+					
 
 					                        /*=============================================
 			                                TERCERA COPIA PARA EL CHEF
@@ -876,6 +893,10 @@ class ControladorVentas{
 									$conector = new WindowsPrintConnector($impresora);
 					
 									$printer = new Printer($conector);
+
+									// Aumentar el tamaño del texto (por ejemplo, 2x de ancho y alto)
+
+                                    $printer->setTextSize(4, 4);
 					
 									$printer -> text(date("Y-m-d H:i:s")."\n" ."PEDIDO"."* ¡CHEF! (*.*)*\n");//Fecha de la factura
 					
@@ -917,6 +938,10 @@ class ControladorVentas{
 										$printer->text("$ ".number_format($value["precio"],2)." Und x ".$value["cantidad"]." = $ ".number_format($value["total"],2)."\n");
 					
 									}
+
+									// Resetear el tamaño de texto al valor predeterminado
+
+                                    $printer->setTextSize(1, 1);
 				
 									$printer -> feed(3); //Alimentamos el papel 3 veces*/
 					
