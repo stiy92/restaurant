@@ -354,6 +354,15 @@
           
         ?>
 
+            <?php
+
+           if (isset($_GET["idImprimirVenta"])) {
+             $imprimirVenta = new ControladorVentas();
+             $imprimirVenta->ctrImprimirVenta();
+           }
+
+            ?>
+
         </div>
             
       </div>

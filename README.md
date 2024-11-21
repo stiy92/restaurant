@@ -51,15 +51,17 @@ Reinicia XAMPP:
 Después de guardar los cambios en el archivo php.ini, reinicia Apache desde el panel de control de XAMPP para aplicar la configuración.
 Después de hacer esto, la función imagecreatefrompng() debería funcionar correctamente.
 
+para que dectecte la impresora se debe conectar y agregar de forma manual con el nombre de POS-80C
+
 para que tome las impresiones se dbe de instalar las impresoras y configurar de forma virtual tambien
 
 la direcion ip debe ser fija en caso tal se conectaran otros dispositivos al servidor 
 recordar que la direcion de internet es con los digitos 8
 si en caso tal no permite el servidor toca agregar la regla en el firewall
 
-para los datos reales de las entas toca veririfcar la zona horaria del servidor que sea igual al equipo
+para los datos reales de las ventas en y en los cabezotes principales toca veririfcar la zona horaria del servidor que sea igual al equipo
 por que si verificamos la zona horaria en un archivo 'la zona horaria: ' . date_default_timezone_get(); nos muestra por defecto echo la zona horaria: Europe/Berlin
-toca cambiarla en el archivo php.in search this: date.timezone = America/Bogota
+toca cambiarla en el archivo php.ini search this: date.timezone = America/Bogota
 
 problema de impimir tickect y pdf tocaba actualizar la carpeta tcpdf exactamente el archivo tcpdf, tcpdf_barcodes_1d, tcpdf_static, tcpdf_images listo
 

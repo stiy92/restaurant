@@ -857,6 +857,30 @@ $(".tablas").on("click", ".btnEliminarVenta", function(){
 })
 
 /*=============================================
+IMPRIMIR VENTA
+=============================================*/
+
+$(document).ready(function () {
+    if (window.location.search.includes("idImprimirVenta")) {
+        var cventa = new URLSearchParams(window.location.search).get("idImprimirVenta");
+
+        swal({
+            title: "Imprimiendo Venta",
+            text: "Espere un momento mientras se imprime...",
+            type: "info",
+            showConfirmButton: false,
+            timer: 3000 // Tiempo para mostrar el mensaje
+        }).then(function () {
+            // Llamar al proceso de impresión aquí
+            window.location = "index.php?ruta=crear-venta"; // Redirigir a una URL sin el parámetro para evitar el bucle
+        });
+
+        // Realizar cualquier otra acción relacionada con la impresión
+        console.log("Proceso de impresión para la venta: " + cventa);
+    }
+});
+
+/*=============================================
 PAGAR VENTA
 =============================================*/
 $(".tablas").on("click", ".btnpagarcredito", function(){

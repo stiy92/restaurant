@@ -355,269 +355,29 @@ class ControladorVentas{
 								 }
 
 								if($metodo!="Pendiente"){
-                  
-                                   /*=============================================
-			                       PRIMERA COPIA PARA EL CLIENTE
-			                       =============================================*/
-                  
-				                  $impresora = "POS-80C";
-                  
-				                  $conector = new WindowsPrintConnector($impresora);
-                  
-				                  $printer = new Printer($conector);
-                  
-				                  $printer -> text(date("Y-m-d H:i:s")."\n");//Fecha de la factura
-                  
-				                  //$printer -> setJustification(Printer::JUSTIFY_CENTER);
-                  
-				                  $printer -> feed(1); //Alimentamos el papel 1 vez
-                  
-				                  $printer -> text("TRADICION MALL GASTRONOMICO"."\n");//Nombre de la empresa
-                  
-								  $printer -> text("NIT: 1.130.670.324-7"."\n");//Nit de la empresa
-						
-								  $printer -> text("Dirección: Calle 2 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
-						
-								  $printer -> text("Teléfono: 323 488 5888"."\n");//Teléfono de la empresa
-                  
-				                  $printer -> text("FACTURA N.".$lastcodigo1."\n");//Número de factura
-                  
-				                  $printer -> feed(1); //Alimentamos el papel 1 vez
-                  
-				                  $printer -> text("Cliente: ".$traerCliente["nombre"]."\n");//Nombre del cliente
-                  
-				                  $printer -> text("Nit Cliente: ".$traerCliente["documento"]."\n");//Nit del cliente
-                  
-				                  $tablaVendedor = "usuarios";
-				                  $item = "id";
-				                  $valor = $_POST["idVendedor"];
-                  
-				                  $traerVendedor = ModeloUsuarios::mdlMostrarUsuarios($tablaVendedor, $item, $valor);
-                  
-				                  $printer -> text("Vendedor: ".$traerVendedor["nombre"]."\n");//Nombre del vendedor
-                  
-				                  $printer -> feed(1); //Alimentamos el papel 1 vez*/
-                  
-				                  foreach ($listaProductos as $key => $value) {
-                  
-					                  $printer->setJustification(Printer::JUSTIFY_LEFT);
-                  
-					                  $printer->text($value["descripcion"]."\n");//Nombre del producto
-                  
-					                  $printer->setJustification(Printer::JUSTIFY_RIGHT);
-                  
-					                  $printer->text("$ ".number_format($value["precio"],2)." Und x ".$value["cantidad"]." = $ ".number_format($value["total"],2)."\n");
-                  
-				                  }
-                  
-				                  $printer -> feed(1); //Alimentamos el papel 1 vez*/			
-                  				
-				                  $printer->text("NETO: $ ".number_format($_POST["nuevoPrecioNeto"],2)."\n"); //ahora va el neto
-                  
-				                  $printer->text("IMPUESTO: $ ".number_format($_POST["nuevoPrecioImpuesto"],2)."\n"); //ahora va el impuesto
-                                  
-								  // Verificar si el descuento es mayor que cero
-								  //if ($_POST["nuevodescuento"] > 0) {$printer->text("DESCUENTO: $ ".number_format($_POST["nuevoPrecioDescuento"],2)."\n");}
-				                  $totalwithoutd=$_POST["nuevodescuento"]+$_POST["totalVenta"];
-
-								  $printer->text("--------\n");
-                  
-				                  $printer->text("TOTAL: $ ".number_format($totalwithoutd,2)."\n"); //ahora va el total
-                  
-				                  $printer -> feed(1); //Alimentamos el papel 1 vez*/	
-                  
-				                  $printer->text("Muchas gracias por su compra"); //Podemos poner también un pie de página
-                  
-				                  $printer -> feed(3); //Alimentamos el papel 3 veces*/
-                  
-				                  $printer -> cut(); //Cortamos el papel, si la impresora tiene la opción
-                  
-				                  $printer -> pulse(); //Por medio de la impresora mandamos un pulso, es útil cuando hay cajón moneder
-                  
-				                  $printer -> close();
-                  
-				                           /*=============================================
-			                                SEGUNDA COPIA PARA EL ALMACEN CON DESCUENTO
-			                                =============================================*/
-                  				
-				                  $impresora = "POS-80C";
-                  
-				                  $conector = new WindowsPrintConnector($impresora);
-                  
-				                  $printer = new Printer($conector);
-                  
-				                  $printer -> text(date("Y-m-d H:i:s")."\n");//Fecha de la factura
-                  
-				                  //$printer -> setJustification(Printer::JUSTIFY_CENTER);
-                  
-				                  $printer -> feed(1); //Alimentamos el papel 1 vez
-                  
-				                  $printer -> text("TRADICION MALL GASTRONOMICO"."\n");//Nombre de la empresa
-                  
-				                  $printer -> text("NIT: 1.130.670.324-7"."\n");//Nit de la empresa
-                  
-				                  $printer -> text("Dirección: Calle 2 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
-                  
-				                  $printer -> text("Teléfono: 323 488 5888"."\n");//Teléfono de la empresa
-                  
-				                  $printer -> text("FACTURA N.".$lastcodigo1."\n");//Número de factura
-                  
-				                  $printer -> feed(1); //Alimentamos el papel 1 vez
-
-								  // Condición para imprimir el mensaje de descuento si existe
-
-								  $tablaVendedor = "usuarios";
-				                  $item = "id";
-				                  $valor = $_POST["idVendedor"];
-                  
-				                  $traerVendedor = ModeloUsuarios::mdlMostrarUsuarios($tablaVendedor, $item, $valor);
-
-								  if ($_POST["nuevodescuento"] > 0) {
-                  
-				                       $printer -> text("Cliente: ".$traerCliente["nombre"]             ."******************************\n");//Nombre del cliente
-                       
-				                       $printer -> text("Nit Cliente: ".$traerCliente["documento"]       ."* ¡DESCUENTO APLICADO! (*.*)*\n");//Nit del cliente
-                       
-								       $printer -> text("Vendedor: ".$traerVendedor["nombre"]            ."******************************\n");//Nombre del vendedor
-     								  
-								  } else {
-
-                                      // Imprimir normalmente sin el mensaje de descuento
-                                      $printer->text("Cliente: ".$traerCliente["nombre"]."\n");
-
-                                      $printer->text("Nit Cliente: ".$traerCliente["documento"]."\n");
-
-                                      $printer->text("Vendedor: ".$traerVendedor["nombre"]."\n");
-                                 }
-                  
-				                  $printer -> feed(1); //Alimentamos el papel 1 vez*/
-                  
-				                  foreach ($listaProductos as $key => $value) {
-                  
-					                  $printer->setJustification(Printer::JUSTIFY_LEFT);
-                  
-					                  $printer->text($value["descripcion"]."\n");//Nombre del producto
-                  
-					                  $printer->setJustification(Printer::JUSTIFY_RIGHT);
-                  
-					                  $printer->text("$ ".number_format($value["precio"],2)." Und x ".$value["cantidad"]." = $ ".number_format($value["total"],2)."\n");
-                  
-				                  }
-                  
-				                  $printer -> feed(1); //Alimentamos el papel 1 vez*/			
-                  				
-				                  $printer->text("NETO: $ ".number_format($_POST["nuevoPrecioNeto"],2)."\n"); //ahora va el neto
-                  
-				                  $printer->text("IMPUESTO: $ ".number_format($_POST["nuevoPrecioImpuesto"],2)."\n"); //ahora va el impuesto
-                                 
-								  // Verificar si el descuento es mayor que cero
-				                  if ($_POST["nuevodescuento"] > 0) {$printer->text("DESCUENTO: $ ".number_format($_POST["nuevodescuento"],2)."\n");}
-				                  
-								  $printer->text("--------\n");
-                  
-				                  $printer->text("TOTAL: $ ".number_format($_POST["totalVenta"],2)."\n"); //ahora va el total
-                  
-				                  $printer -> feed(1); //Alimentamos el papel 1 vez*/	
-                  
-				                  $printer->text("Muchas gracias por su compra"); //Podemos poner también un pie de página
-                  
-				                  $printer -> feed(3); //Alimentamos el papel 3 veces*/
-                  
-				                  $printer -> cut(); //Cortamos el papel, si la impresora tiene la opción
-                  
-				                  $printer -> pulse(); //Por medio de la impresora mandamos un pulso, es útil cuando hay cajón moneder
-                  
-				                  $printer -> close();
-
-								           /*=============================================
-			                                TERCERA COPIA PARA EL CHEF
-			                                =============================================*/
-
-									//UNICA COPIA PARA EL CHEF
-									$nombreMesa = ($traermesa && isset($traermesa["nombre"])) ? $traermesa["nombre"] : "0";
-                        				
-									$impresora = "POS-80C";
-                        
-									$conector = new WindowsPrintConnector($impresora);
-					
-									$printer = new Printer($conector);
-									
-									// Aumentar el tamaño del texto (por ejemplo, 2x de ancho y alto)
-
-                                    $printer->setTextSize(2, 2);
-					
-									$printer -> text(date("Y-m-d H:i:s")."\n" ."PEDIDO"."* ¡CHEF! (*.*)*\n");//Fecha de la factura
-					
-									//$printer -> setJustification(Printer::JUSTIFY_CENTER);
-					
-									$printer -> feed(1); //Alimentamos el papel 1 vez
-
-									$printer -> text("FACTURA N.".$traercodigo["max_codigo"]."\n");//Número de factura
-					
-									$printer -> feed(1); //Alimentamos el papel 1 vez
-
-									$printer -> text("MESA N." . $nombreMesa . "\n");//Número de factura
-					
-									$printer -> text("Cliente: ".$traerCliente["nombre"]."\n");//Nombre del cliente
-					
-									$tablaVendedor = "usuarios";
-									$item = "id";
-									$valor = $_POST["idVendedor"];
-					
-									$traerVendedor = ModeloUsuarios::mdlMostrarUsuarios($tablaVendedor, $item, $valor);
-					
-									$printer -> text("ATENDIDO POR: ".$traerVendedor["nombre"]."\n");//Nombre del vendedor
-					
-									$printer -> feed(1); //Alimentamos el papel 1 vez*/
-					
-									foreach ($listaProductos as $key => $value) {
-					
-										$printer->setJustification(Printer::JUSTIFY_LEFT);
-					
-										$printer->text($value["descripcion"]."\n");//Nombre del producto
-					
-										$printer->setJustification(Printer::JUSTIFY_RIGHT);
-					
-										$printer->text("$ ".number_format($value["precio"],2)." Und x ".$value["cantidad"]." = $ ".number_format($value["total"],2)."\n");
-					
-									}
-
-									// Resetear el tamaño de texto al valor predeterminado
-
-                                    $printer->setTextSize(1, 1);
-				
-									$printer -> feed(3); //Alimentamos el papel 3 veces*/
-					
-									$printer -> cut(); //Cortamos el papel, si la impresora tiene la opción
-					
-									$printer -> pulse(); //Por medio de la impresora mandamos un pulso, es útil cuando hay cajón moneder
-					
-									$printer -> close();
                   	
-				                  echo'<script>
-                  
-				                  localStorage.removeItem("rango");
-                  
-				                  swal({
-					                    type: "success",
-					                    title: "La venta ha sido guardada correctamente",
-					                    showConfirmButton: true,
-					                    confirmButtonText: "Cerrar"
-					                    }).then(function(result){
-								                  if (result.value) {
-                  
-								                  window.location = "ventas";
-                  
-								                  }
-							                  })
-                  
-				                  </script>';
+									echo '<script>
+									swal({
+										title: "La venta ha sido guardada correctamente",
+										text: "¿Deseas imprimir esta venta?",
+										type: "success",
+										showCancelButton: true,
+										confirmButtonColor: "#3085d6",
+										cancelButtonColor: "#d33",
+										cancelButtonText: "No, gracias",
+										confirmButtonText: "Sí, imprimir"
+									}).then((result) => {
+										if (result.value) {
+											window.location = "index.php?ruta=craer-venta&idImprimirVenta=' . $lastcodigo1 . '";
+										} else {
+											window.location = "mesas";
+										}
+									});
+								</script>';
                   
 								} else {
 
-									// imprimir ticket para el chet 
-
-									//UNICA COPIA PARA EL CHEF
+									//IMPRIMIR COPIA PARA EL CHEF
                         				
 									$impresora = "POS-80C";
                         
@@ -1349,6 +1109,301 @@ class ControladorVentas{
 
 	}
 
+	/*=============================================
+	IMPIMIR VENTA
+	=============================================*/
+	static public function ctrImprimirVenta(){
+	            if(isset($_GET["idImprimirVenta"])){
+
+					$tabla = "ventas";
+
+			           $item = "codigo";
+			           $valor = $_GET["idImprimirVenta"];
+
+			           $traerVenta = ModeloVentas::mdlMostrarVentascodigo($tabla, $item, $valor);
+
+					   if (!$traerVenta) {
+						echo "Error: Venta no encontrada.";
+						return;
+					   } else if(is_numeric($valor)){
+
+						echo "Yes: Venta encontrada.";
+
+						$idmesa = $traerVenta["idmesa"];       
+					   
+					   $tablaClientes = "clientes";
+                           
+					   $item = "id";
+					   $valor2 = $traerVenta["id_cliente"];
+		   
+					   $traerCliente = ModeloClientes::mdlMostrarClientes($tablaClientes, $item, $valor2);
+		   
+					   $tablaVendedor = "usuarios";
+								   $item = "id";
+								   $valor3 = $traerVenta["id_vendedor"];
+					   $traerVendedor = ModeloUsuarios::mdlMostrarUsuarios($tablaVendedor, $item, $valor3);
+
+		                   /*=============================================
+			                       PRIMERA COPIA PARA EL CLIENTE
+			                       =============================================*/
+                  
+								   $impresora = "POS-80C";
+                  
+								   $conector = new WindowsPrintConnector($impresora);
+				   
+								   $printer = new Printer($conector);
+				   
+								   $printer -> text(date("Y-m-d H:i:s")."\n");//Fecha de la factura
+				   
+								   //$printer -> setJustification(Printer::JUSTIFY_CENTER);
+				   
+								   $printer -> feed(1); //Alimentamos el papel 1 vez
+				   
+								   $printer -> text("TRADICION MALL GASTRONOMICO"."\n");//Nombre de la empresa
+				   
+								   $printer -> text("NIT: 1.130.670.324-7"."\n");//Nit de la empresa
+						 
+								   $printer -> text("Dirección: Calle 2 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
+						 
+								   $printer -> text("Teléfono: 323 488 5888"."\n");//Teléfono de la empresa
+				   
+								   $printer -> text("FACTURA N.".$valor."\n");//Número de factura
+				   
+								   $printer -> feed(1); //Alimentamos el papel 1 vez
+				   
+								   $printer -> text("Cliente: ".$traerCliente["nombre"]."\n");//Nombre del cliente
+				   
+								   $printer -> text("Nit Cliente: ".$traerCliente["documento"]."\n");//Nit del cliente
+				   
+								   $printer -> text("Vendedor: ".$traerVendedor["nombre"]."\n");//Nombre del vendedor
+				   
+								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
+				   
+								   foreach ($traerVenta["productos"] as $key => $value) {
+				   
+									   $printer->setJustification(Printer::JUSTIFY_LEFT);
+				   
+									   $printer->text($value["descripcion"]."\n");//Nombre del producto
+				   
+									   $printer->setJustification(Printer::JUSTIFY_RIGHT);
+				   
+									   $printer->text("$ ".number_format($value["precio"],2)." Und x ".$value["cantidad"]." = $ ".number_format($value["total"],2)."\n");
+				   
+								   }
+				   
+								   $printer -> feed(1); //Alimentamos el papel 1 vez*/			
+								   
+								   $printer->text("NETO: $ ".number_format($traerVenta["neto"],2)."\n"); //ahora va el neto
+				   
+								   $printer->text("IMPUESTO: $ ".number_format($traerVenta["impuesto"],2)."\n"); //ahora va el impuesto
+								   
+								   // Verificar si el descuento es mayor que cero
+								   //if ($_POST["nuevodescuento"] > 0) {$printer->text("DESCUENTO: $ ".number_format($_POST["nuevoPrecioDescuento"],2)."\n");}
+								   $totalwithoutd=$traerVenta["descuento"]+$traerVenta["total"];
+ 
+								   $printer->text("--------\n");
+				   
+								   $printer->text("TOTAL: $ ".number_format($totalwithoutd,2)."\n"); //ahora va el total
+
+								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
+
+								   $printer -> text("Metodo de pago: ".$traerVenta["metodo_pago"]."\n");//Nombre del vendedor
+				   
+								   $printer -> feed(1); //Alimentamos el papel 1 vez*/	
+				   
+								   $printer->text("Muchas gracias por su compra"); //Podemos poner también un pie de página
+				   
+								   $printer -> feed(3); //Alimentamos el papel 3 veces*/
+				   
+								   $printer -> cut(); //Cortamos el papel, si la impresora tiene la opción
+				   
+								   $printer -> pulse(); //Por medio de la impresora mandamos un pulso, es útil cuando hay cajón moneder
+				   
+								   $printer -> close();
+				   
+											/*=============================================
+											 SEGUNDA COPIA PARA EL ALMACEN CON DESCUENTO
+											 =============================================*/
+								   
+								   $impresora = "POS-80C";
+				   
+								   $conector = new WindowsPrintConnector($impresora);
+				   
+								   $printer = new Printer($conector);
+				   
+								   $printer -> text(date("Y-m-d H:i:s")."\n");//Fecha de la factura
+				   
+								   //$printer -> setJustification(Printer::JUSTIFY_CENTER);
+				   
+								   $printer -> feed(1); //Alimentamos el papel 1 vez
+				   
+								   $printer -> text("TRADICION MALL GASTRONOMICO"."\n");//Nombre de la empresa
+				   
+								   $printer -> text("NIT: 1.130.670.324-7"."\n");//Nit de la empresa
+				   
+								   $printer -> text("Dirección: Calle 2 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
+				   
+								   $printer -> text("Teléfono: 323 488 5888"."\n");//Teléfono de la empresa
+				   
+								   $printer -> text("FACTURA N.".$valor."\n");//Número de factura
+				   
+								   $printer -> feed(1); //Alimentamos el papel 1 vez
+ 
+								   // Condición para imprimir el mensaje de descuento si existe
+				   
+								//    $traerVendedor = ModeloUsuarios::mdlMostrarUsuarios($tablaVendedor, $item, $valor3);
+ 
+								   if ($traerVenta["descuento"] > 0) {
+				   
+										$printer -> text("Cliente: ".$traerCliente["nombre"]             ."******************************\n");//Nombre del cliente
+						
+										$printer -> text("Nit Cliente: ".$traerCliente["documento"]       ."* ¡DESCUENTO APLICADO! (*.*)*\n");//Nit del cliente
+						
+										$printer -> text("Vendedor: ".$traerVendedor["nombre"]            ."******************************\n");//Nombre del vendedor
+										
+								   } else {
+ 
+									   // Imprimir normalmente sin el mensaje de descuento
+									   $printer->text("Cliente: ".$traerCliente["nombre"]."\n");
+ 
+									   $printer->text("Nit Cliente: ".$traerCliente["documento"]."\n");
+ 
+									   $printer->text("Vendedor: ".$traerVendedor["nombre"]."\n");
+								  }
+				   
+								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
+				   
+								   foreach ($traerVenta["productos"] as $key => $value) {
+				   
+									   $printer->setJustification(Printer::JUSTIFY_LEFT);
+				   
+									   $printer->text($value["descripcion"]."\n");//Nombre del producto
+				   
+									   $printer->setJustification(Printer::JUSTIFY_RIGHT);
+				   
+									   $printer->text("$ ".number_format($value["precio"],2)." Und x ".$value["cantidad"]." = $ ".number_format($value["total"],2)."\n");
+				   
+								   }
+				   
+								   $printer -> feed(1); //Alimentamos el papel 1 vez*/			
+								   
+								   $printer->text("NETO: $ ".number_format($traerVenta["neto"],2)."\n"); //ahora va el neto
+				   
+								   $printer->text("IMPUESTO: $ ".number_format($traerVenta["impuesto"],2)."\n"); //ahora va el impuesto
+								  
+								   // Verificar si el descuento es mayor que cero
+								   if ($traerVenta["descuento"] > 0) {$printer->text("DESCUENTO: $ ".number_format($traerVenta["descuento"],2)."\n");}
+								   
+								   $printer->text("--------\n");
+				   
+								   $printer->text("TOTAL: $ ".number_format($traerVenta["total"],2)."\n"); //ahora va el total
+				   
+								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
+
+								   $printer -> text("Metodo de pago: ".$traerVenta["metodo_pago"]."\n");//Nombre del vendedor
+
+								   $printer -> feed(1); //Alimentamos el papel 1 vez*/	
+				   
+								   $printer->text("Muchas gracias por su compra"); //Podemos poner también un pie de página
+				   
+								   $printer -> feed(3); //Alimentamos el papel 3 veces*/
+				   
+								   $printer -> cut(); //Cortamos el papel, si la impresora tiene la opción
+				   
+								   $printer -> pulse(); //Por medio de la impresora mandamos un pulso, es útil cuando hay cajón moneder
+				   
+								   $printer -> close();
+ 
+											/*=============================================
+											 TERCERA COPIA PARA EL CHEF
+											 =============================================*/
+ 
+									 //UNICA COPIA PARA EL CHEF
+									//  $nombreMesa = ($idmesa && isset($idmesa["nombre"])) ? $idmesa["nombre"] : "0";
+										 
+									 $impresora = "POS-80C";
+						 
+									 $conector = new WindowsPrintConnector($impresora);
+					 
+									 $printer = new Printer($conector);
+									 
+									 // Aumentar el tamaño del texto (por ejemplo, 2x de ancho y alto)
+ 
+									 $printer->setTextSize(2, 2);
+					 
+									 $printer -> text(date("Y-m-d H:i:s")."\n" ."PEDIDO"."* ¡CHEF! (*.*)*\n");//Fecha de la factura
+					 
+									 //$printer -> setJustification(Printer::JUSTIFY_CENTER);
+					 
+									 $printer -> feed(1); //Alimentamos el papel 1 vez
+ 
+									 $printer -> text("FACTURA N.".$valor."\n");//Número de factura
+					 
+									 $printer -> feed(1); //Alimentamos el papel 1 vez
+ 
+									 $printer -> text("MESA N." . $idmesa . "\n");//Número de factura
+					 
+									 $printer -> text("Cliente: ".$traerCliente["nombre"]."\n");//Nombre del cliente
+					 
+									 $printer -> text("ATENDIDO POR: ".$traerVendedor["nombre"]."\n");//Nombre del vendedor
+					 
+									 $printer -> feed(1); //Alimentamos el papel 1 vez*/
+					 
+									 foreach ($traerVenta["productos"] as $key => $value) {
+					 
+										 $printer->setJustification(Printer::JUSTIFY_LEFT);
+					 
+										 $printer->text($value["descripcion"]."\n");//Nombre del producto
+					 
+										 $printer->setJustification(Printer::JUSTIFY_RIGHT);
+					 
+										 $printer->text(" Und x ".$value["cantidad"]."\n");
+					 
+									 }
+ 
+									 // Resetear el tamaño de texto al valor predeterminado
+ 
+									 $printer->setTextSize(1, 1);
+				 
+									 $printer -> feed(3); //Alimentamos el papel 3 veces*/
+					 
+									 $printer -> cut(); //Cortamos el papel, si la impresora tiene la opción
+					 
+									 $printer -> pulse(); //Por medio de la impresora mandamos un pulso, es útil cuando hay cajón moneder
+					 
+									 $printer -> close();
+
+									 echo "<script>
+                                   swal({
+                                       title: 'Imprimiendo Venta',
+                                       text: 'Espere un momento mientras se imprime...',
+                                       type: 'info',
+                                       showConfirmButton: false,
+                                       timer: 3000
+                                   }).then(function () {
+                                       // Redirigir después de mostrar el mensaje
+                                       window.location = 'index.php?ruta=mesas';
+                                   });
+                           
+                                   console.log('Imprimiendo venta con código: " . $valor . "');
+                                    </script>";
+						
+					        } else {
+								// Manejar error si el código no es válido
+								echo "<script>
+									swal({
+										title: 'Error',
+										text: 'El código de la venta no es válido.',
+										type: 'error',
+										confirmButtonText: 'Aceptar'
+									});
+								</script>";
+							}
+
+					   
+	}
+}
+	
 	/*=============================================
 	RANGO FECHAS MOSTRAR VENTAS TABLA
 	=============================================*/	
