@@ -254,7 +254,7 @@ class ControladorVentas{
 					                         }).then(function(result){
 								                       if (result.value) {
                        
-								                       window.location = "ventas";
+								                       window.location = "crear-venta";
                        
 								                       }
 							                       })
@@ -368,7 +368,7 @@ class ControladorVentas{
 										confirmButtonText: "Sí, imprimir"
 									}).then((result) => {
 										if (result.value) {
-											window.location = "index.php?ruta=craer-venta&idImprimirVenta=' . $lastcodigo1 . '";
+											window.location = "index.php?ruta=crear-venta&idImprimirVenta='.$lastcodigo1.'";
 										} else {
 											window.location = "mesas";
 										}
@@ -1178,8 +1178,11 @@ class ControladorVentas{
 								   $printer -> text("Vendedor: ".$traerVendedor["nombre"]."\n");//Nombre del vendedor
 				   
 								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
+
+								   //DECODIFICAR JSON
+								   $productos = json_decode($traerVenta["productos"], true); // Convierte JSON a un array asociativo  
 				   
-								   foreach ($traerVenta["productos"] as $key => $value) {
+								   foreach ($productos as $key => $value) {
 				   
 									   $printer->setJustification(Printer::JUSTIFY_LEFT);
 				   
@@ -1272,8 +1275,11 @@ class ControladorVentas{
 								  }
 				   
 								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
+
+								   //DECODIFICAR JSON
+								   $productos = json_decode($traerVenta["productos"], true); // Convierte JSON a un array asociativo 
 				   
-								   foreach ($traerVenta["productos"] as $key => $value) {
+								   foreach ($productos as $key => $value) {
 				   
 									   $printer->setJustification(Printer::JUSTIFY_LEFT);
 				   
@@ -1348,8 +1354,11 @@ class ControladorVentas{
 									 $printer -> text("ATENDIDO POR: ".$traerVendedor["nombre"]."\n");//Nombre del vendedor
 					 
 									 $printer -> feed(1); //Alimentamos el papel 1 vez*/
-					 
-									 foreach ($traerVenta["productos"] as $key => $value) {
+
+					                 //DECODIFICAR JSON
+								     $productos = json_decode($traerVenta["productos"], true); // Convierte JSON a un array asociativo 
+
+									 foreach ($productos as $key => $value) {
 					 
 										 $printer->setJustification(Printer::JUSTIFY_LEFT);
 					 
@@ -1372,21 +1381,6 @@ class ControladorVentas{
 									 $printer -> pulse(); //Por medio de la impresora mandamos un pulso, es útil cuando hay cajón moneder
 					 
 									 $printer -> close();
-
-									 echo "<script>
-                                   swal({
-                                       title: 'Imprimiendo Venta',
-                                       text: 'Espere un momento mientras se imprime...',
-                                       type: 'info',
-                                       showConfirmButton: false,
-                                       timer: 3000
-                                   }).then(function () {
-                                       // Redirigir después de mostrar el mensaje
-                                       window.location = 'index.php?ruta=mesas';
-                                   });
-                           
-                                   console.log('Imprimiendo venta con código: " . $valor . "');
-                                    </script>";
 						
 					        } else {
 								// Manejar error si el código no es válido
