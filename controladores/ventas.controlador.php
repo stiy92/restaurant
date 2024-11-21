@@ -1327,7 +1327,7 @@ class ControladorVentas{
 			$tabla = "ventas";
 
 			   $item = "codigo";
-			   $valor = $_GET["idImprimirVenta"];
+			   $valor = $_GET["idImprimirVenta2"];
 
 			   $traerVenta = ModeloVentas::mdlMostrarVentascodigo($tabla, $item, $valor);
 
@@ -1336,10 +1336,10 @@ class ControladorVentas{
 				return;
 			   } else if(is_numeric($valor)){
 
-				// echo "Yes: Venta encontrada.";
-				// echo "<pre>";
-				// print_r($traerVenta);
-				// echo "</pre>";
+				echo "Yes: Venta encontrada.";
+				echo "<pre>";
+				print_r($traerVenta);
+				echo "</pre>";
 
 			         	$idmesa = $traerVenta["idmesa"];       
 			   
