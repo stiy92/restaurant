@@ -367,7 +367,7 @@
 
             if (isset($_GET["idImprimirVenta2"])) {
               $imprimirVenta = new ControladorVentas();
-              $imprimirVenta->ctrImprimirVenta();
+              $imprimirVenta->ctrImprimirVenta2();
             }
 
              ?>
@@ -376,7 +376,7 @@
 
            if (isset($_GET["idImprimirVenta3"])) {
              $imprimirVenta = new ControladorVentas();
-             $imprimirVenta->ctrImprimirVenta();
+             $imprimirVenta->ctrImprimirVenta3();
            }
 
             ?>           

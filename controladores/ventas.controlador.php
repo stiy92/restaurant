@@ -797,7 +797,7 @@ class ControladorVentas{
 	}
 
 	/*=============================================
-	IMPIMIR VENTA
+	IMPIMIR VENTA 1
 	=============================================*/
 	static public function ctrImprimirVenta(){
 	            if(isset($_GET["idImprimirVenta"])){
@@ -1089,15 +1089,15 @@ class ControladorVentas{
 }
 
 	/*=============================================
-	IMPIMIR VENTA
+	IMPIMIR VENTA 3
 	=============================================*/
 	static public function ctrImprimirVenta3(){
-		if(isset($_GET["idImprimirVenta"])){
+		if(isset($_GET["idImprimirVenta3"])){
 
 			$tabla = "ventas";
 
 			   $item = "codigo";
-			   $valor = $_GET["idImprimirVenta"];
+			   $valor = $_GET["idImprimirVenta3"];
 
 			   $traerVenta = ModeloVentas::mdlMostrarVentascodigo($tabla, $item, $valor);
 
@@ -1319,7 +1319,7 @@ class ControladorVentas{
 }
 
 /*=============================================
-	IMPIMIR TICKET CHEF
+	IMPIMIR TICKET CHEF 2
 	=============================================*/
 	static public function ctrImprimirVenta2(){
 		if(isset($_GET["idImprimirVenta2"])){
@@ -1327,7 +1327,7 @@ class ControladorVentas{
 			$tabla = "ventas";
 
 			   $item = "codigo";
-			   $valor = $_GET["idImprimirVenta"];
+			   $valor = $_GET["idImprimirVenta2"];
 
 			   $traerVenta = ModeloVentas::mdlMostrarVentascodigo($tabla, $item, $valor);
 

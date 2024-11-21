@@ -921,6 +921,8 @@ $(document).ready(function () {
             });
         });
     }
+	 // Realizar cualquier otra acción relacionada con la impresión
+     console.log("Proceso de impresión para la venta: " + cventa);
 });
 
 // $(document).ready(function () {
