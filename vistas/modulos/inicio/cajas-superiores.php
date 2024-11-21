@@ -52,7 +52,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="inner">
       
-      <h3>$<?php echo number_format($ventass["total"],2); ?></h3>
+      <h3>$<?php echo number_format($ventass["total"]); ?></h3>
 
       <p>Ventas efectivo hoy</p>
     
@@ -81,7 +81,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="inner">
       
-      <h3>$<?php echo number_format($gastos["total"],2); ?></h3>
+      <h3>$<?php echo number_format($gastos["total"]); ?></h3>
 
       <p>Gastos efectivo hoy</p>
     
@@ -111,7 +111,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="inner">
       
-      <h3>$<?php echo number_format($ventascre["total"],2); ?></h3>
+      <h3>$<?php echo number_format($ventascre["total"]); ?></h3>
 
       <p>Ventas credito hoy</p>
     
@@ -140,7 +140,7 @@ $valor =$ventass["total"] + $ventasneq["total"] + $abonadot["total"] - $gastos["
     
     <div class="inner">
       
-      <h3>$<?php echo number_format($ventasneq["total"],2); ?></h3>
+      <h3>$<?php echo number_format($ventasneq["total"]); ?></h3>
 
       <p>Ventas Nequi hoy</p>
     

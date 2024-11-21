@@ -861,30 +861,123 @@ IMPRIMIR VENTA
 =============================================*/
 
 $(document).ready(function () {
-    if (window.location.search.includes("idImprimirVenta")) {
-        var cventa = new URLSearchParams(window.location.search).get("idImprimirVenta");
+    let params = new URLSearchParams(window.location.search);
+
+    if (params.has("idImprimirVenta2")) {
+		console.log("Bloque idImprimirVenta2 ejecutado");
+        var cventa = params.get("idImprimirVenta2");
 
         swal({
-			title: "Imprimiendo Venta",
-			text: "Espere un momento mientras se imprime...",
-			icon: "info", // Utiliza "icon" en lugar de "type"
-			buttons: false, // No mostrar botones en este momento
-			timer: 3000 // Tiempo en milisegundos (3 segundos)
-        }).then(function () {// Después de 3 segundos, mostrar el segundo mensaje y redirigir
-			swal({
-				title: "La impresión se ha realizado correctamente",
-				icon: "success", // Icono de éxito
-				button: "Cerrar" // Botón con texto "Cerrar"
-			}).then(function () {
-				// Redirigir a la página de mesas después de cerrar el mensaje
-				window.location = "mesas";
-			});
+            title: "Imprimiendo Ticket para el Chef",
+            text: "Espere un momento mientras se imprime...",
+            icon: "info",
+            buttons: false,
+            timer: 3000
+        }).then(function () {
+            swal({
+                title: "Impresión Lista y Mesa Ocupada",
+                icon: "success",
+                button: "Cerrar"
+            }).then(function () {
+                window.location = "mesas";
+            });
         });
+    } else if (params.has("idImprimirVenta")) {
+		console.log("Bloque idImprimirVenta ejecutado");
+        var cventa = params.get("idImprimirVenta");
 
-        // Realizar cualquier otra acción relacionada con la impresión
-        console.log("Proceso de impresión para la venta: " + cventa);
+        swal({
+            title: "Imprimiendo Venta",
+            text: "Espere un momento mientras se imprime...",
+            icon: "info",
+            buttons: false,
+            timer: 3000
+        }).then(function () {
+            swal({
+                title: "La impresión se ha realizado correctamente",
+                icon: "success",
+                button: "Cerrar"
+            }).then(function () {
+                window.location = "mesas";
+            });
+        });
+    } else if (params.has("idImprimirVenta3")) {
+        console.log("Bloque idImprimirVenta3 ejecutado");
+        var cventa = params.get("idImprimirVenta3");
+
+        swal({
+            title: "Imprimiendo Ticket de Venta Finalizada",
+            text: "Espere un momento mientras se imprime...",
+            icon: "info",
+            buttons: false,
+            timer: 3000
+        }).then(function () {
+            swal({
+                title: "El ticket se ha imprimido correctamente",
+                icon: "success",
+                button: "Cerrar"
+            }).then(function () {
+                window.location = "mesas";
+            });
+        });
     }
-})
+});
+
+// $(document).ready(function () {
+//     if (window.location.search.includes("idImprimirVenta")) {
+//         var cventa = new URLSearchParams(window.location.search).get("idImprimirVenta");
+
+//         swal({
+// 			title: "Imprimiendo Venta",
+// 			text: "Espere un momento mientras se imprime...",
+// 			icon: "info", // Utiliza "icon" en lugar de "type"
+// 			buttons: false, // No mostrar botones en este momento
+// 			timer: 3000 // Tiempo en milisegundos (3 segundos)
+//         }).then(function () {// Después de 3 segundos, mostrar el segundo mensaje y redirigir
+// 			swal({
+// 				title: "La impresión se ha realizado correctamente",
+// 				icon: "success", // Icono de éxito
+// 				button: "Cerrar" // Botón con texto "Cerrar"
+// 			}).then(function () {
+// 				// Redirigir a la página de mesas después de cerrar el mensaje
+// 				window.location = "mesas";
+// 			});
+//         });
+
+//         // Realizar cualquier otra acción relacionada con la impresión
+//         // console.log("Proceso de impresión para la venta: " + cventa);
+//     }
+// })
+
+// /*=============================================
+// IMPRIMIR VENTA TICKET CHEF
+// =============================================*/
+
+// $(document).ready(function () {
+//     if (window.location.search.includes("idImprimirVenta2")) {
+//         var cventa = new URLSearchParams(window.location.search).get("idImprimirVenta2");
+
+//         swal({
+// 			title: "Imprimiendo Ticket para el Chef",
+// 			text: "Espere un momento mientras se imprime...",
+// 			icon: "info", // Utiliza "icon" en lugar de "type"
+// 			buttons: false, // No mostrar botones en este momento
+// 			timer: 3000 // Tiempo en milisegundos (3 segundos)
+//         }).then(function () {// Después de 3 segundos, mostrar el segundo mensaje y redirigir
+// 			swal({
+// 				title: "Impresión lista y La mesa fue ocupada",
+// 				icon: "success", // Icono de éxito
+// 				button: "Cerrar" // Botón con texto "Cerrar"
+// 			}).then(function () {
+// 				// Redirigir a la página de mesas después de cerrar el mensaje
+// 				window.location = "mesas";
+// 			});
+//         });
+
+//         // Realizar cualquier otra acción relacionada con la impresión
+//         // console.log("Proceso de impresión para la venta: " + cventa);
+//     }
+// })
 
 /*=============================================
 PAGAR VENTA

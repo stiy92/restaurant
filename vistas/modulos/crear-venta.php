@@ -363,6 +363,24 @@
 
             ?>
 
+            <?php
+
+            if (isset($_GET["idImprimirVenta2"])) {
+              $imprimirVenta = new ControladorVentas();
+              $imprimirVenta->ctrImprimirVenta();
+            }
+
+             ?>
+
+           <?php
+
+           if (isset($_GET["idImprimirVenta3"])) {
+             $imprimirVenta = new ControladorVentas();
+             $imprimirVenta->ctrImprimirVenta();
+           }
+
+            ?>           
+
         </div>
             
       </div>
