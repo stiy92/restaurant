@@ -797,7 +797,7 @@ class ControladorVentas{
 	}
 
 	/*=============================================
-	IMPIMIR VENTA
+	IMPIMIR VENTA 1
 	=============================================*/
 	static public function ctrImprimirVenta(){
 	            if(isset($_GET["idImprimirVenta"])){
@@ -1089,15 +1089,15 @@ class ControladorVentas{
 }
 
 	/*=============================================
-	IMPIMIR VENTA
+	IMPIMIR VENTA 3
 	=============================================*/
 	static public function ctrImprimirVenta3(){
-		if(isset($_GET["idImprimirVenta"])){
+		if(isset($_GET["idImprimirVenta3"])){
 
 			$tabla = "ventas";
 
 			   $item = "codigo";
-			   $valor = $_GET["idImprimirVenta"];
+			   $valor = $_GET["idImprimirVenta3"];
 
 			   $traerVenta = ModeloVentas::mdlMostrarVentascodigo($tabla, $item, $valor);
 
@@ -1319,7 +1319,7 @@ class ControladorVentas{
 }
 
 /*=============================================
-	IMPIMIR TICKET CHEF
+	IMPIMIR TICKET CHEF 2
 	=============================================*/
 	static public function ctrImprimirVenta2(){
 		if(isset($_GET["idImprimirVenta2"])){
@@ -1416,25 +1416,6 @@ class ControladorVentas{
 							 $printer -> pulse(); //Por medio de la impresora mandamos un pulso, es útil cuando hay cajón moneder
 			 
 							 $printer -> close();
-
-							 echo'<script>
-                  
-				                  localStorage.removeItem("rango");
-                  
-				                  swal({
-					                    type: "success",
-					                    title: "La mesa fue ocupada, La venta esta pendiente de pago",
-					                    showConfirmButton: true,
-					                    confirmButtonText: "Cerrar"
-					                    }).then(function(result){
-								                  if (result.value) {
-                  
-								                  window.location = "ventas";
-                  
-								                  }
-							                  })
-                  
-				                  </script>'; 
 				
 					} else {
 						// Manejar error si el código no es válido
