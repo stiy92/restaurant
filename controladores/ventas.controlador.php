@@ -797,7 +797,7 @@ class ControladorVentas{
 	}
 
 	/*=============================================
-	IMPIMIR VENTA 1
+	IMPIMIR VENTA
 	=============================================*/
 	static public function ctrImprimirVenta(){
 	            if(isset($_GET["idImprimirVenta"])){
@@ -1089,15 +1089,15 @@ class ControladorVentas{
 }
 
 	/*=============================================
-	IMPIMIR VENTA 3
+	IMPIMIR VENTA
 	=============================================*/
 	static public function ctrImprimirVenta3(){
-		if(isset($_GET["idImprimirVenta3"])){
+		if(isset($_GET["idImprimirVenta"])){
 
 			$tabla = "ventas";
 
 			   $item = "codigo";
-			   $valor = $_GET["idImprimirVenta3"];
+			   $valor = $_GET["idImprimirVenta"];
 
 			   $traerVenta = ModeloVentas::mdlMostrarVentascodigo($tabla, $item, $valor);
 
@@ -1319,7 +1319,7 @@ class ControladorVentas{
 }
 
 /*=============================================
-	IMPIMIR TICKET CHEF 2
+	IMPIMIR TICKET CHEF
 	=============================================*/
 	static public function ctrImprimirVenta2(){
 		if(isset($_GET["idImprimirVenta2"])){
@@ -1327,7 +1327,7 @@ class ControladorVentas{
 			$tabla = "ventas";
 
 			   $item = "codigo";
-			   $valor = $_GET["idImprimirVenta2"];
+			   $valor = $_GET["idImprimirVenta"];
 
 			   $traerVenta = ModeloVentas::mdlMostrarVentascodigo($tabla, $item, $valor);
 
@@ -1336,10 +1336,10 @@ class ControladorVentas{
 				return;
 			   } else if(is_numeric($valor)){
 
-				echo "Yes: Venta encontrada.";
-				echo "<pre>";
-				print_r($traerVenta);
-				echo "</pre>";
+				// echo "Yes: Venta encontrada.";
+				// echo "<pre>";
+				// print_r($traerVenta);
+				// echo "</pre>";
 
 			         	$idmesa = $traerVenta["idmesa"];       
 			   
@@ -1416,6 +1416,25 @@ class ControladorVentas{
 							 $printer -> pulse(); //Por medio de la impresora mandamos un pulso, es útil cuando hay cajón moneder
 			 
 							 $printer -> close();
+
+							 echo'<script>
+                  
+				                  localStorage.removeItem("rango");
+                  
+				                  swal({
+					                    type: "success",
+					                    title: "La mesa fue ocupada, La venta esta pendiente de pago",
+					                    showConfirmButton: true,
+					                    confirmButtonText: "Cerrar"
+					                    }).then(function(result){
+								                  if (result.value) {
+                  
+								                  window.location = "ventas";
+                  
+								                  }
+							                  })
+                  
+				                  </script>'; 
 				
 					} else {
 						// Manejar error si el código no es válido
