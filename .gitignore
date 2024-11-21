@@ -5,10 +5,10 @@
 #estos cambios deben de agregarce a git y luego do de push luego apdate y luego push jeje
 
 # # Ignore csc and imagenes para el proyecto individual
-# vistas/dist/
+vistas/dist/
 
 # # Ignore csc and imagenes para el proyecto individual
-# vistas/img/plantilla/
+vistas/img/
 
 # #color barra
 # vistas/modulos/cabezote.php
