@@ -858,6 +858,10 @@ class ControladorVentas{
 								   $printer -> text("Teléfono: 323 488 5888"."\n");//Teléfono de la empresa
 				   
 								   $printer -> text("FACTURA N.".$valor."\n");//Número de factura
+
+								   $printer -> feed(1); //Alimentamos el papel 1 vez
+ 
+								   $printer -> text("MESA N." . $idmesa . "\n");//Número de factura
 				   
 								   $printer -> feed(1); //Alimentamos el papel 1 vez
 				   
@@ -939,6 +943,10 @@ class ControladorVentas{
 								   $printer -> text("Teléfono: 323 488 5888"."\n");//Teléfono de la empresa
 				   
 								   $printer -> text("FACTURA N.".$valor."\n");//Número de factura
+
+								   $printer -> feed(1); //Alimentamos el papel 1 vez
+ 
+								   $printer -> text("MESA N." . $idmesa . "\n");//Número de factura
 				   
 								   $printer -> feed(1); //Alimentamos el papel 1 vez
  
@@ -1033,13 +1041,7 @@ class ControladorVentas{
 					 
 									 $printer -> feed(1); //Alimentamos el papel 1 vez
  
-									 $printer -> text("FACTURA N.".$valor."\n");//Número de factura
-					 
-									 $printer -> feed(1); //Alimentamos el papel 1 vez
- 
 									 $printer -> text("MESA N." . $idmesa . "\n");//Número de factura
-					 
-									 $printer -> text("Cliente: ".$traerCliente["nombre"]."\n");//Nombre del cliente
 					 
 									 $printer -> text("ATENDIDO POR: ".$traerVendedor["nombre"]."\n");//Nombre del vendedor
 					 
@@ -1150,6 +1152,10 @@ class ControladorVentas{
 						   $printer -> text("Teléfono: 323 488 5888"."\n");//Teléfono de la empresa
 		   
 						   $printer -> text("FACTURA N.".$valor."\n");//Número de factura
+
+						   $printer -> feed(1); //Alimentamos el papel 1 vez
+
+						   $printer -> text("MESA N." . $idmesa . "\n");//Número de factura
 		   
 						   $printer -> feed(1); //Alimentamos el papel 1 vez
 		   
@@ -1231,6 +1237,10 @@ class ControladorVentas{
 						   $printer -> text("Teléfono: 323 488 5888"."\n");//Teléfono de la empresa
 		   
 						   $printer -> text("FACTURA N.".$valor."\n");//Número de factura
+
+						   $printer -> feed(1); //Alimentamos el papel 1 vez
+
+						   $printer -> text("MESA N." . $idmesa . "\n");//Número de factura
 		   
 						   $printer -> feed(1); //Alimentamos el papel 1 vez
 
@@ -1383,8 +1393,6 @@ class ControladorVentas{
 							 $printer -> feed(1); //Alimentamos el papel 1 vez
 
 							 $printer -> text("MESA N." . $idmesa . "\n");//Número de factura
-			 
-							 $printer -> text("Cliente: ".$traerCliente["nombre"]."\n");//Nombre del cliente
 			 
 							 $printer -> text("ATENDIDO POR: ".$traerVendedor["nombre"]."\n");//Nombre del vendedor
 			 
