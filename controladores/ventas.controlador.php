@@ -897,6 +897,11 @@ class ControladorVentas{
 								   // Verificar si el descuento es mayor que cero
 								   //if ($_POST["nuevodescuento"] > 0) {$printer->text("DESCUENTO: $ ".number_format($_POST["nuevoPrecioDescuento"],2)."\n");}
 								   $totalwithoutd=$traerVenta["descuento"]+$traerVenta["total"];
+                                   // Calcular propina del 5%
+								   $propina = $totalwithoutd * 0.05;
+
+								   // Calcular total con propina
+                                   $totalConPropina = $totalwithoutd + $propina;
  
 								   $printer->text("--------\n");
 				   
@@ -904,9 +909,13 @@ class ControladorVentas{
 
 								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
+								   $printer->text("Total con propina: $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
+				   
+								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
+
 								   $printer -> text("Metodo de pago: ".$traerVenta["metodo_pago"]."\n");//Nombre del vendedor
 				   
-								   $printer -> feed(1); //Alimentamos el papel 1 vez*/	
+								   $printer -> feed(1); //Alimentamos el papel 1 vez*/		
 				   
 								   $printer->text("Muchas gracias por su compra"); //Podemos poner también un pie de página
 				   
@@ -995,12 +1004,22 @@ class ControladorVentas{
 				   
 								   $printer->text("IMPUESTO: $ ".number_format($traerVenta["impuesto"],2)."\n"); //ahora va el impuesto
 								  
+                                   // Calcular propina del 5%
+								   $propina = $traerVenta["total"] * 0.05;
+
+								   // Calcular total con propina
+                                   $totalConPropina = $traerVenta["total"] + $propina;
+								   
 								   // Verificar si el descuento es mayor que cero
 								   if ($traerVenta["descuento"] > 0) {$printer->text("DESCUENTO: $ ".number_format($traerVenta["descuento"],2)."\n");}
 								   
 								   $printer->text("--------\n");
 				   
 								   $printer->text("TOTAL: $ ".number_format($traerVenta["total"],2)."\n"); //ahora va el total
+				   
+								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
+
+								   $printer->text("Total con propina: $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
 				   
 								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
@@ -1192,10 +1211,20 @@ class ControladorVentas{
 						   //if ($_POST["nuevodescuento"] > 0) {$printer->text("DESCUENTO: $ ".number_format($_POST["nuevoPrecioDescuento"],2)."\n");}
 						   $totalwithoutd=$traerVenta["descuento"]+$traerVenta["total"];
 
+						   // Calcular propina del 5%
+                           $propina = $totalwithoutd * 0.05;
+
+                           // Calcular total con propina
+                           $totalConPropina = $totalwithoutd + $propina;
+
 						   $printer->text("--------\n");
 		   
 						   $printer->text("TOTAL: $ ".number_format($totalwithoutd,2)."\n"); //ahora va el total
 
+						   $printer -> feed(1); //Alimentamos el papel 1 vez*/
+
+						   $printer->text("Total con propina: $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
+				   
 						   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
 						   $printer -> text("Metodo de pago: ".$traerVenta["metodo_pago"]."\n");//Nombre del vendedor
@@ -1289,6 +1318,12 @@ class ControladorVentas{
 		   
 						   $printer->text("IMPUESTO: $ ".number_format($traerVenta["impuesto"],2)."\n"); //ahora va el impuesto
 						  
+						   // Calcular propina del 5%
+						   $propina = $traerVenta["total"] * 0.05;
+
+						   // Calcular total con propina
+						   $totalConPropina = $traerVenta["total"] + $propina;
+						   
 						   // Verificar si el descuento es mayor que cero
 						   if ($traerVenta["descuento"] > 0) {$printer->text("DESCUENTO: $ ".number_format($traerVenta["descuento"],2)."\n");}
 						   
@@ -1296,6 +1331,10 @@ class ControladorVentas{
 		   
 						   $printer->text("TOTAL: $ ".number_format($traerVenta["total"],2)."\n"); //ahora va el total
 		   
+						   $printer -> feed(1); //Alimentamos el papel 1 vez*/
+
+						   $printer->text("Total con propina: $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
+				   
 						   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
 						   $printer -> text("Metodo de pago: ".$traerVenta["metodo_pago"]."\n");//Nombre del vendedor
