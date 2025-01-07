@@ -154,7 +154,7 @@ class ControladorVentas{
                         
 										$printer -> text("TRADICION MALL GASTRONOMICO"."\n");//Nombre de la empresa
                   
-										$printer -> text("NIT: 1.130.670.324-7"."\n");//Nit de la empresa
+										$printer -> text("NIT: 1.130.670.324-8"."\n");//Nit de la empresa
 						
 										$printer -> text("Dirección: Calle 2 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
 						
@@ -851,7 +851,7 @@ class ControladorVentas{
 				   
 								   $printer -> text("TRADICION MALL GASTRONOMICO"."\n");//Nombre de la empresa
 				   
-								   $printer -> text("NIT: 1.130.670.324-7"."\n");//Nit de la empresa
+								   $printer -> text("NIT: 1.130.670.324-8"."\n");//Nit de la empresa
 						 
 								   $printer -> text("Dirección: Calle 2 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
 						 
@@ -909,7 +909,7 @@ class ControladorVentas{
 
 								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
-								   $printer->text("Total con propina: $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
+								   $printer->text("Total con propina(5%): $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
 				   
 								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
@@ -945,7 +945,7 @@ class ControladorVentas{
 				   
 								   $printer -> text("TRADICION MALL GASTRONOMICO"."\n");//Nombre de la empresa
 				   
-								   $printer -> text("NIT: 1.130.670.324-7"."\n");//Nit de la empresa
+								   $printer -> text("NIT: 1.130.670.324-8"."\n");//Nit de la empresa
 				   
 								   $printer -> text("Dirección: Calle 2 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
 				   
@@ -1019,7 +1019,7 @@ class ControladorVentas{
 				   
 								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
-								   $printer->text("Total con propina: $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
+								   $printer->text("Total con propina(5%): $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
 				   
 								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
@@ -1164,7 +1164,7 @@ class ControladorVentas{
 		   
 						   $printer -> text("TRADICION MALL GASTRONOMICO"."\n");//Nombre de la empresa
 		   
-						   $printer -> text("NIT: 1.130.670.324-7"."\n");//Nit de la empresa
+						   $printer -> text("NIT: 1.130.670.324-8"."\n");//Nit de la empresa
 				 
 						   $printer -> text("Dirección: Calle 2 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
 				 
@@ -1223,7 +1223,7 @@ class ControladorVentas{
 
 						   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
-						   $printer->text("Total con propina: $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
+						   $printer->text("Total con propina(5%): $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
 				   
 						   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
@@ -1259,7 +1259,7 @@ class ControladorVentas{
 		   
 						   $printer -> text("TRADICION MALL GASTRONOMICO"."\n");//Nombre de la empresa
 		   
-						   $printer -> text("NIT: 1.130.670.324-7"."\n");//Nit de la empresa
+						   $printer -> text("NIT: 1.130.670.324-8"."\n");//Nit de la empresa
 		   
 						   $printer -> text("Dirección: Calle 2 Crr 5-25 - zona centro"."\n");//Dirección de la empresa
 		   
@@ -1333,7 +1333,7 @@ class ControladorVentas{
 		   
 						   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
-						   $printer->text("Total con propina: $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
+						   $printer->text("Total con propina(5%): $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
 				   
 						   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
