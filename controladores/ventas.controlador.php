@@ -897,8 +897,8 @@ class ControladorVentas{
 								   // Verificar si el descuento es mayor que cero
 								   //if ($_POST["nuevodescuento"] > 0) {$printer->text("DESCUENTO: $ ".number_format($_POST["nuevoPrecioDescuento"],2)."\n");}
 								   $totalwithoutd=$traerVenta["descuento"]+$traerVenta["total"];
-                                   // Calcular propina del 5%
-								   $propina = $totalwithoutd * 0.05;
+                                   // Calcular propina del 10%
+								   $propina = $totalwithoutd * 0.10;
 
 								   // Calcular total con propina
                                    $totalConPropina = $totalwithoutd + $propina;
@@ -909,7 +909,7 @@ class ControladorVentas{
 
 								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
-								   $printer->text("Total con propina(5%): $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
+								   $printer->text("Total con propina(10%): $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
 				   
 								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
@@ -1005,7 +1005,7 @@ class ControladorVentas{
 								   $printer->text("IMPUESTO: $ ".number_format($traerVenta["impuesto"],2)."\n"); //ahora va el impuesto
 								  
                                    // Calcular propina del 5%
-								   $propina = $traerVenta["total"] * 0.05;
+								   $propina = $traerVenta["total"] * 0.10;
 
 								   // Calcular total con propina
                                    $totalConPropina = $traerVenta["total"] + $propina;
@@ -1019,7 +1019,7 @@ class ControladorVentas{
 				   
 								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
-								   $printer->text("Total con propina(5%): $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
+								   $printer->text("Total con propina(10%): $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
 				   
 								   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
@@ -1211,8 +1211,8 @@ class ControladorVentas{
 						   //if ($_POST["nuevodescuento"] > 0) {$printer->text("DESCUENTO: $ ".number_format($_POST["nuevoPrecioDescuento"],2)."\n");}
 						   $totalwithoutd=$traerVenta["descuento"]+$traerVenta["total"];
 
-						   // Calcular propina del 5%
-                           $propina = $totalwithoutd * 0.05;
+						   // Calcular propina del 10%
+                           $propina = $totalwithoutd * 0.10;
 
                            // Calcular total con propina
                            $totalConPropina = $totalwithoutd + $propina;
@@ -1223,7 +1223,7 @@ class ControladorVentas{
 
 						   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
-						   $printer->text("Total con propina(5%): $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
+						   $printer->text("Total con propina(10%): $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
 				   
 						   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
@@ -1319,7 +1319,7 @@ class ControladorVentas{
 						   $printer->text("IMPUESTO: $ ".number_format($traerVenta["impuesto"],2)."\n"); //ahora va el impuesto
 						  
 						   // Calcular propina del 5%
-						   $propina = $traerVenta["total"] * 0.05;
+						   $propina = $traerVenta["total"] * 0.10;
 
 						   // Calcular total con propina
 						   $totalConPropina = $traerVenta["total"] + $propina;
@@ -1333,7 +1333,7 @@ class ControladorVentas{
 		   
 						   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
-						   $printer->text("Total con propina(5%): $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
+						   $printer->text("Total con propina(10%): $ ".number_format($totalConPropina,2)."\n"); //Podemos poner también un pie de página
 				   
 						   $printer -> feed(1); //Alimentamos el papel 1 vez*/
 
