@@ -1,5 +1,14 @@
 <?php
 
+require_once __DIR__ . '/../vendor/autoload.php';
+
+//use excel correctly
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+
 use Mike42\Escpos\Printer;
 use Mike42\Escpos\EscposImage;
 use Mike42\Escpos\PrintConnectors\FilePrintConnector;
@@ -1666,79 +1675,112 @@ class ControladorVentas{
 
 			}
 
+			$spreadsheet = new Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
 
-			/*=============================================
-			CREAMOS EL ARCHIVO DE EXCEL
-			=============================================*/
+			 // Encabezados
+			 $encabezados = ['CÓDIGO', 'CLIENTE', 'VENDEDOR', 'CANTIDAD', 'PRODUCTOS', 'IMPUESTO', 'NETO', 'TOTAL', 'METODO DE PAGO', 'FECHA'];
 
-			$Name = $_GET["reporte"].'.xls';
+			 // Escribir encabezados
+			 $columna = 'A';
+			 foreach ($encabezados as $encabezado) {
+				 $sheet->setCellValue($columna . '1', $encabezado);
+				 $columna++;
+			 }
+ 
+			 // Aplicar estilo a encabezados
+			 $sheet->getStyle('A1:J1')->applyFromArray([
+                'font' => [
+                    'bold' => true,
+                    'color' => ['rgb' => 'FFFFFF']
+                ],
+                'fill' => [
+                    'fillType' => Fill::FILL_SOLID,
+                    'startColor' => ['rgb' => '4F81BD']
+                ],
+                'borders' => [
+                    'allBorders' => [
+                        'borderStyle' => Border::BORDER_THIN,
+                        'color' => ['rgb' => '000000']
+                    ]
+                ],
+                'alignment' => [
+                    'horizontal' => 'center'
+                ]
+            ]);
+			
 
-			header('Expires: 0');
-			header('Cache-control: private');
-			header("Content-type: application/vnd.ms-excel"); // Archivo de Excel
-			header("Cache-Control: cache, must-revalidate"); 
-			header('Content-Description: File Transfer');
-			header('Last-Modified: '.date('D, d M Y H:i:s'));
-			header("Pragma: public"); 
-			header('Content-Disposition:; filename="'.$Name.'"');
-			header("Content-Transfer-Encoding: binary");
-		
-			echo utf8_decode("<table border='0'> 
-
-					<tr> 
-					<td style='font-weight:bold; border:1px solid #eee;'>CÓDIGO</td> 
-					<td style='font-weight:bold; border:1px solid #eee;'>CLIENTE</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>VENDEDOR</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>CANTIDAD</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>PRODUCTOS</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>IMPUESTO</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>NETO</td>		
-					<td style='font-weight:bold; border:1px solid #eee;'>TOTAL</td>		
-					<td style='font-weight:bold; border:1px solid #eee;'>METODO DE PAGO</td	
-					<td style='font-weight:bold; border:1px solid #eee;'>FECHA</td>		
-					</tr>");
-
-			foreach ($ventas as $row => $item){
-
-				$cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
-				$vendedor = ControladorUsuarios::ctrMostrarUsuarios("id", $item["id_vendedor"]);
-
-			 echo utf8_decode("<tr>
-			 			<td style='border:1px solid #eee;'>".$item["codigo"]."</td> 
-			 			<td style='border:1px solid #eee;'>".$cliente["nombre"]."</td>
-			 			<td style='border:1px solid #eee;'>".$vendedor["nombre"]."</td>
-			 			<td style='border:1px solid #eee;'>");
-
-			 	$productos =  json_decode($item["productos"], true);
-
-			 	foreach ($productos as $key => $valueProductos) {
-			 			
-			 			echo utf8_decode($valueProductos["cantidad"]."<br>");
-			 		}
-
-			 	echo utf8_decode("</td><td style='border:1px solid #eee;'>");	
-
-		 		foreach ($productos as $key => $valueProductos) {
-			 			
-		 			echo utf8_decode($valueProductos["descripcion"]."<br>");
-		 		
-		 		}
-
-		 		echo utf8_decode("</td>
-					<td style='border:1px solid #eee;'>$ ".number_format($item["impuesto"],2)."</td>
-					<td style='border:1px solid #eee;'>$ ".number_format($item["neto"],2)."</td>	
-					<td style='border:1px solid #eee;'>$ ".number_format($item["total"],2)."</td>
-					<td style='border:1px solid #eee;'>".$item["metodo_pago"]."</td>
-					<td style='border:1px solid #eee;'>".substr($item["fecha"],0,10)."</td>		
-		 			</tr>");
-
-
-			}
-
-
-			echo "</table>";
-
-		}
+			 // Escribir datos
+			 $fila = 2;
+			 foreach ($ventas as $item) {
+ 
+				 $cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
+				 $vendedor = ControladorUsuarios::ctrMostrarUsuarios("id", $item["id_vendedor"]);
+				 $productos = json_decode($item["productos"], true);
+ 
+				 $cantidad = "";
+				 $descripcion = "";
+ 
+				 foreach ($productos as $valueProductos) {
+					 $cantidad .= $valueProductos["cantidad"] . "\n";
+					 $descripcion .= $valueProductos["descripcion"] . "\n";
+				 }
+ 
+				 $sheet->setCellValue('A' . $fila, $item["codigo"]);
+				 $sheet->setCellValue('B' . $fila, $cliente["nombre"]);
+				 $sheet->setCellValue('C' . $fila, $vendedor["nombre"]);
+				 $sheet->setCellValue('D' . $fila, $cantidad);
+				 $sheet->setCellValue('E' . $fila, $descripcion);
+				 $sheet->setCellValue('F' . $fila, $item["impuesto"]);
+				 $sheet->setCellValue('G' . $fila, $item["neto"]);
+				 $sheet->setCellValue('H' . $fila, $item["total"]);
+				 $sheet->setCellValue('I' . $fila, $item["metodo_pago"]);
+				 $sheet->setCellValue('J' . $fila, substr($item["fecha"], 0, 10));
+ 
+				 // Ajustar texto multilinea en celdas
+				 $sheet->getStyle('D' . $fila . ':E' . $fila)->getAlignment()->setWrapText(true);
+ 
+				 $fila++;
+			 }
+ 
+			 $lastRow = $fila - 1;
+ 
+			 // Formato de números como dinero
+			 $sheet->getStyle('F2:H' . $lastRow)
+				 ->getNumberFormat()
+				 ->setFormatCode('#,##0.00');
+ 
+			 // Aplicar bordes a toda la tabla
+			 $sheet->getStyle('A1:J' . $lastRow)->applyFromArray([
+				 'borders' => [
+					 'allBorders' => [
+						 'borderStyle' => Border::BORDER_THIN,
+						 'color' => ['rgb' => '000000']
+					 ]
+				 ]
+			 ]);
+ 
+			 // Autosize columnas
+			 foreach (range('A', 'J') as $col) {
+				 $sheet->getColumnDimension($col)->setAutoSize(true);
+			 }
+ 
+			 // Agregar suma automática en TOTAL (columna H)
+			 $sheet->setCellValue('H' . ($fila), '=SUM(H2:H' . $lastRow . ')');
+			 $sheet->getStyle('H' . ($fila))
+				 ->getNumberFormat()
+				 ->setFormatCode('#,##0.00');
+			 $sheet->getStyle('H' . ($fila))->getFont()->setBold(true);
+ 
+			 // Descargar
+			 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+			 header('Content-Disposition: attachment;filename="' . $_GET["reporte"] . '.xlsx"');
+			 header('Cache-Control: max-age=0');
+ 
+			 $writer = new Xlsx($spreadsheet);
+			 $writer->save('php://output');
+			 exit;
+		 }
 
 	}
 

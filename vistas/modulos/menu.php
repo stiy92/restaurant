@@ -126,6 +126,17 @@
 						</a>
 
 					</li>
+					
+			            <li>
+
+			            	<a href="ventas-por-producto">
+
+			            		<i class="fa fa-bar-chart"></i>
+			            		<span>Ventas por producto</span>
+
+			            	</a>
+
+			            </li>
 
 					<li>
 
