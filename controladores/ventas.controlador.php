@@ -1675,6 +1675,10 @@ class ControladorVentas{
 
 			}
 
+			/*=============================================
+			CREAMOS EL ARCHIVO DE EXCEL
+			=============================================*/
+
 			$spreadsheet = new Spreadsheet();
             $sheet = $spreadsheet->getActiveSheet();
 
